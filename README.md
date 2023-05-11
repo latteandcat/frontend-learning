@@ -1,3 +1,1 @@
-# Frontend-learning.
-
-## HTML
+# Frontend learning
