@@ -147,7 +147,6 @@ CSS选择器用于按照一定的规则选出符合条件的元素，为之添�
    
       - `:dir()`：基于文档语言的方向性（rtl/ltr）来选择元素
    
-
 6. 元素显示状态伪类
 
    - `:fullscreen`：匹配当前处于全屏模式的元素
@@ -168,9 +167,9 @@ CSS选择器用于按照一定的规则选出符合条件的元素，为之添�
 
 - `::first-letter`：可以针对首字母设置属性
 
-- `::before`和`::after`
+- `::before`和`::after`⭐
 
-  用来在一个元素的内容之前或之后插入其他内容（可以是文字、图片)
+  主要用来在一个元素的内容之前或之后插入其他内容（可以是文字、图片)
 
   常通过 content 属性来为一个元素添加修饰性的内容
 
@@ -185,5 +184,52 @@ CSS选择器用于按照一定的规则选出符合条件的元素，为之添�
   }
   ```
 
-  
+  在元素后面添加图标
 
+  ```css
+  .item::after {
+    content: url("icon.svg");
+    color: green;
+    font-size: 20px;
+    /* 调整图标位置 */
+    position: relative;
+    left: 5px;
+    top: 2px;
+  }
+  ```
+
+  :exclamation: 在使用伪元素的过程中，不要将content省略
+
+  ```css
+  .box::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #f00;
+  }
+  ```
+  
+  将content设置为图片时伪元素的width和height无法控制图片大小，解决办法是在伪元素的background中设置图片，通过background-size: cover;来控制图片大小
+
+  ```css
+  .item::before {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 14px;
+    background:url('img.png')
+    background-size:cover;
+  }
+  ```
+
+## 选择器的权重
+
+为了比较CSS层叠属性的优先级，可以给CSS属性所处的选择器定义一个权重
+
+- !important：10000
+- 内联样式：1000
+- id选择器：100
+- 类选择器、属性选择器、伪类：10
+- 元素选择器、伪元素：1
+- 通配符：0
