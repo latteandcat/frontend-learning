@@ -24,11 +24,11 @@
      1. 开发项目（HTML/CSS/JavaScript/Vue/React）
      2. 打包、部署项目到服务器里面
 
-     > 服务器本质上是一台具备以下特点的主机 
-     >
-     > - 二十四小时不关机（稳定运行）
-     > - 没有显示器 
-     > - 一般装的是Linux操作系统（centos）
+    > 服务器本质上是一台具备以下特点的主机 
+    >
+    > - 二十四小时不关机（稳定运行）
+    > - 没有显示器 
+    > - 一般装的是Linux操作系统（centos）
 
 4. 网页的组成部分
 
@@ -47,7 +47,7 @@
    - Presto → Blink：Opera
    - Webkit：Safari、360极速、搜狗、移动端浏览器
    - Webkit → Blink：Google Chrome、Edge
-4. 不同的浏览器内核有不同的解析、渲染规则，所以同一网页在不同内核的浏览器中的渲染效果也可能不同。
+4. 不同的浏览器内核有不同的解析、渲染规则，所以同一网页在不同内核的浏览器中的渲染效果也可能不同
 
 ## HTML语言
 
@@ -74,9 +74,9 @@
 
 1. HTML文件的特点是他们都具有共同的结构
 
-   > HTML文件的拓展名是.htm和.html。
-   >
-   > 因历史遗留问题，Win95\Win98系统的文件拓展名不能超过3字符，所以使用.htm。
+  > HTML文件的拓展名是.htm和.html。
+  >
+  > 因历史遗留问题，Win95\Win98系统的文件拓展名不能超过3字符，所以使用.htm。
 
 2. HTML本质上是由一系列的**HTML元素**构成的
 
@@ -184,9 +184,9 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
 
    不可以设置宽度和高度，宽高是由内容决定
 
-   > 行内元素分为行内替换元素和行内非替换元素，行内非替换元素不可以设置宽高，但行内替换元素如img元素可以设置宽高
+   > 行内元素分为行内替换元素和行内非替换元素，行内非替换元素不可以设置宽高，但行内替换元素如img、input元素可以设置宽高
 
-:exclamation:注意事项
+### 元素编写的注意事项
 
 - 块级元素和inline-block元素
   - 一般情况下，可以包含其他任何 元素
@@ -370,72 +370,232 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
   - code：显示代码
   - br：换行
 
-## 补充知识
+## 高级元素
 
-### 字符实体
+### 列表元素
 
-- HTML字符实体是一段以`&`开头以`;`结尾的文本
+很多数据在网页中都是以列表的形式存在的
 
-- 常常用于显示保留字符（会被解析为HTML代码）和不可见字符（换行符和空格符）
+列表的两种实现方式
 
-- 也可以用字符实体代替其他难以用标准键盘键入的字符
+1. 使用div来实现，样式和布局更加自由
+2. 使用列表元素来实现，更符合元素语义化
 
-- 常见的字符实体
+**常用的列表元素**
 
-  ![img](../images/character.png)
+- ol：有序列表
 
-### URL
+  直接子元素只能是li
 
-- [URL](https://developer.mozilla.org/zh-CN/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL)是统一资源定位符（Uniform Resource Locator）
+  - li：列表项
 
-- 通俗点讲：URL就是一个给定的独特策源在Web上的地址
+- ul：无序列表
 
-  - 理论上讲，每个有效的URL都指向一个唯一的资源
-  - 这个资源可以是一个HTML页面，一个CSS文档，一幅图像，等等
+  直接子元素只能是li
 
-- URL的标准格式：`[协议类型]://[服务器地址]:[端口号]/[文件路径][文件名]?[查询]#[片段ID]`
+  - li：列表项
 
-  ![img](../images/url.png)
+- dl：定义列表
 
-- URI是统一资源标识符（Uniform Resource Identifier）
+  直接子元素只能是dt、dd
 
-  - 用于标识Web技术使用的逻辑和物理资源
-  - URI在某一个规则下能把一个资源独一无二的识别出来
-  - URL是URI的子集
+  一个dt后面一般紧跟着一个或者多个dd
 
-### 元素的语义化
+  - dt：定义项
+  - dd：定义描述
 
-- 元素的语义化即用正确的元素做正确的事情
-- 理论上所有的HTML元素都能实现相同的事情
-- 好处
-  - 提升代码的阅读性和可维护性
-  - 较少开发的沟通成本
-  - 帮助语音合成工具正确识别网页元素的用途，以便做出正确的反应
-  - 有利于SEO（search engine optimization）
-  - ......
+### 表格元素
 
-### SEO
+在网页中，对于某些内容的展示使用表格元素更为合适和方便
 
-- [SEO](https://developer.mozilla.org/zh-CN/docs/Glossary/SEO)（search engine optimization）即搜索引擎优化
+**常用的表格元素**
 
-- SEO就是通过了解搜索引擎的运作规则来调整网站，以及提高网站在有关搜索引擎内排名的方式
+- table：表格
+- tr：表格中的行
+- td：行中的单元格
 
-- Google 搜索引擎的工作流程主要分为三个阶段：
+表格有很多相关的属性可以设置表格的样式，但是已经不推荐使用了
 
-  **抓取**：Google 会使用名为“抓取工具”的自动程序搜索网络，以查找新网页或更新后的网页。Google 会将这些网页的地址（即网址）存储在一个大型列表中，以便日后查看。我们会通过许多不同的方法查找网页，但主要方法是跟踪我们已知的网页中的链接。
+**border-collapse**是用来决定表格的边框是分开还是合并的CSS属性
 
-  **编入索引**：Google 会访问它通过抓取得知的网页，并会尝试分析每个网页的主题。Google 会分析网页中的内容、图片和视频文件，尝试了解网页的主题。这些信息存储在 Google 索引中，而 Google 索引是一个存储在海量计算机中的巨大数据库。
+```css
+table {
+  border-collapse: collapse;
+}
+```
 
-  **呈现搜索结果**：当用户在 Google 上进行搜索时，Google 会尝试确定最优质的搜索结果。“最佳”结果取决于许多因素，包括用户的位置、语言、设备（桌面设备或手机）以及先前用过的搜索查询。例如，在用户搜索“自行车维修店”后，Google 向巴黎用户显示的答案与向香港用户显示的答案有所不同。支付费用不能提高网页在 Google 搜索结果中的排名，网页排名是完全依靠算法完成的。
+**表格的其他元素**
 
-### 字符编码
+- 表格的表头thead
+- 表格的主体tbody
+- 表格的页脚tfoot
+- 表格的标题caption
+- 表格的表头单元格th
 
-计算机只可以直接存储和处理二进制数字
+**单元格合并**
 
-所以为了在计算机上表示、存储和处理字符，就必须将这些字符转换为二进制数字
+- 跨列合并colspan
 
-字符编码就是一套统一的、标准的转换规则
+  在最左边的单元格写上colspan属性，并且省略掉合并的td
 
-![img](https://secure2.wostatic.cn/static/rjNbKW7zW8CyLS5JzUEbsz/image.png?auth_key=1683459520-b57ErEikHSwnZUK16LTGSo-0-dec32b04b2945240d74faed9788b9add)
+- 跨行合并rowspan
 
-字符编码的发展历史：[详解字符编码 - 简书 (jianshu.com)](https://www.jianshu.com/p/899e749be47c)
+  在最上边的单元格协商rowspan属性，并且省略掉后面tr中的td
+
+### 表单元素
+
+表单元素是和用户交互的重要方式之一，在很多网站都需要使用表单
+
+**常见的表单元素**
+
+- form：表单
+- input：输入框
+- textarea：多行文本框
+- select、option：下拉选择框
+- button：按钮
+- label：表单元素的标题
+
+**form的常见属性**
+
+form通常作为表单元素的父元素，可以将整个表单作为一个整体来进行操作
+
+比如对整个表单重置或者提交整个表单的数据
+
+- action：用于设置提交表单数据的请求URL
+- method：用于设置请求的方法（get和post），默认为get
+- target：用于设置在什么地方打开URL
+  - _blank 新开页面
+  - _self 当前页面跳转
+  - _parent 当前父级页面跳转
+  - _top 当前顶层页面跳转
+
+
+**[input](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input)元素的常见属性**
+
+- type：input的类型
+
+  `text/password/radio/checkbox/button/reset/submit/file`
+
+- readonly：只读
+
+- disabled：禁用
+
+- checked：默认被选中
+
+  只有在type为radio和checkbox时可用
+
+- autofocus：当页面加载时自动聚焦
+
+- name：名字
+
+  在提交数据给服务器时，可用于区分数据类型
+
+  name是后台接收数据时使用的键值对中的键(key) 
+
+  会随着表单的提交而一起提交，是表单中不可或缺的元素
+
+  一个form表单中该元素的名称对应不同类型的input
+
+- value：取值
+
+  后台接收数据时使用的键值对中的值(value)
+
+  value可以有默认值
+
+> 布尔属性
+>
+> 常见的布尔属性有：disabled、checked、readonly、multiple、autofoucs、selected
+>
+> 布尔属性可以没有属性值，写上属性名就代表使用这个属性
+
+**表单按钮**
+
+- 普通按钮：type=button
+
+  使用value属性设置按钮文字
+
+- 重置按钮：type=reset
+
+  重置它所属表单的所有表单元素（包括input、textarea、select）
+
+- 提交按钮：type=submit
+
+  提交它所属form的表单数据给服务器（包括input、textarea、select）
+
+```html
+<input type="button" value="普通按钮">
+<input type="reset" value="重置按钮">
+<input type="submit" value="提交按钮">
+也可以通过button来实现
+<button type="button">普通按钮</button>
+<button type="reset">重置按钮</button>
+<button type="submit">提交按钮</button>
+```
+
+**input和label的关系**
+
+- label元素一般与input配合使用，用来表示input的标题
+- label可以跟某个input绑定，点击label就可以激活对应的input变成选中label的for属性和input的id属性相等时绑定
+
+```html
+<div>
+	<label for="username">用户：</label>
+  <input id="username" type="text" name="username">
+</div>
+```
+
+**radio的使用**
+
+- 使用label可以实现点击文字选中单选框
+- name值相同的radio才具备单选功能
+
+```html
+<div>
+  性别：
+  <label for="male">
+    男 <input id="male" type="radio" name="sex" value="male">
+  </label>
+  <label for="female">
+    女 <input id="female" type="radio" name="sex" value="female">
+  </label>
+</div>
+```
+
+**checkbox的使用**
+
+- 属于同一种类型的checkbox，name值要保持一致
+
+```html
+<div>
+  爱好：
+  <label for="basketball">
+    <input id="basketball" type="checkbox" name="hobby" value="basketball">篮球
+  </label>
+  <label for="football">
+    <input id="football" type="checkbox" name="hobby" value="football">足球
+  </label>
+  <label for="reading">
+    <input id="reading" type="checkbox" name="hobby" value="reading">读书
+  </label>
+</div>
+```
+
+**textarea的使用**
+
+- 常用属性
+  - cols：列数
+  - rows：行数
+- 缩放的CSS设置
+  - 禁止缩放：`resize: none;`
+  - 水平缩放：`resize: horizontal;`
+  - 垂直缩放：`resize: vertical;`
+  - 水平垂直缩放：`resize: both;`
+
+**select和option的使用**
+
+- options是select的子元素，一个option代表一个选项
+- select的常用属性
+  - multiple：可多选
+  - size：显示多少项
+- options的常用属性
+  - selected：默认被选中

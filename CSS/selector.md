@@ -132,14 +132,37 @@ CSS选择器用于按照一定的规则选出符合条件的元素，为之添�
    - `:required`
 
 4. 树结构伪类
-   - `:root :empty`
+   - `:root`：根元素即html元素
+   
+   - `:empty`：内容为空的yuan'su
+   
    - `:nth-child :nth-last-child`
+   
+     ```css
+     :nth-child(1) /* 第一个子元素 */
+     :nth-child(2n) /* 第偶数个子元素 */
+     :nth-child(2n+1) /* 第奇数个子元素 */
+     :nth-child(-n+2) /* 前两个子元素 */
+     
+     :nth-last-child(1) /* 最后一个子元素 */
+     :nth-last-child(-n+2) /* 最后两个子元素 */
+     ```
+   
    - `:fast-child :last-child`
-   - `:only-child`
+   
+   - `:only-child`：父元素中唯一子元素
+   
    - `:nth-of-type :nth-last-of-type`
+   
+      ```css
+      .box > div:nth-of-type(3) /* 选择box中的第三个div */
+      .box > div:nth-last-of-type(3) /* 选择box中的倒数第三个div */
+      ```
+   
    - `:first-of-type :last-of-type`
-   - `:only-of-type`
-
+   
+   - `:only-of-type`：父元素中唯一这种类型的元素
+   
 5. 语言伪类
 
    - `:lang()`：基于其内容语言来选择元素
