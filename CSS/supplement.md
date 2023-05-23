@@ -38,7 +38,7 @@
 
 HTML -> DOM tree + CSS -> Render Tree -> Display
 
-![](..\images\browser-rendering-flow.JPG)
+![](../images/browser-rendering-flow.JPG)
 
 ## CSS样式不生效的技巧
 
