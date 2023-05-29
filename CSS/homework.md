@@ -142,3 +142,9 @@ margin的上下折叠
 * 块级元素 
 
   * 水平居中:margin:0 auto;
+
+## 十三. 结构伪类的nth-child和nth-of-type的区别
+
+:nth-child 用于选择元素的子元素的一部分，不会考虑元素的类型
+
+:nth-of-type 用于选择元素的同种类型子元素的一部分

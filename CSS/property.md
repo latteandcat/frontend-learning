@@ -540,4 +540,3 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 - `bg-size`只能紧跟着`<position>`出现，以`/`分割，如`center/80%`
 - `<box>`可能出现0次、1次或2次。如果出现1次，它同时设定`background-origin`和`background-clip`。如果出现2次，第一次的出现设置`background-origin`，第二次的出现设置`background-clip`
 - `<background-color>`只能被包含在最后一层
-
