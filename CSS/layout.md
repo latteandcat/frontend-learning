@@ -14,14 +14,14 @@
 
 ### position
 
-position可以使元素跳出标准流单独定位
+`position`可以使元素跳出标准流单独定位
 
 即允许从正常的文档流布局中取出元素，并使它们具有不同的行为
 
 - 例如放在另一个元素的上面
 - 或者保持在浏览器视窗内的同一位置
 
-position的取值
+`position`的取值
 
 - static：决定定位（默认值）
 
@@ -40,37 +40,37 @@ position的取值
 
 `position: relative;`
 
-元素按照normal flow布局
+- 元素按照normal flow布局
 
-并可以通过 left、right、top、bottom进行定位
+- 并可以通过 left、right、top、bottom进行定位
 
-定位的参照对象是**元素自身原来在标准流中的位置**
+- 定位的参照对象是**元素自身原来在标准流中的位置**
 
-应用场景：在不影响其他元素的前提下，对当前元素位置进行微调
+- 应用场景：在不影响其他元素的前提下，对当前元素位置进行微调
 
 ### 固定定位
 
 `position: fixed;`
 
-元素脱离normal flow布局
+- 元素脱离normal flow布局
 
-并可以通过left、right、top、bottom进行定位
+- 并可以通过left、right、top、bottom进行定位
 
-定位的参照对象是**viewport**（文档的可视区域）
+- 定位的参照对象是**viewport**（文档的可视区域）
 
-应用场景：当画布滚动时，当前元素固定不动
+- 应用场景：当画布滚动时，当前元素固定不动
 
 ### 绝对定位
 
 `position: absolute;`
 
-元素脱离 normal flow 布局
+- 元素脱离 normal flow 布局
 
-并可以通过left、right、top、bottom进行定位
+- 并可以通过left、right、top、bottom进行定位
 
-定位的参照对象是**最邻近的定位祖先元素**
+- 定位的参照对象是**最邻近的定位祖先元素**
 
-如果找不到这样的祖先元素，参照对象就是viewport
+- 如果找不到这样的祖先元素，参照对象就是viewport
 
 > 子绝父相：
 >
@@ -106,20 +106,20 @@ position的取值
 - 在滚动到某个阈值点之前为相对定位
 - 达到阈值点之后变成固定定位
 
-sticky是相对于最近的祖先滚动容器的滚动视口（the nearest ancestor scroll container's scrollport)
+- sticky是相对于最近的祖先滚动容器的滚动视口（the nearest ancestor scroll container's scrollport)
 
 ### z-index
 
-z-index属性用于设置定位元素的层叠顺序
+`z-index`属性用于设置定位元素的层叠顺序
 
 - 仅对定位元素有效
 - 取值可以是正整数、负整数、0
 
-z-index的比较原则
+`z-index`的比较原则
 
 - 如果是兄弟关系
-  - z-index越大，层叠在越上面
-  - z-index相等，写在后面的那个元素层叠在上面
+  - `z-index`越大，层叠在越上面
+  - `z-index`相等，写在后面的那个元素层叠在上面
 - 如果不是兄弟关系
   - 各自从元素自己以及祖先元素中找出最邻近的两个定位元素进行比较
   - 而且这两个定位元素必须有设置z-index的具体数值
@@ -128,14 +128,14 @@ z-index的比较原则
 
 ### float
 
-float属性可以指定一个元素沿其容器的左侧或右侧放置，允许文本和内联元素环绕它
+`float`属性可以指定一个元素沿其容器的左侧或右侧放置，允许文本和内联元素环绕它
 
-- float最初只用在一段文本内浮动图像，实现文字环绕的效果
+- `float`最初只用在一段文本内浮动图像，实现文字环绕的效果
 
 - 但是早期的的CSS标准中并没有提供好的左右布局方案，因此在一段时间里面它成为网页多列布局的最常用工具
 - 绝对定位和浮动都会让元素脱离标准流，已达到灵活布局的效果
 
-float可以让元素产生浮动效果
+`float`可以让元素产生浮动效果
 
 - none： 不浮动，默认值
 - left：向左浮动
@@ -145,7 +145,7 @@ float可以让元素产生浮动效果
 
 1. 元素浮动后会脱离标准流
 
-   - 朝着向左或向右方向移动，直到自己的边界紧贴着包含块（一般是父元素）或者其他浮动元素的边界为止
+   - 朝着向左或向右方向移动，直到自己的边界紧贴着**包含块**（一般是父元素）或者其他浮动元素的边界为止
 
    - 定位元素会层叠在浮动元素上面
 
@@ -166,8 +166,61 @@ float可以让元素产生浮动效果
 >
 > 1. 删除换行符
 > 2. 将父级元素的font-size设置为0，但是需要子元素设置回来
-> 3. 通过子元素统一像一个方向浮动即可
+> 3. 使其子元素统一向一个方向浮动
 > 4. flex布局
+
+### 浮动案例
+
+多行布局
+
+假如有多个盒子需要按照多行放置，可以用float布局
+
+1. 当盒子之间需要存在水平间距时，设置margin会将一行盒子的最后一个挤下去
+
+   解决方法：
+
+    ```css
+    /* 第一种：通过选择选中每一行的最后一个元素，兼容性较差 */
+    .item:nth-child(5n) {
+      margin-right: 0;
+    }
+    /* 第二种：给每一行的最后一个元素加一个类，较麻烦 */
+    .item.last-item {
+      margin-right: 0;
+    }
+    /* 第三种：margin负值，即在item和item的父元素之间加一层div，并将其margin设置为负值，可以连边都设，也可以只设一边 */
+    .box {
+      margin-right: -10px;
+      /* margin: 0 -5px; */
+    }
+    .item {
+      float: left;
+      margin-right: 10px;
+      /* margin: 0 5px; */
+    }
+    ```
+
+2. 当盒子之间需要边框不需要间距时，可能会出现边框重叠
+
+   解决方法：
+
+    ```css
+    /* 给每个盒子设置边框，然后将margin设置为负的边框宽度，通过重叠隐藏边框 */
+    .item {
+      width: 221px;
+      height: 168px;
+      background: orange;
+      color: #fff;
+      float: left;
+      border: 1px solid #000;
+      margin-right: -1px;
+      box-sizing: border-box;
+    }
+    /* 会多出来一个边框的宽度，所以将其中一个盒子的宽度减去边框宽度 */
+    .item.first {
+      width: 220px;
+    }
+    ```
 
 ### 高度塌陷
 
@@ -175,36 +228,171 @@ float可以让元素产生浮动效果
 
 解决父元素高度塌陷问题的过程，一般叫做**清除浮动**
 
-清楚浮动的目的是让父元素计算总高度的时候，把浮动子元素的高度算进去
+清除浮动的目的是让父元素计算总高度的时候，把浮动子元素的高度算进去
 
-清楚浮动的方法：
+清除浮动的方法：
 
-- 给父元素设置固定高度
+1. 给父元素设置固定高度
 
-  缺点：扩展性不好
+   缺点：扩展性不好
 
-- 在父元素最后增加一个空的块级子元素，并且设置clear属性为both
+2. 在父元素最后增加一个空的块级子元素，并且设置`clear`属性为both
 
-  缺点：会增加很多无意义的空标签，违反结构与样式分离的原则
+   缺点：会增加很多无意义的空标签，违反结构与样式分离的原则
 
-  > clear 属性可以指定一个元素是否必须移动(清除浮动后)到在它之前的浮动元素下面
-  >
-  > - left：要求元素的顶部低于之前生成的所有左浮动元素的底部
-  > - right：要求元素的顶部低于之前生成的所有右浮动元素的底部
-  > - both：要求元素的顶部低于之前生成的所有浮动元素的底部
-  > - none：默认值，无特殊要求
+> clear 属性可以指定一个元素是否必须移动(清除浮动后)到在它之前的浮动元素下面
+>
+> - left：要求元素的顶部低于之前生成的所有左浮动元素的底部
+> - right：要求元素的顶部低于之前生成的所有右浮动元素的底部
+> - both：要求元素的顶部低于之前生成的所有浮动元素的底部
+> - none：默认值，无特殊要求
 
-- 给父元素添加一个伪元素
+3. 给父元素添加一个伪元素
 
-  ```css
-  .clear-fix::after {
-    content: "";
-    display: block;
-    clear: both;
-    visibility: hidden; /* 浏览器兼容性 */
-    height: 0; /* 浏览器兼容性 */
-  }
-  .clear-fix {
-    *zoom: 1; /* IE6/7兼容性 */
-  }
-  ```
+```css
+.clear-fix::after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden; /* 浏览器兼容性 */
+  height: 0; /* 浏览器兼容性 */
+}
+.clear-fix {
+  *zoom: 1; /* IE6/7兼容性 */
+}
+```
+
+## flex布局
+
+### flex box
+
+**flex box（弹性盒子）**是一种用于**按行或按列布局元素**的**一维布局方法**
+
+- 元素可以膨胀以填充额外的空间，收缩以适应更小的空间
+- 使用弹性盒子来进行布局的方案叫做flex布局
+
+**flex 布局**是当前使用最多的布局方案
+
+- 移动端完全普及
+- PC端也几乎已经完全普及和使用，只有非常少数的网站依然在用浮动来布局
+- flex布局可以解决浮动布局和定位布局的一些痛点
+
+### flex布局模型
+
+![](../images/flex.png)
+
+### flex container
+
+- 开启了flex布局的元素
+
+- 设置`display`属性为 flex 或者 inline-flex 可以成为`flex container`
+
+  - flex：`flex container`以 block-level 形式存在
+  - inline-flex： `flex container`以 inline-level 形式存在
+
+- 相关属性
+
+  - `flex-direction`：用于设置`main axis`的方向
+
+    - row（默认值）：➡
+    - row-reverse：⬅
+    - column：⬇
+    - column-reverse：⬆
+
+  - `flex-wrap`：决定`flex container`是否多行
+
+    - nowrap（默认值）：单行
+    - wrap：多行
+    - wrap-reverse：多行（cross start 与 cross end 相反）
+
+  - `flex-flow`：`flex-direction` 和 `flex-wrap` 的简写
+
+    顺序任意，并且都可以省略
+
+  - `justify-content`：决定`flex items`在`main axis`上的对齐方式
+
+    - flex-start（默认值）：与main start对齐
+
+    - flex-end：与main end对齐
+
+    - center：居中对齐
+
+    - space-between
+
+      `flex items`之间的距离相等
+      与 main start、main end 两端对齐
+
+    - space-around
+
+      `flex items`之间的距离相等
+
+      与 main start、main end 之间的距离等于`flex items`之间距离的一半
+
+    - space-evenly
+
+      `flex items`之间的距离相等
+
+      与 main start、main end 之间的距离等于`flex items`之间的距离
+
+    ![](../images/justify-content.png)
+
+  - `align-items`：决定`flex items`在`cross axis`上的对齐方式
+
+    - normal（默认值）：在弹性布局中，效果和stretch一样
+    - stretch：当`flex items`在`cross axis`方向的 size 为 auto 时，会自动拉伸至填充`flex container`
+    - flex-start：与 cross start 对齐
+    - flex-end：与 cross end 对齐
+    - center：居中对齐
+    - baseline：与基准线对齐
+
+    ![](../images/align-items.png)
+
+  - `align-content`：决定多行`flex items`在`cross axis`上的对齐方式
+
+    - stretch（默认值）：与 align-items 的 stretch 类似
+
+    - flex-start：与 cross start 对齐
+
+    - flex-end：与 cross end 对齐
+
+    - center：居中对齐
+
+    - space-between：
+
+      `flex items`之间的距离相等
+
+      与 cross start、cross end两端对齐
+
+    - space-around：
+
+      `flex items`之间的距离相等
+
+      与 cross start、cross end 之间的距离等于`flex items`之间距离的一半
+
+    - space-evenly：
+
+      `flex items`之间的距离相等
+
+      与 cross start、cross end 之间的距离等于`flex items`之间的距离
+
+    ![](../images/align-content.png)
+
+### flex item
+
+- `flex container`里面的直接子元素叫做`flex item`
+
+- `flex item`具备**以下特点**
+
+  - `flex item`的布局将受`flex container`属性的设置来进行控制和布局
+
+  - `flex item`不再严格区分块级元素和行内级元素
+  - `flex item`默认情况下是包裹内容的, 但是可以设置宽度和高度
+
+- 相关属性
+
+  - `flex-grow`
+  - `flex-basis`
+  - `flex-shrink`
+  - `order`
+  - `align-self`
+  - `flex`
