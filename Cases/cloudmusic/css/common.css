@@ -1,0 +1,15 @@
+.topbar-sprite {
+  background: url(../images/topbar.png) no-repeat 0 9999px;
+}
+
+.clear-fix::after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+.clear-fix {
+  zoom: 1;
+}

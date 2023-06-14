@@ -24,7 +24,6 @@ CSS的某些属性具有继承性
   .box {
     border: 1px solid purple;
   }
-  
   .box p {
     border: inherit;
   }
@@ -111,20 +110,20 @@ HTML中的每一个元素都可以看作一个盒子，盒子可以分为以下�
 
 5. 外轮廓和盒子阴影
 
-> 因为盒子有四边，所以margin/padding/border都包含top/right/bottom/left四个边
+> 因为盒子有四边，所以 margin/padding/border 都包含 top/right/bottom/left 四个边
 >
-> 在盒子模型中，内边距和外边距的使用时机要考虑其定义
+> 在盒子模型中，内边距和外边距的**使用时机**要考虑其定义
 >
-> - margin一般是用来设置兄弟元素之间的间距
-> - padding一般是用来设置父子元素之间的间距
+> - margin 一般是用来设置兄弟元素之间的间距
+> - padding 一般是用来设置父子元素之间的间距
 >
-> 行内非替换元素的注意事项
+> **行内非替换元素的注意事项**
 >
 > - 以下属性对行内非替换元素不起作用
 >
 >   width、height、margin-top、margin-bottom
 >
-> - 以下属性对行内非替换元素的效果比较特殊（有效果但是不占据空间，上下会被撑起来但是）
+> - 以下属性对行内非替换元素的效果比较特殊（有效果但是不占据空间，上下会被撑起来）
 >
 >   padding-top、padding-bottom、上下方向的border
 
@@ -368,7 +367,7 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 
 [Text Shadow CSS Generator](https://html-css-js.com/css/generator/text-shadow/)
 
-> 单行显示省略号的实现
+> **单行显示省略号的实现**
 >
 > white-space: nowrap;
 >
@@ -376,7 +375,7 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 >
 > text-overflow: ellipsis;
 >
-> 多行显示省略号的实现
+> **多行显示省略号的实现**
 >
 > overflow: hidden;
 >
@@ -435,8 +434,6 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 ### font⭐
 
 `font`是一个缩写属性
-
-可以作为`font-style`、`font-variant`、`font-weight`、`font-size`、`line-height`和`font-family`的缩写
 
 `font: font-style font-variant font-weight font-size/line-height font-family`
 
@@ -516,9 +513,9 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 
 `background-attachment`决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动
 
-- `scroll`：表示背景相对于元素本身固定，而不是随着它的内容滚动
-- `local`：表示背景相对于元素的内容固定，如果一个元素拥有滚动机制，背景将会随着元素的内容滚动
-- `fixed`：表示背景相对于视口固定，即使一个元素拥有滚动机制，背景也不会随着元素的内容滚动
+- `scroll`：表示背景**相对于元素本身固定**，而不是随着它的内容滚动
+- `local`：表示背景**相对于元素的内容固定**，如果一个元素拥有滚动机制，背景将会随着元素的内容滚动
+- `fixed`：表示背景**相对于视口固定**，即使一个元素拥有滚动机制，背景也不会随着元素的内容滚动
 
 ### background
 
@@ -532,11 +529,11 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 
 - 在每一层中，下列的值可以出现0次或1次：
   - `<attachment>`
-  - `bg-image`
+  - `<bg-image>`
   - `<position>`
   - `<bg-size>`
   - `<repeat-style>`
 
-- `bg-size`只能紧跟着`<position>`出现，以`/`分割，如`center/80%`
+- `<bg-size>`只能紧跟着`<position>`出现，以`/`分割，如`center/80%`
 - `<box>`可能出现0次、1次或2次。如果出现1次，它同时设定`background-origin`和`background-clip`。如果出现2次，第一次的出现设置`background-origin`，第二次的出现设置`background-clip`
 - `<background-color>`只能被包含在最后一层

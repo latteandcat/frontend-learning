@@ -148,3 +148,74 @@ margin的上下折叠
 :nth-child 用于选择元素的子元素的一部分，不会考虑元素的类型
 
 :nth-of-type 用于选择元素的同种类型子元素的一部分
+
+## 十四. 总结浮动的规则
+
+1. 元素浮动后会脱离标准流
+
+   - 朝着向左或向右方向移动，直到自己的边界紧贴着**包含块**（一般是父元素）或者其他浮动元素的边界为止
+
+   - 定位元素会层叠在浮动元素上面
+
+2. 如果元素是向左（右）浮动，浮动元素的左（右）边界不能超出包含块的左（右）边界
+
+3. 浮动元素之间不能层叠
+
+   - 如果一个元素浮动，另一个浮动元素已经在那个位置了，后浮动的元素将紧贴着前一个浮动元素
+   - 如果水平方向剩余的空间不够显示浮动元素，浮动元素将向下移动，直到有充足的空间为止
+
+4. 浮动元素不能与行内级内容层叠，行内级内容将会被浮动元素推出
+
+   比如：行内级元素、inline-block元素、块级元素的文字内容
+
+5. 行内级元素、inline-block元素浮动后，其顶部将与所在行的顶部对齐
+
+## 十五. 为什么需要清除浮动以及如何清除浮动
+
+由于浮动元素会脱离标准流，父元素计算总高度的时候，不会计算浮动子元素的高度，这会导致父元素的**高度塌陷**问题
+
+解决父元素高度塌陷问题的过程，一般叫做**清除浮动**
+
+清除浮动的目的是让父元素计算总高度的时候，把浮动子元素的高度算进去
+
+清除浮动的方法：
+
+1. 给父元素设置固定高度
+
+   缺点：扩展性不好
+
+2. 在父元素最后增加一个空的块级子元素，并且设置`clear`属性为both
+
+   缺点：会增加很多无意义的空标签，违反结构与样式分离的原则
+
+3. 给父元素添加一个伪元素
+
+```css
+.clear-fix::after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden; /* 浏览器兼容性 */
+  height: 0; /* 浏览器兼容性 */
+}
+.clear-fix {
+  *zoom: 1; /* IE6/7兼容性 */
+}
+```
+
+## 十六. 总结flex布局container和item的属性以及作用
+
+1. flex container 的相关属性
+   - `flex-direction`：用于设置`main axis`的方向
+   - `flex-wrap`：决定`flex container`是否多行
+   - `flex-flow`：`flex-direction` 和 `flex-wrap` 的简写
+   - `justify-content`：决定`flex items`在`main axis`上的对齐方式
+   - `align-items`：决定`flex items`在`cross axis`上的对齐方式
+   - `align-content`：决定多行`flex items`在`cross axis`上的对齐方式
+2. flex item 的相关属性
+   - `order`：决定 flex items 的排布顺序
+   - `align-self`：用于覆盖 flex container 设置的 `align-items`
+   - `flex-grow`：决定 flex items 如何扩展
+   - `flex-shrink`：决定 flex items 如何收缩
+   - `flex-basis`：用于设置 flex items 在主轴方向上的 base size
+   - `flex`：简写属性

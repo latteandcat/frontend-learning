@@ -1,0 +1,30 @@
+body {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+  color: #333;
+  outline: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+input {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+}
+
+h1 {
+	margin: 0;
+}

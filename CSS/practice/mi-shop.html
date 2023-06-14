@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mi-shop</title>
+    <style>
+      body {
+        background-color: #eee;
+      }
+      h2 {
+        margin: 0;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+      }
+      .clear-fix::after {
+        content: "";
+        display: block;
+        clear: both;
+        visibility: hidden; /* 浏览器兼容性 */
+        height: 0; /* 浏览器兼容性 */
+      }
+      .content {
+        /* background-color: greenyellow; */
+        margin: 0 auto;
+        width: 1226px;
+      }
+      .box {
+        margin-bottom: 8px;
+      }
+      .box .box-header {
+        height: 58px;
+        line-height: 58px;
+      }
+      .box .box-header h2 {
+        float: left;
+        font-size: 22px;
+        font-weight: 200;
+        color: #333;
+      }
+      .box .box-header .more {
+        float: right;
+      }
+      .box .box-header .more li {
+        float: left;
+        font-size: 16px;
+        margin-left: 30px;
+      }
+      .box .box-header .more li span {
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        padding: 5px 0;
+        transition: all 0.2s ease-in;
+      }
+      .box .box-header .more li span:hover {
+        color: #ff6700;
+        border-bottom: 2px solid #ff6700;
+      }
+      .box .box-content .left {
+        width: 234px;
+        float: left;
+      }
+      .box .box-content .right {
+        width: 978px;
+        margin-left: 14px;
+        float: left;
+      }
+      .box .box-content .brick-list {
+        margin: 0 0 -14px -14px;
+      }
+      .box .box-content .brick-item {
+        width: 234px;
+        margin-left: 14px;
+        margin-bottom: 14px;
+        float: left;
+        background-color: #fff;
+        transition: all 0.2s linear;
+      }
+      .box .box-content .brick-item:hover {
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        transform: translate3d(0, -2px, 0);
+      }
+      .box .box-content .brick-item-l {
+        height: 614px;
+      }
+      .box .box-content .brick-item-m {
+        height: 300px;
+      }
+      .box .box-content .brick-item-s {
+        height: 143px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="box">
+        <div class="box-header">
+          <h2 class="title">笔记本 | 平板</h2>
+          <div class="more">
+            <ul class="tab-list">
+              <li><span>热门</span></li>
+              <li><span>性价比</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="box-content clear-fix">
+          <div class="left">
+            <ul class="brick-list clear-fix">
+              <li class="brick-item brick-item-l"></li>
+            </ul>
+          </div>
+          <div class="right">
+            <ul class="brick-list clear-fix">
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-s"></li>
+              <li class="brick-item brick-item-s"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-header">
+          <h2 class="title">厨房电器</h2>
+          <div class="more">
+            <ul class="tab-list">
+              <li><span>净水器</span></li>
+              <li><span>烟灶</span></li>
+              <li><span>电饭煲</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="box-content clear-fix">
+          <div class="left">
+            <ul class="brick-list clear-fix">
+              <li class="brick-item brick-item-l"></li>
+            </ul>
+          </div>
+          <div class="right">
+            <ul class="brick-list clear-fix">
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-m"></li>
+              <li class="brick-item brick-item-s"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

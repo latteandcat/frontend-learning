@@ -271,13 +271,15 @@
 - 元素可以膨胀以填充额外的空间，收缩以适应更小的空间
 - 使用弹性盒子来进行布局的方案叫做flex布局
 
+### flex 布局
+
 **flex 布局**是当前使用最多的布局方案
 
 - 移动端完全普及
 - PC端也几乎已经完全普及和使用，只有非常少数的网站依然在用浮动来布局
 - flex布局可以解决浮动布局和定位布局的一些痛点
 
-### flex布局模型
+**flex 布局模型**
 
 ![](../images/flex.png)
 
@@ -390,9 +392,91 @@
 
 - 相关属性
 
-  - `flex-grow`
-  - `flex-basis`
-  - `flex-shrink`
-  - `order`
-  - `align-self`
-  - `flex`
+  - `order`：决定 flex items 的排布顺序
+  
+    - 默认值为0
+    - 可以设置任意整数，值越小就越排在前面
+  
+  - `align-self`：用于覆盖 flex container 设置的 `align-items`
+  
+    - 默认值为 auto：遵从flex container 设置的 `align-items`
+    - stretch、flex-start、flex-end、center、baseline，效果跟 `align-items` 一致
+  
+  - `flex-grow`：决定 flex items 如何扩展
+  
+    - 默认值为0
+  
+    - 可以设置任意非负数字
+  
+    - 当 flex container在主轴方向上有剩余 size 时 `flex-grow` 才会有效
+  
+    - 如果所有 flex items 的 `flex-grow` 的总和 sum 超过1
+  
+      每个 flex item 扩展的 size 为
+  
+      flex container 的剩余 size * flex-grow / sum
+  
+    - flex items 扩展后的最终 size 不能超过 max-width或max-height
+  
+  - `flex-shrink`：决定 flex items 如何收缩
+  
+    - 默认值为1
+  
+    - 可以设置任意非负数字
+  
+    - 当 flex items 在主轴方向上超过了 flex container 的 size时`flex-shrink` 才会有效
+  
+    - 如果所有 flex items 的 `flex-shrink` 的总和 sum 超过1
+  
+      每个 flex item 收缩的 size 为
+  
+      flex items 超出 flex container 的 size * flex-shrink / sum
+  
+    - flex items 收缩后的最终 size 不能小于 min-width或min-height
+  
+  - `flex-basis`：用于设置 flex items 在主轴方向上的 base size
+  
+    - 默认值为 auto
+    - 可以设置为具体的宽度数值
+    - 决定 flex items 最终 base size 的因素（优先级从高到低）
+      - max-width\max-height\min-width\min-height
+      - flex-basis
+      - width\height
+      - 内容本身的 size
+  
+  - `flex`：简写属性
+  
+    - 单值
+  
+      - 若为无单位数则设置 flex-grow
+  
+      - 若为有效宽度则设置 flex-basis
+  
+      - 关键字
+  
+        initial代表 `flex: 0 1 auto` 
+  
+        auto代表 `flex: 1 1 auto`
+  
+        none代表 `flex: 0 0 auto`
+  
+    - 双值
+  
+      - 第一个值必须为无单位数，且设置 flex-grow
+  
+      - 第二个值
+  
+        若为无单位数则设置 flex-shrink
+  
+        若为有效宽度则设置 flex-basis
+  
+    - 三值
+      - 第一个值必须为无单位数，且设置 flex-grow
+      - 第二个值必须为无单位数，且设置 flex-shrink
+      - 第三个值必须为有效宽度，且设置 flex-basis
+
+### 常见问题
+
+1. 多行布局中最后一行 justify-content 导致的对齐变形
+
+   解决方法：在多行 flex items 后面加上 列数-2 个 i 元素或者 span 元素，并且将其宽度设置为 flex item 的宽度

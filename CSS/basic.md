@@ -4,28 +4,27 @@
 
 ### CSS定义
 
-CSS（Cascading Style Sheet）表示层叠样式表，用于为网页添加样式
+1. CSS（Cascading Style Sheet）表示层叠样式表，用于为网页添加样式
 
-### CSS语言
+2. CSS语言是一种计算机语言，但不算是一种编程语言
 
-CSS语言是一种计算机语言，但不算是一种编程语言
+3. CSS的出现是为了美化HTML的，并且让结构（HTML）与样式（CSS）分离
 
-### CSS的作用
+   - 美化方式一：为HTML添加各种各样的样式，比如颜色、字体、大小、下划线等等
+   
+   
+      - 美化方式二：对HTML进行布局，按照某种结构显示
+   
 
-CSS的出现是为了美化HTML的，并且让结构（HTML）与样式（CSS）分离
-
-- 美化方式一：为HTML添加各种各样的样式，比如颜色、字体、大小、下划线等等。
-
-- 美化方式二：对HTML进行布局，按照某种结构显示。
 
 ### CSS语法规则
 
-声明（Declaration）一个单独的CSS规则，用来添加指定的CSS样式：
+声明（Declaration）一个单独的CSS规则，用来添加指定的CSS样式
 
 `声明 = 属性名: 属性值;`
 
-- 属性名（Property name）：要添加的css规则的名称；
-- 属性值（Property value）：要添加的css规则的值；
+- 属性名（Property name）：要添加的css规则的名称
+- 属性值（Property value）：要添加的css规则的值
 
 ### CSS的使用方法
 

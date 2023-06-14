@@ -169,7 +169,7 @@ Sprite图片制作
 - Photoshop
 - [sprite-generator](https://www.toptal.com/developers/css/sprite-generator)
 
-精灵图的使用
+**精灵图的使用**
 
 - 精灵图的原理是通过只显示精灵图的很小一部分来展示原图片
 

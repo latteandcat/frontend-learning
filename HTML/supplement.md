@@ -10,20 +10,19 @@
 
 - 常见的字符实体
 
-  ![img](E:/frontend-learning/images/character.png)
+  ![](../images/character.png)
 
 ## URL
 
 - [URL](https://developer.mozilla.org/zh-CN/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL)是统一资源定位符（Uniform Resource Locator）
 
-- 通俗点讲：URL就是一个给定的独特策源在Web上的地址
-
-  - 理论上讲，每个有效的URL都指向一个唯一的资源
+  - 通俗地讲：URL就是一个给定的独特资源在Web上的地址
+  - 理论上每个有效的URL都指向一个唯一的资源
   - 这个资源可以是一个HTML页面，一个CSS文档，一幅图像，等等
+  - URL的标准格式：`[协议类型]://[服务器地址]:[端口号]/[文件路径][文件名]?[查询]#[片段ID]`
 
-- URL的标准格式：`[协议类型]://[服务器地址]:[端口号]/[文件路径][文件名]?[查询]#[片段ID]`
 
-  ![img](E:/frontend-learning/images/url.png)
+  ![](../images/url.png)
 
 - URI是统一资源标识符（Uniform Resource Identifier）
 
@@ -35,12 +34,11 @@
 
 - 元素的语义化即用正确的元素做正确的事情
 - 理论上所有的HTML元素都能实现相同的事情
-- 好处
+- 语义化的好处
   - 提升代码的阅读性和可维护性
   - 较少开发的沟通成本
   - 帮助语音合成工具正确识别网页元素的用途，以便做出正确的反应
   - 有利于SEO（search engine optimization）
-  - ......
 
 ## SEO
 
@@ -64,7 +62,7 @@
 
 字符编码就是一套统一的、标准的转换规则
 
-![img](https://secure2.wostatic.cn/static/rjNbKW7zW8CyLS5JzUEbsz/image.png?auth_key=1683459520-b57ErEikHSwnZUK16LTGSo-0-dec32b04b2945240d74faed9788b9add)
+![](../images/character-coding.png)
 
 字符编码的发展历史：[详解字符编码 - 简书 (jianshu.com)](https://www.jianshu.com/p/899e749be47c)
 
