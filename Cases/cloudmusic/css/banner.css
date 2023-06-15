@@ -99,3 +99,47 @@
   color: #8d8d8d;
   font-size: 12px;
 }
+
+.banner .area-right .shadow {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 20px;
+  height: 285px;
+  background-position: -1px 0;
+}
+
+.banner .area-right .shadow-right {
+  left: auto;
+  right: -20px;
+  background-position: -20px 0;
+}
+
+/* banner的控制按钮 */
+.banner .area .control {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 37px;
+  height: 63px;
+  margin: auto 0;
+}
+
+.banner .area .control.left {
+  left: -70px;
+  background-position: 0 -360px;
+}
+
+.banner .area .control.left:hover {
+  background-position: 0 -430px;
+}
+
+.banner .area .control.right {
+  right: -70px;
+  background-position: 0 -508px;
+}
+
+.banner .area .control.right:hover {
+  background-position: 0 -578px;
+}

@@ -6,6 +6,10 @@
   background: url(../images/banner.png) no-repeat 0 9999px;
 }
 
+.main-sprite {
+  background: url(../images/main-sprite.png) no-repeat 0 9999px;
+}
+
 .clear-fix::after {
   clear: both;
   content: ".";
