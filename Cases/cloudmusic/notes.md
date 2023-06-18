@@ -37,6 +37,8 @@ text-indent 属性对行内非替换元素无效
 1. 设置图片的 vertical-align
 2. 设置图片为块级元素
 
+## main
+
 ### 块级元素中的居中对齐
 
 加入块级元素中存在一个 inline-block 元素

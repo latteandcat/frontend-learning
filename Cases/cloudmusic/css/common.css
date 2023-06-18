@@ -1,3 +1,15 @@
+.clear-fix::after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+.clear-fix {
+  zoom: 1;
+}
+
 .topbar-sprite {
   background: url(../images/topbar.png) no-repeat 0 9999px;
 }
@@ -10,14 +22,32 @@
   background: url(../images/main-sprite.png) no-repeat 0 9999px;
 }
 
-.clear-fix::after {
-  clear: both;
-  content: ".";
-  display: block;
-  height: 0;
-  visibility: hidden;
+.btn-sprite {
+  background: url(../images/button2.png) no-repeat 0 9999px;
+  display: inline-block;
 }
 
-.clear-fix {
-  zoom: 1;
+.btn-type-01-sup {
+  background-position: right -100px;
+  padding-right: 5px;
+  border-radius: 4px;
+  height: 31px;
+  line-height: 31px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.btn-type-01-sup:hover {
+  background-position: right -182px;
+}
+
+.btn-type-01-sub {
+  display: block;
+  background-position: 0 -59px;
+  height: 31px;
+}
+
+.btn-type-01-sup:hover .btn-type-01-sub {
+  background-position: 0 -141px;
 }
