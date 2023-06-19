@@ -77,3 +77,45 @@ inline-block 元素的行高与高度不一致时也会出现偏移
 }
 ```
 
+### 申请按钮
+
+实现方式是给外层和内层分别设置精灵图为背景
+
+```html
+<a href="#" class="btn-sprite btn-type-01-sup apply">
+  <span class="btn-sprite btn-type-01-sub">申请成为网易音乐人</span>
+</a>
+```
+
+```css
+.btn-sprite {
+  background: url(../images/button2.png) no-repeat 0 9999px;
+  display: inline-block;
+}
+
+.btn-type-01-sup {
+  background-position: right -100px;
+  padding-right: 5px;
+  border-radius: 4px;
+  height: 31px;
+  line-height: 31px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.btn-type-01-sup:hover {
+  background-position: right -182px;
+}
+
+.btn-type-01-sub {
+  display: block;
+  background-position: 0 -59px;
+  height: 31px;
+}
+
+.btn-type-01-sup:hover .btn-type-01-sub {
+  background-position: 0 -141px;
+}
+```
+

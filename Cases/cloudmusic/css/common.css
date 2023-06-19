@@ -23,7 +23,7 @@
 }
 
 .btn-sprite {
-  background: url(../images/button2.png) no-repeat 0 9999px;
+  background: url(../images/button.png) no-repeat 0 9999px;
   display: inline-block;
 }
 
@@ -50,4 +50,9 @@
 
 .btn-type-01-sup:hover .btn-type-01-sub {
   background-position: 0 -141px;
+}
+
+.index-sprite {
+  background: url(../images/index.png) no-repeat 0 9999px;
+  display: inline-block;
 }
