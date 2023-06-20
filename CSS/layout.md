@@ -106,7 +106,7 @@
 - 在滚动到某个阈值点之前为相对定位
 - 达到阈值点之后变成固定定位
 
-- sticky是相对于最近的祖先滚动容器的滚动视口（the nearest ancestor scroll container's scrollport)
+- sticky的参照对象是最近的祖先滚动容器的滚动视口（the nearest ancestor scroll container's scrollport)
 
 ### z-index
 

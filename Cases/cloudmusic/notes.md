@@ -128,3 +128,9 @@ inline-block 元素的行高与高度不一致时也会出现偏移
 需要给行内非替换元素设置 `display:inline-block;`
 
 才可以设置宽、高、背景等属性
+
+### display: inline-block的垂直空隙
+
+设置 display: inline-block 可能会出现垂直空隙
+
+将父元素的 font-size 设置为0 可以解决
