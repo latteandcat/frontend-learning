@@ -302,6 +302,62 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 
   IE盒子模型（IE8以下）是`border-box`
 
+- box-sizing在生效时有一个前提，即明确的设置了宽度和高度
+  
+  - 无作用的场景1：没有设置宽度或高度
+  
+    ```css
+    .container {
+        position: relative;
+        display: flex;
+      	width: 300px;
+      	height: 300px;
+      	background-color: orange;
+    }
+    .container .box {
+        height: 200px;
+        background-color: #f00;
+        box-sizing: border-box;
+        border-right: 30px solid #0f0;
+        padding-right: 30px;
+    }
+    ```
+  
+  - 无作用的场景2：绝对定位元素没有设置宽高
+  
+    ```css
+    .container .box2 {
+        position: absolute;
+        /* width: 100px;
+        height: 100px;
+        margin: auto; */
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #f00;
+        box-sizing: border-box;
+        border: 10px solid #0f0;
+    }
+    ```
+  
+  - 无作用的场景3：flex布局
+  
+    ```css
+    .container .box3 {
+    	width: 100px;
+    	background-color: #f00;
+    	box-sizing: border-box;
+    	border-top: 30px solid #0f0;
+    }
+    .container .box4 {
+    	flex: 1;
+    	background-color: purple;
+    	box-sizing: border-box;
+    	border-top: 30px solid skyblue;
+    }
+    ```
+
 ## 文本属性
 
 ### text-decoration⭐

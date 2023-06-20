@@ -249,3 +249,99 @@
 .main .area-left .n-new {
   margin-bottom: 35px;
 }
+
+/* 热门推荐 */
+
+.n-rcmd .list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.n-rcmd .list .item {
+  width: 140px;
+  height: 204px;
+  margin-bottom: 30px;
+}
+
+.n-rcmd .list .item .cover{
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.n-rcmd .list .item .cover .mask{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: 0 0;
+}
+
+.n-rcmd .list .item .cover .bottom{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 27px;
+  background-position: 0 -537px;
+  color: #ccc;
+}
+
+.n-rcmd .list .item .cover .bottom .headset {
+  float: left;
+  width: 14px;
+  height: 11px;
+  background-position: 0 -24px;
+  margin: 9px 5px 9px 10px;
+}
+
+.n-rcmd .list .item .cover .bottom .nb {
+  float: left;
+  color: #ccc;
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+.n-rcmd .list .item .cover .bottom .play {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  width: 16px;
+  height: 17px;
+  background-position: 0 0;
+}
+
+.n-rcmd .list .item .cover .bottom .play:hover {
+  background-position: 0 -60px;
+}
+
+.n-rcmd .list .item .desc {
+  display: block;
+  font-size: 14px;
+  color: #000;
+  margin: 8px 0 3px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.n-rcmd .list .item .desc .radio{
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  margin-right: 3px;
+  vertical-align: middle;
+  width: 35px;
+  height: 15px;
+  background-position: -31px -658px;
+}
+
+.n-rcmd .list .item .desc:hover {
+  text-decoration: underline;
+}

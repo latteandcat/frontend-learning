@@ -10,6 +10,10 @@
   zoom: 1;
 }
 
+.index-sprite {
+  background: url(../images/index.png) no-repeat 0 9999px;
+}
+
 .topbar-sprite {
   background: url(../images/topbar.png) no-repeat 0 9999px;
 }
@@ -20,6 +24,18 @@
 
 .main-sprite {
   background: url(../images/main-sprite.png) no-repeat 0 9999px;
+}
+
+.coverall-sprite {
+  background: url(../images/coverall.png) no-repeat 0 9999px;
+}
+
+.icon-sprite {
+  background: url(../images/icon.png) no-repeat 0 9999px;
+}
+
+.iconall-sprite {
+  background: url(../images/iconall.png) no-repeat 0 9999px;
 }
 
 .btn-sprite {
@@ -50,9 +66,4 @@
 
 .btn-type-01-sup:hover .btn-type-01-sub {
   background-position: 0 -141px;
-}
-
-.index-sprite {
-  background: url(../images/index.png) no-repeat 0 9999px;
-  display: inline-block;
 }
