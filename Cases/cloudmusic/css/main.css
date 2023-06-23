@@ -345,3 +345,295 @@
 .n-rcmd .list .item .desc:hover {
   text-decoration: underline;
 }
+
+/* 新碟上架 */
+
+.n-new .content {
+  height: 186px;
+  margin-top: 20px;
+  border: 1px solid #d3d3d3;
+}
+
+.n-new .content .inner {
+  position: relative;
+  height: 184px;
+  background: #f5f5f5;
+  border: 1px solid #fff;
+  padding: 0 20px;
+}
+
+.n-new .content .inner .roll {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.n-new .content .inner .roll .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 22px;
+  flex-shrink: 0;
+}
+
+.n-new .content .inner .roll .list .item {
+  width: 118px;
+  height: 150px;
+  background-position: -260px 100px;
+}
+
+.n-new .content .inner .roll .list .item .album {
+  position: relative;
+  margin-bottom: 7px;
+}
+
+.n-new .content .inner .roll .list .item .cover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-position: 0 -570px;
+}
+
+.n-new .content .inner .roll .list .item .album .play {
+  display: none;
+  position: absolute;
+  left: 72px;
+  bottom: 5px;
+  width: 22px;
+  height: 22px;
+  background-position: 0 -85px;
+}
+
+.n-new .content .inner .roll .list .item .album:hover .play {
+  display: block;
+}
+
+.n-new .content .inner .roll .list .item a.title,
+.n-new .content .inner .roll .list .item a.author {
+  display: block;
+  font-size: 12px;
+  width: 90%;
+  line-height: 18px;
+}
+
+.n-new .content .inner .roll .list .item a:hover {
+  text-decoration: underline;
+}
+
+.n-new .content .inner .roll .list .item a.author {
+  color: #666;
+}
+
+.n-new .content .inner .control {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  top: 71px;
+}
+
+.n-new .content .inner .control.left {
+  left: 1px;
+  background-position: -260px -75px;
+}
+
+.n-new .content .inner .control.left:hover {
+  background-position: -280px -75px;
+}
+
+.n-new .content .inner .control.right {
+  right: 1px;
+  background-position: -300px -75px;
+}
+
+.n-new .content .inner .control.right:hover {
+  background-position: -320px -75px;
+}
+
+/* 榜单 */
+
+.n-bill .bi-list {
+  height: 472px;
+  margin-top: 20px;
+  padding-left: 1px;
+  background: url(../images/index_bill.png) no-repeat;
+}
+
+.n-bill .bi-list .rank {
+  float: left;
+  width: 230px;
+  height: 100%;
+  margin: 0;
+}
+
+.n-bill .bi-list .origin-rank {
+  width: 228px;
+}
+
+.n-bill .bi-list .rank .top {
+  height: 100px;
+  padding: 20px 0 0 19px;
+}
+
+.n-bill .bi-list .rank .top .cover {
+  position: relative;
+  float: left;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.n-bill .bi-list .rank .top .cover img {
+  width: 100%;
+  height: 100%;
+}
+
+.n-bill .bi-list .rank .top .cover a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: -145px -57px;
+}
+
+.n-bill .bi-list .rank .top .title {
+  float: left;
+  width: 116px;
+  margin: 6px 0 0 10px;
+}
+
+.n-bill .bi-list .rank .top .title a h3{
+  width: 100%;
+  font-size: 14px;
+}
+
+.n-bill .bi-list .rank .top .title a:hover h3{
+  text-decoration: underline;
+}
+
+.n-bill .bi-list .rank .top .title .btn {
+  margin-top: 10px;
+}
+
+.n-bill .bi-list .rank .top .title .btn a{
+  display: block;
+  float: left;
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+  text-indent: -9999px;
+}
+
+.n-bill .bi-list .rank .top .title .btn .play {
+  background-position: -267px -205px;
+}
+
+.n-bill .bi-list .rank .top .title .btn .play:hover {
+  background-position: -267px -235px;
+}
+
+.n-bill .bi-list .rank .top .title .btn .sub {
+  background-position: -300px -205px;
+}
+
+.n-bill .bi-list .rank .top .title .btn .sub:hover {
+  background-position: -300px -235px;
+}
+
+.n-bill .bi-list .rank dd ol {
+  height: 319px;
+  margin-left: 50px;
+  line-height: 32px;
+}
+
+.n-bill .bi-list .rank dd li {
+  height: 32px;
+  font-size: 12px;
+}
+
+.n-bill .bi-list .rank dd li a{
+  float: left;
+  display: block;
+  width: 170px;
+  height: 32px;
+}
+
+.n-bill .bi-list .rank dd li:hover a{
+  width: 96px;
+  text-decoration: underline;
+}
+
+.n-bill .bi-list .rank dd li .no{
+  float: left;
+  position: relative;
+  width: 35px;
+  height: 32px;
+  margin-left: -35px;
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+}
+
+.n-bill .bi-list .rank dd li .no-top{
+  color: #c10d0c;
+}
+
+.n-bill .bi-list .rank dd li .oper {
+  display: none;
+  float: right;
+  width: 82px;
+  height: 19px;
+  margin-top: 7px;
+}
+
+.n-bill .bi-list .rank dd li:hover .oper {
+  display: block;
+}
+
+.n-bill .bi-list .rank dd li .oper .btn {
+  float: left;
+  width: 17px;
+  height: 17px;
+  margin-right: 10px;
+}
+
+.n-bill .bi-list .rank dd li .oper .play {
+  background-position: -267px -268px;
+}
+
+.n-bill .bi-list .rank dd li .oper .add {
+  margin: 2px 6px 0 0;
+  background-position: 0 -700px;
+}
+
+.n-bill .bi-list .rank dd li .oper .sub {
+  background-position: -297px -268px;
+}
+
+.n-bill .bi-list .rank dd li .oper .play:hover {
+  background-position: -267px -288px;
+}
+
+.n-bill .bi-list .rank dd li .oper .add:hover {
+  background-position: -22px -700px;
+}
+
+.n-bill .bi-list .rank dd li .oper .sub:hover {
+  background-position: -297px -288px;
+}
+
+.n-bill .bi-list .rank dd .more {
+  clear: both;
+  height: 32px;
+  padding-right: 32px;
+  text-align: right;
+  line-height: 32px;
+  font-size: 12px;
+}
+
+.n-bill .bi-list .rank dd .more:hover {
+  text-decoration: underline;
+}

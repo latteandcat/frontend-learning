@@ -10,6 +10,13 @@
   zoom: 1;
 }
 
+.row-hide {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
 .index-sprite {
   background: url(../images/index.png) no-repeat 0 9999px;
 }

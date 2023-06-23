@@ -3,12 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>main</title>
-  <link rel="stylesheet" href="./css/reset.css" />
-  <link rel="stylesheet" href="./css/common.css" />
-  <link rel="stylesheet" href="./css/main.css" />
+  <title>网易云音乐</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/topbar.css">
+  <link rel="stylesheet" href="./css/banner.css">
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+  <div class="topbar">
+    <div class="nav">
+      <div class="nav-content">
+        <!-- 用h1标签有利于SEO -->
+        <h1 class="topbar-sprite logo">
+          <a hidefoucs="true" href="#">网易云音乐</a>
+        </h1>
+        <ul class="link-list clear-fix">
+          <li class="active">
+            <a href="#">发现音乐</a>
+            <sub class="topbar-sprite cor">&nbsp;</sub>
+          </li>
+          <li>
+            <a href="#">我的音乐</a>
+          </li>
+          <li>
+            <a href="#">关注</a>
+          </li>
+          <li>
+            <a href="#">商城</a>
+          </li>
+          <li>
+            <a href="#">音乐人</a>
+          </li>
+          <li>
+            <a href="#">下载客户端</a>
+            <sup class="topbar-sprite hot">&nbsp;</sup>
+          </li>
+        </ul>
+        <a href="#" class="login">登录</a>
+        <a href="#" class="creator-center">创作者中心</a>
+        <div class="topbar-sprite search">
+          <div class="search-box">
+            <input type="text" name="srch" id="srch" />
+            <label for="srch">音乐/视频/电台/用户</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="subnav">
+      <div class="subnav-content">
+        <ul>
+          <li class="active">
+            <a href="#"><span>推荐</span></a>
+          </li>
+          <li>
+            <a href="#"><span>排行榜</span></a>
+          </li>
+          <li>
+            <a href="#"><span>歌单</span></a>
+          </li>
+          <li>
+            <a href="#"><span>主播电台</span></a>
+          </li>
+          <li>
+            <a href="#"><span>歌手</span></a>
+          </li>
+          <li>
+            <a href="#"><span>新碟上架</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="banner">
+    <div class="area">
+      <div class="area-left">
+        <ul class="img-list">
+          <li>
+            <a class="item" href="#">
+              <img src="./images/lover2017.jpg" alt="">
+            </a>
+          </li>
+          <li>
+            <a class="item" href="#">
+              <img src="./images/lover2017.jpg" alt="">
+            </a>
+          </li>
+          <li>
+            <a class="item" href="#">
+              <img src="./images/lover2017.jpg" alt="">
+            </a>
+          </li>
+        </ul>
+        <ul class="dots-list">
+          <li><a class="banner-sprite item" href="#"></a></li>
+          <li><a class="banner-sprite item" href="#"></a></li>
+          <li><a class="banner-sprite item" href="#"></a></li>
+          <li><a class="banner-sprite item" href="#"></a></li>
+          <li><a class="banner-sprite item" href="#"></a></li>
+          <li><a class="banner-sprite item" href="#"></a></li>
+          <li><a class="banner-sprite item active" href="#"></a></li>
+          <li><a class="banner-sprite item" href="#"></a></li>
+        </ul>
+      </div>
+      <div class="area-right">
+        <span class="banner-sprite shadow"></span>
+        <a class="download" href="#">下载客户端</a>
+        <p class="desc">PC 安卓 iPhone WP iPad Mac 六大客户端</p>
+        <span class="banner-sprite shadow shadow-right"></span>
+      </div>
+      <a href="#" class="banner-sprite control left"></a>
+      <a href="#" class="banner-sprite control right"></a>
+    </div>
+  </div>
   <div class="main">
     <div class="area">
       <div class="area-left">
