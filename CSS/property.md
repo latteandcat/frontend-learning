@@ -591,5 +591,153 @@ strong、b、h1-h6等标签的font-weight默认就是bold
   - `<repeat-style>`
 
 - `<bg-size>`只能紧跟着`<position>`出现，以`/`分割，如`center/80%`
+
 - `<box>`可能出现0次、1次或2次。如果出现1次，它同时设定`background-origin`和`background-clip`。如果出现2次，第一次的出现设置`background-origin`，第二次的出现设置`background-clip`
+
 - `<background-color>`只能被包含在最后一层
+
+## 动态效果
+
+### transform
+
+**transform 的概念**
+
+- transform 属性允许对某一个元素进行某些形变，包括**旋转、缩放、倾斜或平移**等
+
+- 并非所有盒子都可以进行 transform 的转换，比如行内非替换元素或表格中的元素
+
+- transform属性可以指定为关键字值 none 或一个或多个 `<transform-function>` 值
+
+  [transform-function - CSS：层叠样式表 | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform-function)
+
+- transform设置多个 `<transform-function>` 值时以空格分隔
+
+**常见的 transform-function**
+
+- 平移：translate(x, y)
+
+  - 用于移动元素在平面上的位置
+  - 只设置一个值时代表 x 轴上的位移
+  - 设置百分比是相对于自身宽高的
+  - translate是translateX和translateY的简写属性
+
+- 缩放：scale(x, y)
+
+  - 用于改变元素的大小
+
+  - 只设置一个值时代表 x 轴上的缩放
+  - 可设置小数或百分比代表缩放倍数
+  - scale是scaleX和scaleY的简写属性
+
+- 旋转：rotate(deg)
+
+  - 用于旋转元素
+  - 可设置一个值表示旋转的角度
+  - 常用单位为deg，即旋转的角度
+  - 也支持百分度grad、圈数turn、弧度rad
+  - 正数为顺时针、负数为逆时针
+
+- 倾斜：skew(deg, deg)
+
+  - 定义一个元素在二维平面上的倾斜转换
+  - 只设置一个值时表示 x 轴上的倾斜角度
+  - 单位与 rotate 的单位相同
+
+**transform-origin**
+
+- 用于设置元素变形的原点
+
+- 设置一个值表示原点在x或y轴上偏移量
+
+  必须是`<length>`，`<percentage>`，或 left, center, right, top, bottom关键字中的一个
+
+- 设置两个值表示原点在x和y轴上偏移量
+
+  其中一个必须是`<length>`，`<percentage>`，或left, center, right关键字中的一个
+  另一个必须是`<length>`，`<percentage>`，或top, center, bottom关键字中的一个
+
+- 设置三个值表示原点在x、y和z轴上偏移量
+
+  前两个值和只有两个值时的用法相同。
+  第三个值必须是`<length>`，它始终代表 Z 轴偏移量
+
+### transition
+
+**transition 的概念**
+
+- CSS transitions 提供了一种在更改CSS属性时控制动画速度的方法
+- 可以让CSS属性的变化成为一个持续一段时间的过程，而不是立即生效的
+- 比如将一个元素从一个位置移动到另一个位置，默认在修改完CSS属性后会立即生效
+- 但是我们可以通过 CSS transition，让这个过程加上一定的过渡效果，包括一定的曲线速率变化
+
+**implicit transitions**
+
+通常将两个状态之间的过渡成为隐式过渡，因为开始与结束之间的状态是由浏览器决定的
+
+> A CSS transition tells the browser to draw the intermediate states between the initial and final states, showing the user a smooth transition.
+
+**CSS transitions 可以决定**
+
+- 哪些属性发生过渡效果：property
+- 何时开始：delay
+- 持续多久：duration
+- 过渡的变化曲线：timing function（比如匀速或者先快后慢）
+
+> 并不是所有的CSS属性都可以执行过渡或动画
+>
+> 可以在MDN中查询CSS属性的Animation type来判断是否可以用于过渡和动画
+>
+> [动画性 CSS 属性 - CSS：层叠样式表 | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_animated_properties)
+
+**transition 属性是以下属性的简写属性**
+
+- transition-property：指定应用过渡的属性
+
+  - all
+  - none
+  - CSS属性名称
+
+- transition-duration：指定过渡所需的时间
+
+  单位为秒或者毫秒
+
+- transition-timing-function：指定过渡的变化曲线
+
+  [transition-timing-function - CSS：层叠样式表 | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition-timing-function)
+
+- transition-delay：指定过渡执行之前的等待时间
+
+**transition 的局限性**
+
+- 只能定义开始状态和结束状态，不能定义中间状态
+- 不能重复执行，除非一再触发动画
+- 需要在特定状态下触发才能执行，比如某个属性被修改了
+
+### animation
+
+**CSS animation 的使用分成两个步骤**
+
+1. 使用 keyframes 定义动画序列（每一帧动画如何执行）
+2. 配置动画执行的名称、持续时间、动画曲线、延迟、执行次数、方向等等
+
+**@keyframes 关键帧规则**
+
+可以使用 @keyframes 来定义多个变化状态，并使用 animation-name 来声明匹配
+
+- 关键帧使用百分比来指定动画发生的时间点
+- 0% 表示动画的第一时刻，100% 表示动画的最终时刻
+- from关键字相当于 0%，to关键字相当于 100%
+
+**animation 是以下属性的简写属性**
+
+- animation-name：指定执行哪一个关键帧动画
+- animation-duration：指定动画的持续时间
+- animation-timing-function：指定动画的变化曲线
+- animation-delay：指定延迟执行的时间
+- animation-iteration-count：指定动画执行的次数，infinite表示无限
+- animation-direction：指定方向，常用值为normal和reverse
+- animation-fill-mode：执行动画最后保留哪一个值
+  - none：回到没有执行动画的位置
+  - forwards：动画最后一帧的位置
+  - backwards：动画第一帧的位置
+- animation-play-state：指定动画运行或者暂停（在Js中控制动画的暂停）

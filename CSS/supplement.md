@@ -182,3 +182,45 @@ Sprite图片制作
 - 获取精灵图的位置
 
   [spritecow](http://www.spritecow.com/)
+
+## 元素的水平垂直居中总结
+
+### 水平居中
+
+1. 行内级元素：设置父元素的 `text-align: center;`
+
+2. 块级元素：设置当前块级元素（有宽度）的 `margin: 0 auto;`
+
+3. 绝对定位：元素有宽度时
+
+   设置 `left: 0; right: 0; margin: 0 auto;`
+
+4. flex布局
+
+   设置 `justify-content: center;`
+
+### 垂直居中
+
+1. 绝对定位：元素有高度时
+
+   设置 `top: 0; bottom: 0; margin: auto 0;`
+
+   弊端：
+
+   - 必须使用定位（脱离标准流）
+   - 必须给元素设置高度
+
+2. flex布局
+
+   设置 `align-items: center;`
+
+   弊端：
+
+   - 当前flex布局中所有元素都会被垂直居中
+   - 兼容性略差（可忽略）
+
+3. top/translate
+
+   设置 `position: relative; top: 50%; translateY(-50%);`
+
+   不能用 `margin-top: 50%;` 因为 `margin-top` 的百分比是相对于父元素的宽度的
