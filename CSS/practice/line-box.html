@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>行盒内包含多个内容时如何对齐</title>
+  <style>
+    .box {
+      background-color: skyblue;
+    }
+    .box img {
+      width: 200px;
+    }
+
+    .box span {
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+      background-color: sandybrown;
+    }
+  </style>
+</head>
+<body>
+  <h3>1.行盒内只有文字</h3>
+  <div class="box">
+    div元素中的文本
+  </div>
+  <h3>2.行盒内有文字和图片</h3>
+  <div class="box">
+    div元素中的文本
+    <img src="./images/diqiu.jpg" alt="">
+  </div>
+  <h3>3.行盒内有文字和图片，还有inline-block元素（比图片大）</h3>
+  <div class="box">
+    div元素中的文本
+    <img src="./images/diqiu.jpg" alt="">
+    <span></span>
+  </div>
+  <h3>4.行盒内有文字和图片，还有inline-block元素（比图片大），而且设置了margin-bottom</h3>
+  <div class="box">
+    div元素中的文本
+    <img src="./images/diqiu.jpg" alt="">
+    <span style="margin-bottom: 20px;"></span>
+  </div>
+  <h3>5.行盒内有文字和图片，还有inline-block元素（比图片大），而且设置了margin-bottom并且有文字</h3>
+  <div class="box">
+    div元素中的文本bbbbbqqqqggggg
+    <img src="./images/diqiu.jpg" alt="">
+    <span style="margin-bottom: 20px;">inline-block中有文字时，它的基线不再是底部，而会变成最后一行文本的基线</span>
+  </div>
+  <h3>note: 消除块级元素中img元素的底部像素</h3>
+  <div class="box">
+    <img style="vertical-align: middle;" src="./images/diqiu.jpg" alt="">
+    vertical-align: top/middle/bottom;或者display:block;
+  </div>
+</body>
+</html>

@@ -68,6 +68,9 @@
 
 ## Emmet语法
 
-Emmet可以提高开发效率，通过输入缩写自动生成相应代码
+Emmet可以提高开发效率
+
+通过输入缩写自动生成相应代码
 
 [Cheat Sheet (emmet.io)](https://docs.emmet.io/cheat-sheet/)
+

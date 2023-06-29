@@ -479,4 +479,4 @@
 
 1. 多行布局中最后一行 justify-content 导致的对齐变形
 
-   解决方法：在多行 flex items 后面加上 列数-2 个 i 元素或者 span 元素，并且将其宽度设置为 flex item 的宽度
+   解决方法：在多行 flex items 后面加上 **列数-2** 个 i 元素或者 span 元素，并且将其宽度设置为 flex item 的宽度
