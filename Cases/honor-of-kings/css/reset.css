@@ -1,0 +1,17 @@
+body, ul, ol, li, p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+img {
+  display: block;
+}
+
+ul, ol, li {
+  list-style: none;
+}

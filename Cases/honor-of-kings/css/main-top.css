@@ -1,0 +1,146 @@
+.main-top {
+  display: flex;
+  height: 342px;
+  background: url(../images/rotate_bg.png) no-repeat left top;
+}
+
+.main-top .news-panel {
+  width: 605px;
+}
+
+.main-top .news-panel .news-img {
+  display: flex;
+  overflow: hidden;
+}
+
+.main-top .news-panel .news-btn {
+  display: flex;
+  font-size: 14px;
+}
+
+.main-top .news-panel .news-btn li {
+  width: 120.8px;
+  height: 44px;
+  line-height: 44px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  color: #b1b2be;
+}
+
+.main-top .news-panel .news-btn li:hover,
+.main-top .news-panel .news-btn li.active {
+  background: rgba(255,255,255,0.15);
+  color: #f3c258
+}
+
+.main-top .news-center {
+  flex: 1;
+  padding: 0 17px;
+}
+
+.main-top .news-center .tab {
+  display: flex;
+  height: 48px;
+  border-bottom: 1px solid #000;
+}
+
+.main-top .news-center .tab li{
+  width: 52px;
+  height: 45px;
+  padding-bottom: 3px;
+  line-height: 45px;
+  font-size: 14px;
+  text-align: center;
+  color: #B8B9C5;
+  cursor: pointer;
+  transition: all .225s ease-out;
+}
+
+.main-top .news-center .tab li.item:hover,
+.main-top .news-center .tab li.active{
+  padding: 0;
+  border-bottom: 3px solid #f3c258;
+  color: #f3c258;
+}
+
+.main-top .news-center .news-list li {
+  margin-bottom: 11px;
+}
+
+.main-top .news-center .news-list li .type {
+  display: inline-block;
+  width: 32px;
+  margin-top: 2px;
+  margin-right: 5px;
+  color: #ff3636;
+  border: 1px solid #ff3636;
+  border-radius: 2px;
+  font-size: 12px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.main-top .news-center .news-list li .title {
+  display: inline-block;
+  width: 230px;
+  color: #B8B9C5;
+  font-size: 14px;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.main-top .news-center .news-list li .time {
+  float: right;
+  color: #999;
+  font-size: 12px;
+}
+
+.main-top .news-center .news-list .top {
+  width: 294px;
+  height: 36px;
+  margin-top: 18px;
+  padding: 0 15px;
+  line-height: 36px;
+  color: #f3c258;
+  background: #414046;
+}
+
+.main-top .news-center .news-list .top a{
+  display: inline-block;
+  width: 230px;
+  color: #f3c258;
+  font-size: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.main-top .download-panel {
+  width: 236px;
+}
+
+.main-top .download-panel a{
+  display: block;
+  background: url(../images/index.png) no-repeat;
+}
+
+.main-top .download-panel .download {
+  height: 128px;
+  background-position: 0 -219px;
+}
+
+.main-top .download-panel .guard {
+  height: 106px;
+  background-position: 0 -350px;
+}
+
+.main-top .download-panel .exper {
+  height: 108px;
+  background-position: 0 -461px;
+}
