@@ -223,13 +223,23 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
 
    - meta元素
 
-     `<meta charset="utf-8">`
+     meta元素表示那些不能由其他 HTML 元相关（meta-related）元素表示的元数据信息
 
-     用于设置网页的字符编码
+     - charset：用于设置网页的字符编码
 
-     让浏览器更精准地显示每一个文字，不设置或者设置错误会导致乱码
+     - http-equiv：编译指令
 
-     一般使用utf-8编码
+     - name：提供文档级别的元数据
+
+       [标准元数据名称](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta/name)
+
+     > `<meta charset="utf-8">`用于设置网页的字符编码
+     >
+     > 让浏览器更精准地显示每一个文字
+     >
+     > 不设置或者设置错误会导致乱码
+     >
+     > 一般使用utf-8编码
 
    - link元素
 

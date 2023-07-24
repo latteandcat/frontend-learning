@@ -76,6 +76,8 @@
 >
 > 在大多数情况下，子元素的绝对定位都是相对于父元素进行定位，如果希望子元素相对于父元素进行定位，又不希望父元素脱离标准流，常常通过将父元素设置为相对定位子元素设置为绝对定位来实现
 
+### 绝对定位元素
+
 **绝对定位元素**：position值为absolute或fixed的元素
 
 **绝对定位元素的特点**
@@ -88,7 +90,7 @@
 
 **对于绝对定位元素来说**
 
-- 定位参照对象的宽度 = left + right + margin-left + margin-right + 绝对定位元素的实际占用宽度
+- 定位参照对象的宽度 = left + right + margin-left + margin-right + 绝对定位元素的实际占用宽度 
 - 定位参照对象的高度 = top + bottom + margin-top + margin-bottom + 绝对定位元素的实际占用高度
 
 可以通过这个公式实现绝对定位元素在定位参照对象中的居中显示
@@ -480,3 +482,40 @@
 1. 多行布局中最后一行 justify-content 导致的对齐变形
 
    解决方法：在多行 flex items 后面加上 **列数-2** 个 i 元素或者 span 元素，并且将其宽度设置为 flex item 的宽度
+
+## grid布局
+
+### 认识grid布局
+
+flex 布局的功能相对于其他布局来说已经足够强大
+
+- 但 flex 布局是一个一维的布局方案
+
+- 它主要的布局是在主轴上进行操作，当然也提供了一些交叉轴属性
+
+CSS 为了进一步增强自己的布局能力，提供了 grid 布局
+
+- grid 布局是一种基于二维的布局系统
+- 它更加强大，也更加复杂
+
+目前项目中基本都是使用 flex 布局为主，因为 grid 布局的兼容性比 flex 布局差一些，所以 grid 布局的应用较少
+
+[A Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+
+### 重要概念
+
+- grid container：
+  - 元素设置 display 为 grid 的盒子
+- grid item：单元格称之为 grid cell
+  - grid container 的直接子项（必须是直接子代）
+- grid line
+  - 构成网格结构的分割线
+  - 可以是垂直的列网格线，或者水平的行网格线
+
+- grid track
+  - 两条相邻网格线之间的空间
+  - 你可以看成网格的行或者列
+
+- grid area
+  - 由四条网格线包围的总空间
+  - 一个网格区域可以由任意数量的网格单元组成

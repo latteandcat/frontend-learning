@@ -115,13 +115,13 @@ vertical-align 会影响行内级元素在一个行盒中垂直方向的位置
 
 - vertical-align 的不同取值
 
-  - baseline：基线对齐
+  - baseline：使元素的基线与父元素的基线对齐
 
-  - top：把行内级盒子的顶部跟 line box 顶部对齐
+  - top：使元素及其后代元素的顶部与整行的顶部对齐
 
   - middle：行内级盒子的中部与父元素的基线加上父元素 x-height 的一半对齐
 
-  - bottom：把行内级盒子的顶部跟 line box 底部对齐
+  - bottom：使元素及其后代元素的底部与整行的底部对齐
 
   - <percentage>：使元素的基线对齐到父元素的基线之上的给定百分比
 
@@ -458,6 +458,27 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 相当于没有`<spread-radius>`和`inset`的`box-shadow`
 
 [Text Shadow CSS Generator](https://html-css-js.com/css/generator/text-shadow/)
+
+### white-space
+
+`white-space`用于设置空白处理和换行规则
+
+空白包含：Spaces、Tabs 和 NewLines
+
+- normal：合并所有连续的空白，允许单词超屏时自动换行
+- nowrap：合并所有连续的空白，不允许单词超屏时自动换行
+- pre：阻止合并所有连续的空白，不允许单词超屏时自动换行
+- pre-wrap：阻止合并所有连续的空白，允许单词超屏时自动换行
+- pre-line：合并所有连续的空白（但保留换行），允许单词超屏时自动换行
+
+### text-overflow
+
+`text-overflow`通常用于设置文字溢出时的行为
+
+- clip：直接裁剪掉溢出的内容
+- ellipsis：溢出那行的结尾处用省略号表示
+
+text-overflow生效的前提是overflow不为vi
 
 > **单行显示省略号的实现**
 >
