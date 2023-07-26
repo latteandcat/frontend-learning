@@ -1,0 +1,54 @@
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: calc(env(safe-area-inset-bottom) + 50px);
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+.tabbar .item {
+  flex: 1;
+  text-align: center;
+}
+.tabbar .item img {
+  width: 48px;
+}
+.btns {
+  display: flex;
+}
+.btns .item img {
+  width: 20vw;
+  height: 20.8333vw;
+}
+.guide {
+  display: flex;
+  width: 94.66667vw;
+  height: 12.26667vw;
+  margin: 0 2.66667vw;
+}
+.guide .item {
+  flex: 1;
+  text-align: center;
+}
+.guide .item .title {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 8vw;
+  color: #666;
+  font-size: 4.2667vw;
+}
+.guide .item .subtitle {
+  color: #999;
+  font-size: 3.2vw;
+}
+.guide .item.active .title {
+  color: #f7261d;
+}
+.guide .item.active .subtitle {
+  color: #fff;
+  background-color: #f7261d;
+  border-radius: 2.4vw;
+}

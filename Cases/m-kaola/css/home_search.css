@@ -1,0 +1,46 @@
+.search {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 10.6667vw;
+  background-color: #fff;
+  z-index: 2;
+}
+.search .left {
+  display: flex;
+  align-items: center;
+  width: 74.6667vw;
+  height: 7.46667vw;
+  margin-left: 3.2vw;
+  box-sizing: border-box;
+  font-size: 3.2vw;
+  border: 0.26667vw solid red;
+  border-radius: 4vw;
+}
+.search .left img {
+  display: block;
+  width: 3.2vw;
+  height: 3.33333vw;
+  margin: 0 2.66667vw;
+}
+.search .left .placeholder {
+  flex: 1;
+  height: 3.73333vw;
+  line-height: 3.73333vw;
+  color: #999;
+}
+.search .right {
+  width: 16vw;
+  height: 7.2vw;
+  margin-right: 3.46667vw;
+  text-align: center;
+  line-height: 7.2vw;
+  color: red;
+  font-size: 3.2vw;
+  box-sizing: border-box;
+  border: 1px solid red;
+  border-radius: 0.8vw;
+}

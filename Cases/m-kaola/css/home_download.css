@@ -1,0 +1,52 @@
+.nowrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.download {
+  display: flex;
+  height: 16vw;
+  box-sizing: border-box;
+  border-bottom: 0.2667vw solid #ddd;
+}
+.download .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  overflow: hidden;
+  padding: 0 2.6667vw;
+  background-color: #fff;
+}
+.download .left .logo {
+  height: 10.6667vw;
+  width: 10.6667vw;
+}
+.download .left .info {
+  flex: 1;
+  overflow: hidden;
+  margin-left: 2.6667vw;
+}
+.download .left .info .title {
+  color: #333;
+  font-size: 3.7333vw;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.download .left .info .desc {
+  margin-top: 0.5333vw;
+  color: #999;
+  font-size: 3.2vw;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.download .right {
+  width: 25.2vw;
+  height: 16vw;
+  text-align: center;
+  line-height: 16vw;
+  color: #fff;
+  background-image: linear-gradient(to right, #ff0409, #ff3162);
+}

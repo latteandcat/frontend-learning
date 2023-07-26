@@ -1,0 +1,109 @@
+.subsidy {
+  width: 93.6vw;
+  height: 44vw;
+  margin: 3.2vw;
+  border-radius: 3.2vw;
+  background-color: #fff;
+}
+.subsidy .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10.6667vw;
+  padding: 0 3.2vw;
+}
+.subsidy .header .left {
+  display: flex;
+}
+.subsidy .header .left img {
+  width: 16.8vw;
+  height: 4.26667vw;
+  margin-right: 1.6vw;
+  flex: 0 0 auto;
+}
+.subsidy .header .left .deadline {
+  display: flex;
+  font-size: 3.2vw;
+  text-align: center;
+}
+.subsidy .header .left .deadline .time {
+  width: 4.26667vw;
+  height: 4.26667vw;
+  padding: 0 0.53333vw;
+  line-height: 4.26667vw;
+  color: #fff;
+  background-color: #f7261d;
+  border-radius: 0.8vw;
+}
+.subsidy .header .left .deadline .split {
+  padding: 0 0.53333vw;
+  color: #f7261d;
+}
+.subsidy .header .right {
+  position: relative;
+  height: 4.53333vw;
+  padding-right: 1.6vw;
+  line-height: 4.53333vw;
+  font-size: 3.2vw;
+  color: #f7261d;
+}
+.subsidy .header .right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: 1.2vw;
+  height: 1.2vw;
+  border: 0.2667vw solid #f7261d;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(-45deg);
+}
+.subsidy .goodslist {
+  display: flex;
+  justify-content: center;
+}
+.subsidy .goodslist .goods {
+  width: 20.93333vw;
+  height: 33.33333vw;
+  margin: 0 0.8vw;
+}
+.subsidy .goodslist .goods img {
+  display: block;
+  width: 20.93333vw;
+  height: 20.93333vw;
+  margin-bottom: 0.8vw;
+}
+.subsidy .goodslist .goods .price {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 0.26667vw;
+  color: #f7261d;
+}
+.subsidy .goodslist .goods .price .title {
+  height: 4.26667vw;
+  line-height: 4.26667vw;
+  font-size: 3.2vw;
+}
+.subsidy .goodslist .goods .price .unit {
+  font-weight: 700;
+  font-size: 3.2vw;
+}
+.subsidy .goodslist .goods .price .curprice {
+  height: 4.53333vw;
+  line-height: 4.53333vw;
+  font-size: 4vw;
+  font-weight: bold;
+}
+.subsidy .goodslist .goods .market-price {
+  display: flex;
+}
+.subsidy .goodslist .goods .market-price .oldprice {
+  flex: 1;
+  text-align: center;
+  text-decoration: line-through;
+  font-size: 3.2vw;
+  color: #999;
+}
