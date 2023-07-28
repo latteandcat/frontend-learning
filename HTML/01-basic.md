@@ -1,10 +1,10 @@
-# HTML基础知识
+# HTML 基础知识
 
 ## 网页和网站
 
 1. 什么是网页
 
-   - 网页的专业术语叫**Web Page**
+   - 网页的专业术语叫 **Web Page**
    - 打开浏览器查看到的页面
    - 网页的内容可以非常丰富，包括文字、链接、图片、音乐、视频等等
 
@@ -40,7 +40,8 @@
 
 1. 浏览器的作用是**渲染网页**
 2. 浏览器最核心的部分是渲染引擎，一般也称为**浏览器内核**
-   - 负责解析网页语法，并渲染网页
+   
+   浏览器内核负责解析网页语法，并渲染网页
 3. 常见的浏览器内核
    - Trident：IE、360安全、搜狗、百度、UC；
    - Gecko：Firefox
@@ -49,11 +50,11 @@
    - Webkit → Blink：Google Chrome、Edge
 4. 不同的浏览器内核有不同的解析、渲染规则，所以同一网页在不同内核的浏览器中的渲染效果也可能不同
 
-## HTML语言
+## HTML 语言
 
-1. HTML定义
+1. HTML 定义
 
-   HTML全称为Hyper Text Markup Language，即**超文本标记语言**，是一种用于创建网页的标记语言
+   HTML 全称为 Hyper Text Markup Language，即**超文本标记语言**，是一种用于创建网页的标记语言
 
 2. 什么是标记语言
 
@@ -61,7 +62,7 @@
 
    - 对某些内容进行特殊的标记，以供其他解释器识别处理
 
-     比如h2标记的文本会被识别为标题以加粗和放大显示文本
+     比如 h2 标记的文本会被识别为标题以加粗和放大显示文本
 
    - 由标签和内容组成的部分称为元素
 
@@ -70,27 +71,27 @@
    - 不仅仅可以插入普通的文本，还可以插入图片、音频、视频等内容
    - 还可以表示超链接，从一个网页跳转到另一个网页
 
-## HTML结构
+## HTML 结构
 
-1. HTML文件的特点是他们都具有共同的结构
+1. HTML 文件的特点是他们都具有共同的结构
 
-  > HTML文件的拓展名是.htm和.html
+  > HTML 文件的拓展名是 .htm 和 .html
   >
-  > 因历史遗留问题，Win95\Win98系统的文件拓展名不能超过3字符，所以使用.htm
+  > 因历史遗留问题，Win95\Win98系统的文件拓展名不能超过3字符，所以使用 .htm
 
-2. HTML本质上是由一系列的**HTML元素**构成的
+2. HTML 本质上是由一系列的 **HTML 元素**构成的
 
-3. 完整的HTML结构
+3. 完整的 HTML 结构
 
-   - 文档声明：HTML最上方的一段文本`<!DOCTYPE html>`就是它的文档类型声明，用于声明文档类型
-     - 告诉浏览器当前页面是HTML5页面
-     - 让浏览器用HTML5的标准去解析识别内容
-     - 必须放在HTML文档的最前面，不能省略，省略会出现兼容问题
-   - html元素
-     - head元素
-     - body元素
+   - 文档声明：HTML 最上方的一段文本 `<!DOCTYPE html>` 就是它的文档类型声明，用于声明文档类型
+     - 告诉浏览器当前页面是 HTML5 页面
+     - 让浏览器用 HTML5 的标准去解析识别内容
+     - 必须放在 HTML 文档的最前面，不能省略，省略会出现兼容问题
+   - html 元素
+     - head 元素
+     - body 元素
 
-## HTML注释
+## HTML 注释
 
 1. 什么是注释
 
@@ -105,7 +106,7 @@
    - 方便别人使用和学习
    - 临时注释代码，方便调试
 
-## HTML元素
+## HTML 元素
 
 ### 元素的概念
 
@@ -114,9 +115,9 @@
    ![img](../images/element.png)
 
    - 元素是网页的一部分
-   - 一个元素可以包含一个数据项，一个文本，或者一张照片，亦或是什么也不包含。
+   - 一个元素可以包含一个数据项，一个文本，或者一张照片，亦或是什么也不包含
 
-2. [HTML中的元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element)
+2. [HTML 中的元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element)
 
 3. 元素的组成部分：
 
@@ -136,7 +137,7 @@
 
      `br, img, hr, meta, input`
 
-5. HTML元素不区分大小写， 但是**推荐小写**
+5. HTML 元素不区分大小写， 但是**推荐小写**
 
 ### 元素的属性
 
@@ -160,9 +161,9 @@
      - style：给元素添加内联样式
      - title：包含表示与其所属元素相关信息的文本，这些信息通常可以作为提示呈现给用户，但不是必须的
    - 特有属性
-     - meta元素的charset属性
-     - img元素的src属性
-     - a元素的href属性
+     - meta 元素的 charset 属性
+     - img 元素的 src 属性
+     - a 元素的 href 属性
 
 ### 元素的嵌套
 
@@ -174,7 +175,7 @@
 
 ### 元素的类型
 
-HTML在设计元素时根据元素理论上需要占据的空间将元素分为以下几种
+HTML 在设计元素时根据元素理论上需要占据的空间将元素分为以下几种
 
 1. 块级元素：独占父元素的一行
 
@@ -182,48 +183,50 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
 
 2. 行内级元素：多个行内级元素可以在父元素的同一行显示
 
-   - 行内替换元素：可以设置宽高（如img元素、input元素）
-   - 行内非替换元素：不可以设置宽高，宽高是由内容决定（如a元素）
+   - 行内替换元素：可以设置宽高（如 img 元素、input 元素）
+   - 行内非替换元素：不可以设置宽高，宽高是由内容决定（如 a 元素）
 
 
 ### 元素编写的注意事项
 
-- 块级元素和inline-block元素
+- 块级元素和 inline-block 元素
   - 一般情况下，可以包含其他任何 元素
-  - 特殊情况，p元素不能包含其他块级元素
+  - 特殊情况，p 元素不能包含其他块级元素
 - 行内级元素
   - 一般情况，只能包含行内级元素
 
 ### HTML结构中的常见元素
 
-1. html元素
+1. html 元素
 
-   - html元素表示一个HTML文档的根元素（顶级元素）
+   - html 元素表示一个 HTML 文档的根元素（顶级元素）
 
    - 所有其他元素都是此元素的后代
 
-   - W3C标准建议为html元素增加一个lang属性，作用是
+   - W3C 标准建议为 html 元素增加一个 lang 属性
 
      `lang=en` `lang=zh-CN`
 
+     lang 属性的作用是
+     
      - 帮助语音合成工具确定要使用的发音
      - 帮助翻译工具确定要使用的翻译规则
 
-2. head元素
+2. head 元素
 
    - 用于规定文档相关的配置信息（也称为元数据），包括文档的标题，引用的文档样式和脚本等
 
      元数据就是描述数据的数据，可以理解成对整个页面的配置
 
-   - title元素
+   - title 元素
 
      `<title>网页的标题</title>`
 
      用于设置网页的标题
 
-   - meta元素
+   - meta 元素
 
-     meta元素表示那些不能由其他 HTML 元相关（meta-related）元素表示的元数据信息
+     meta 元素表示那些不能由其他 HTML 元相关（meta-related）元素表示的元数据信息
 
      - charset：用于设置网页的字符编码
 
@@ -239,38 +242,48 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
      >
      > 不设置或者设置错误会导致乱码
      >
-     > 一般使用utf-8编码
+     > 一般使用 utf-8 编码
 
-   - link元素
+   - link 元素
 
      `<link href="example.css" rel="stylesheet">`
 
-     用于链接外部资源，如网站图标、CSS样式表
+     用于链接外部资源，如网站图标、CSS 样式表等等
+     
+     - link 元素是**外部资源链接元素**，规范了**文档与外部资源**的关系
+     - link 元素通常位于 head 元素中
+     - link 最常用于链接 CSS 样式表，此外也可以被用来创建站点图标
+     - link 元素常见的属性
+       - href：此属性用于指定被链接资源的 URL，URL 可以是绝对的，也可以是相对的
+       - [rel](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Attributes/rel)：指定链接类型
+         - `icon` 用于站点图标
+         - `stylesheet` 用于 CSS 样式表
+         - `dns-prefetch` 用于告知浏览器为目标资源的来源预先执行 DNS 解析
 
-3. body元素
+3. body 元素
 
    - 用于呈现网页的具体内容和结构
 
 ### HTML内容中的常见元素
 
-1. h元素（heading）
+1. h 元素（heading）
 
    - 用于设置一些比较重要的文字作为标题
-   - h1-h6呈现了六个不同级别的标题
-   - h元素通常和SEO优化有关系
+   - h1-h6 呈现了六个不同级别的标题
+   - h 元素通常和 SEO 优化有关系
 
-2. p元素（paragraph）
+2. p 元素（paragraph）
 
    - 用于表示文本的一个段落
-   - p元素多个段落之间会有一定的间距
+   - p 元素多个段落之间会有一定的间距
 
-3. img元素（image）
+3. img 元素（image）
 
    - 用于将一份图像嵌入文档
 
-   - img是一个可替换元素（replaced element）
+   - img 是一个可替换元素（replaced element）
 
-   - img的两个常见属性
+   - img 的两个常见属性
 
      - src：必须属性
 
@@ -284,11 +297,11 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
 
      - 某些其他属性目前已经不再使用，比如width、height、border
 
-   - img的图片路径
+   - img 的图片路径
 
-     - 网络图片：src可以是一张网络图片的URL地址
+     - 网络图片：src 可以是一张网络图片的 URL 地址
 
-     - 本地图片：src也可以是本地图片的路径
+     - 本地图片：src 也可以是本地图片的路径
 
        > 本地图片的路径有两种方式：
        >
@@ -298,32 +311,32 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
 
    - [img支持的图像格式](https://developer.mozilla.org/zh-CN/docs/Web/Media/Formats/Image_types)
 
-4. a元素（anchor）
+4. a 元素（anchor）
 
-   - 用于定义超链接，以打开新的URL
+   - 用于定义超链接，以打开新的 URL
 
-   - a元素的两个常见属性
+   - a 元素的两个常见属性
 
      - href：Hypertext Reference的简称
        - 指定要打开的URL地址
        - 也可以是一个本地地址
      - target：指定在何处显示链接的资源
-       - `_self`：默认值，在当前窗口打开URL
-       - `_blank`：在一个新的窗口打开URL
-       - `_parent`：在父窗口打开URL
-       - `_top`：在顶层窗口打开URL
+       - `_self`：默认值，在当前窗口打开 URL
+       - `_blank`：在一个新的窗口打开 URL
+       - `_parent`：在父窗口打开 URL
+       - `_top`：在顶层窗口打开 URL
 
-   - a元素也可以作为锚点链接，用于跳转到网页中的具体位置
+   - a 元素也可以作为锚点链接，用于跳转到网页中的具体位置
 
      - 先在要跳转的元素上定义一个id属性
 
        `id="title"`
 
-     - 定义a元素，并且a元素的href指向对应的id
+     - 定义 a 元素，并且 a 元素的 href 指向对应的 id
 
        `<a href="#title">jump to title</a>`
 
-   - a元素和img元素的结合使用
+   - a 元素和 img 元素的结合使用
 
      ```HTML
      <a href="xxx.com" target="_blank">
@@ -331,47 +344,47 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
      </a>
      ```
    
-   - a元素和其他URL的结合
+   - a 元素和其他 URL 的结合
        - 下载文件
    
            `href="http://xxx/xxx.zip"`
-       - 指向其他协议地址如`mailto`
+       - 指向其他协议地址如 mailto
    
            `href="mailto:myemail@qq.com"`
    
-5. iframe元素
+5. iframe 元素
 
-    - 用于在一个HTML文档中嵌入其他HTML文档
+    - 用于在一个 HTML 文档中嵌入其他 HTML 文档
 
       `<iframe src="http://www.taobao.com" frameborder="0"></iframe>`
 
-    - frameborder属性用于规定是否显示边框
+    - frameborder 属性用于规定是否显示边框
 
       - 1：显示
       - 0：不显示
 
-    - iframe元素和a元素的结合
+    - iframe 元素和 a 元素的结合
 
-      a元素target的其他值与iframe有关
+      a 元素 target 的其他值与 iframe 有关
 
       - `_parent`：在父窗口打开URL
       - `_top`：在顶层窗口打开URL
 
 
-6. div元素（division）和span元素
+6. div 元素（division）和 span 元素
 
-   - div和span的出现主要是用于编写HTML的结构
+   - div 和 span 的出现主要是用于编写 HTML 的结构
    
    
-   - div和span都是“纯粹的”容器，也可以把他们理解为用来包裹内容的“盒子”
+   - div 和 span 都是“纯粹的”容器，也可以把他们理解为用来包裹内容的“盒子”
    
-   - div用于把网页分割为多个独立的部分
+   - div 用于把网页分割为多个独立的部分
    
-     多个div元素包裹的内容会在不同的行显示，一般作为其他元素的父容器，把其他元素包住，代表一个整体
+     多个 div 元素包裹的内容会在不同的行显示，一般作为其他元素的父容器，把其他元素包住，代表一个整体
    
-   - span用于区分特殊文本和普通文字，比如用来显示一些关键字
+   - span 用于区分特殊文本和普通文字，比如用来显示一些关键字
    
-     多个span元素包裹的内容会在同一行显示，默认情况下，跟普通文本几乎没差别
+     多个 span 元素包裹的内容会在同一行显示，默认情况下，跟普通文本几乎没差别
    
 
 
@@ -392,28 +405,28 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
 
 **列表的两种实现方式**
 
-1. 使用div来实现，样式和布局更加自由
+1. 使用 div 来实现，样式和布局更加自由
 2. 使用列表元素来实现，更符合元素语义化
 
 **常用的列表元素**
 
 - ol：有序列表
 
-  直接子元素只能是li
+  直接子元素只能是 li
 
   - li：列表项
 
 - ul：无序列表
 
-  直接子元素只能是li
+  直接子元素只能是 li
 
   - li：列表项
 
 - dl：定义列表
 
-  直接子元素只能是dt、dd
+  直接子元素只能是 dt、dd
 
-  一个dt后面一般紧跟着一个或者多个dd
+  一个dt 后面一般紧跟着一个或者多个 dd
 
   - dt：定义项
   - dd：定义描述
@@ -430,7 +443,7 @@ HTML在设计元素时根据元素理论上需要占据的空间将元素分为�
 
 表格有很多相关的属性可以设置表格的样式，但是已经不推荐使用了
 
-**border-collapse**是用来决定表格的边框是分开还是合并的CSS属性
+**border-collapse**是用来决定表格的边框是分开还是合并的 CSS 属性
 
 ```css
 table {
@@ -440,21 +453,21 @@ table {
 
 **表格的其他元素**
 
-- 表格的表头thead
-- 表格的主体tbody
-- 表格的页脚tfoot
-- 表格的标题caption
-- 表格的表头单元格th
+- 表格的表头 thead
+- 表格的主体 tbody
+- 表格的页脚 tfoot
+- 表格的标题 caption
+- 表格的表头单元格 th
 
 **单元格合并**
 
-- 跨列合并colspan
+- 跨列合并 colspan
 
-  在最左边的单元格写上colspan属性，并且省略掉合并的td
+  在最左边的单元格写上 colspan 属性，并且省略掉合并的 td
 
-- 跨行合并rowspan
+- 跨行合并 rowspan
 
-  在最上边的单元格写上rowspan属性，并且省略掉后面tr中的td
+  在最上边的单元格写上 rowspan 属性，并且省略掉后面 tr 中的 td
 
 ### 表单元素
 
@@ -469,23 +482,23 @@ table {
 - button：按钮
 - label：表单元素的标题
 
-**form的常见属性**
+**form 的常见属性**
 
-form通常作为表单元素的父元素，可以将整个表单作为一个整体来进行操作
+form 通常作为表单元素的父元素，可以将整个表单作为一个整体来进行操作
 
 比如对整个表单重置或者提交整个表单的数据
 
 - action：用于设置提交表单数据的请求URL
-- method：用于设置请求的方法（get和post），默认为get
-- target：用于设置在什么地方打开URL
-  - _blank 新开页面
-  - _self 当前页面跳转
-  - _parent 当前父级页面跳转
-  - _top 当前顶层页面跳转
+- method：用于设置请求的方法（get 和 post），默认为 get
+- target：用于设置在什么地方打开 URL
+  - `_blank` ：新开页面
+  - `_self` ：当前页面跳转
+  - `_parent`： 当前父级页面跳转
+  - `_top`： 当前顶层页面跳转
 
-**[input](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input)元素的常见属性**
+**[input](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input) 元素的常见属性**
 
-- type：input的类型
+- type：input 的类型
 
   `text/password/radio/checkbox/button/reset/submit/file`
 
@@ -495,7 +508,7 @@ form通常作为表单元素的父元素，可以将整个表单作为一个整�
 
 - checked：默认被选中
 
-  只有在type为radio和checkbox时可用
+  只有在 type 为 radio 和 checkbox 时可用
 
 - autofocus：当页面加载时自动聚焦
 
@@ -503,19 +516,19 @@ form通常作为表单元素的父元素，可以将整个表单作为一个整�
 
   在提交数据给服务器时，可用于区分数据类型
 
-  name是后台接收数据时使用的键值对中的键(key) 
+  name 对应后台接收数据时使用的键值对中的键（key） 
 
   会随着表单的提交而一起提交，是表单中不可或缺的元素
 
-  一个form表单中该元素的名称对应不同类型的input
+  一个 form 表单中该元素的名称对应不同类型的 input
 
 - value：取值
 
-  后台接收数据时使用的键值对中的值(value)
+  value 对应后台接收数据时使用的键值对中的值（value） 
 
-  value可以有默认值
+  value 可以有默认值
 
-> 布尔属性
+> **布尔属性**
 >
 > 常见的布尔属性有：disabled、checked、readonly、multiple、autofoucs、selected
 >
@@ -545,15 +558,15 @@ form通常作为表单元素的父元素，可以将整个表单作为一个整�
 <button type="submit">提交按钮</button>
 ```
 
-**input和label的关系**
+**input 和 label 的关系**
 
-- label元素一般与input配合使用，用来表示input的标题
+- label 元素一般与 input 配合使用，用来表示 input 的标题
 
-- label可以跟某个input绑定
+- label 可以跟某个 input 绑定
 
-  点击label就可以激活对应的input变成选中状态
+  点击 label 就可以激活对应的 input 变成选中状态
 
-  label的for属性和input的id属性相等时绑定
+  label 的 for 属性和 input 的 id 属性相等时绑定
 
 ```html
 <div>
@@ -562,10 +575,10 @@ form通常作为表单元素的父元素，可以将整个表单作为一个整�
 </div>
 ```
 
-**radio的使用**
+**radio 的使用**
 
-- 使用label可以实现点击文字选中单选框
-- name值相同的radio才具备单选功能
+- 使用 label 可以实现点击文字选中单选框
+- name 值相同的 radio 才具备单选功能
 
 ```html
 <div>
@@ -579,9 +592,9 @@ form通常作为表单元素的父元素，可以将整个表单作为一个整�
 </div>
 ```
 
-**checkbox的使用**
+**checkbox 的使用**
 
-- 属于同一种类型的checkbox，name值要保持一致
+属于同一种类型的 checkbox，name 值要保持一致
 
 ```html
 <div>
@@ -598,22 +611,23 @@ form通常作为表单元素的父元素，可以将整个表单作为一个整�
 </div>
 ```
 
-**textarea的使用**
+**textarea 的使用**
 
 - 常用属性
   - cols：列数
   - rows：行数
-- 缩放的CSS设置
+- 通过 CSS 设置 textarea 的缩放类型
   - 禁止缩放：`resize: none;`
   - 水平缩放：`resize: horizontal;`
   - 垂直缩放：`resize: vertical;`
   - 水平垂直缩放：`resize: both;`
 
-**select和option的使用**
+**select 和 option 的使用**
 
-- options是select的子元素，一个option代表一个选项
-- select的常用属性
+- option 是 select 的子元素，一个 option 代表一个选项
+- select 的常用属性
   - multiple：可多选
   - size：显示多少项
-- options的常用属性
+- option 的常用属性
   - selected：默认被选中
+  - value

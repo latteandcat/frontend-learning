@@ -1,22 +1,22 @@
-# CSS属性
+# CSS 属性
 
 ## 属性特性
 
 ### 属性继承⭐
 
-CSS的某些属性具有继承性
+CSS 的某些属性具有继承性
 
 - 如果一个属性具备继承性，那么在该元素上设置后，它的后代元素都可以继承这个属性
 
 - 如果后代元素自己也设置了该属性，那么**优先**使用后代元素自己的属性（不管继承过来的属性权重多高）
 
-- 常见的`font-size/font-family/font-weight/line-height/color/text-align`都具有继承性
+- 常见的 `font-size/font-family/font-weight/line-height/color/text-align` 都具有继承性
 
-  可以从MDN文档中查阅每个属性的继承性
+  可以从 MDN 文档中查阅每个属性的继承性
 
 - 继承过来的是计算值，而不是设置值
 
-  2em继承到的是计算后的px而不是em 
+  2em 继承到的是计算后的 px 而不是 em 
 
 - 强制继承
 
@@ -27,7 +27,6 @@ CSS的某些属性具有继承性
   .box p {
     border: inherit;
   }
-  
   ```
 
 ### 属性层叠⭐
@@ -54,7 +53,7 @@ CSS的某些属性具有继承性
 
 ### display⭐
 
-display用于修改元素的显示类型
+display 用于修改元素的显示类型
 
 - block：让元素显示为块级元素
 
@@ -74,16 +73,16 @@ display用于修改元素的显示类型
   - 可以设置宽高
   - 默认宽高由内容决定
 
-  > inline-block可以理解为：对外来说，它是一个行内级元素；对内来说，它是一个块级元素
+  > inline-block 可以理解为：对外来说，它是一个行内级元素；对内来说，它是一个块级元素
 
 - none：隐藏元素
 
   > 隐藏元素的方法
   >
-  > 1. display设置为none：元素不显示出来，并且也不占据任何空间
-  > 2. visibility设置为hidden：元素不可见，但是会占据元素应该占据的空间，设置为visible就会可见
-  > 3. 将rgba的a设置为0：将元素前景色或背景色变成透明的，不影响子元素
-  > 4. 将opacity设置为0：设置整个元素的透明度，会影响所有的子元素
+  > 1. display 设置为 none：元素不显示出来，并且也不占据任何空间
+  > 2. visibility 设置为 hidden：元素不可见，但是会占据元素应该占据的空间，设置为visible就会可见
+  > 3. 将 rgba 的 a 设置为0：将元素前景色或背景色变成透明的，不影响子元素
+  > 4. 将 opacity 设置为0：设置整个元素的透明度，会影响所有的子元素
 
 ### cursor
 
@@ -110,8 +109,8 @@ vertical-align 会影响行内级元素在一个行盒中垂直方向的位置
 - vertical-align 的默认值为 baseline
 
   - 文本的 baseline 是字母 x 的下方
-  - inline-block 默认的 baseline 是margin-bottom的底部，即盒子底部
-  - inline-block 中有文本时，baseline是最后一行文本的 x 的下方
+  - inline-block 默认的 baseline 是 margin-bottom 的底部，即盒子底部
+  - inline-block 中有文本时，baseline 是最后一行文本的 x 的下方
 
 - vertical-align 的不同取值
 
@@ -135,33 +134,32 @@ vertical-align 会影响行内级元素在一个行盒中垂直方向的位置
 
 ### 盒子模型的组成
 
-HTML中的每一个元素都可以看作一个盒子，盒子可以分为以下几个部分
+HTML 中的每一个元素都可以看作一个盒子，盒子可以分为以下几个部分
 
 1. 内容：元素的内容（width/height）
-  
 2. 内边距：元素和自身内容之间的间距（padding）
-  
 3. 边框：元素自己的边框（border）
 4. 外边距：元素和其他元素之间的间距（margin）
-
 5. 外轮廓和盒子阴影
 
-> 因为盒子有四边，所以 margin/padding/border 都包含 top/right/bottom/left 四个边
->
-> 在盒子模型中，内边距和外边距的**使用时机**要考虑其定义
->
-> - margin 一般是用来设置兄弟元素之间的间距
-> - padding 一般是用来设置父子元素之间的间距
->
-> **行内非替换元素的注意事项**
->
-> - 以下属性对行内非替换元素不起作用
->
->   width、height、margin-top、margin-bottom
->
-> - 以下属性对行内非替换元素的效果比较特殊（有效果但是不占据空间，上下会被撑起来）
->
->   padding-top、padding-bottom、上下方向的border
+### 盒子模型的注意事项
+
+1. 因为盒子有四边，所以 margin/padding/border 都包含 top/right/bottom/left 四个边
+
+2. 在盒子模型中，内边距和外边距的**使用时机**要考虑其定义
+
+   - margin 一般是用来设置兄弟元素之间的间距
+   - padding 一般是用来设置父子元素之间的间距
+
+3. **行内非替换元素的注意事项**
+
+   - 以下属性对行内非替换元素不起作用
+
+     `width、height、margin-top、margin-bottom`
+
+   - 以下属性对行内非替换元素的效果比较特殊（有效果但是不占据空间，上下会被撑起来）
+
+     `padding-top、padding-bottom、border-top、border-bottom`
 
 ### width/height
 
@@ -236,7 +234,7 @@ HTML中的每一个元素都可以看作一个盒子，盒子可以分为以下�
 
 ​	如果没有设置边框颜色的值，它的默认值是`color`属性的值
 
-​	背景色是包含border的
+​	注意：背景色是包含border的
 
 - `border-radius`：边框圆角
   - `border-top-left-radius`
@@ -254,91 +252,106 @@ HTML中的每一个元素都可以看作一个盒子，盒子可以分为以下�
   - `margin-right`：右外边距
   - `margin-bottom`：下外边距
   - `margin-left`：左外边距
-  
 - `margin`设置四个值：上、右、下、左
-
 - `margin`设置三个值：上、右左、下
-
 - `margin`设置两个值：上下、右左
-
 - `margin`设置一个值：上右下左
-
-- `margin`的上下传递 
-  
-  - 如果块级元素的顶部线和父元素的顶部线重叠，那么这个块级元素的**margin-top**会传递给父元素
-  - 如果块级元素的底部线和父元素的底部线重叠，并且**父元素的高度是auto**，那么这个块级元素的**margin-bottom**会传递给父元素
-  - 如何防止出现传递
-    - 改为给父元素设置padding
-    - 给父元素设置border
-    - 触发BFC：设置overflow为auto
-  
-- `margin`的上下折叠
-  - 垂直方向上相邻的2个margin有可能会合并为一个margin，这种现象叫做折叠（collapse）
-  - 水平方向上的margin永远不会折叠
-  - 折叠后的margin会去折叠前的较大者
-  - 如何防止出现折叠
-    - 只设置其中一个元素的margin
-  - 折叠的两种情况
-    - 两个兄弟块级元素之间上下margin的折叠
-    - 父子块级元素之间margin的折叠
-  
-  ![](../images/margin-collapse.png)
 
 > 块级元素水平居中的方法
 >
 > 1. 将块级元素的display设置为inline-block，然后在其父元素中设置text-align为center
-> 2. 将块级元素的margin设置为 "0 auto"
+> 2. 将块级元素的margin设置为 0 auto
+
+**margin 的传递和折叠**
+
+- `margin`的上下传递 
+
+  - 如果块级元素的顶部线和父元素的顶部线重叠，那么这个块级元素的 **margin-top** 会传递给父元素
+  - 如果块级元素的底部线和父元素的底部线重叠，并且**父元素的高度是 auto**，那么这个块级元素的 **margin-bottom **会传递给父元素
+  - 如何防止出现传递
+    - 改为给父元素设置 padding
+    - 给父元素设置 border
+    - 触发BFC：设置 overflow 为 auto
+
+- `margin` 的上下折叠
+  
+  - 垂直方向上相邻的2个 margin 有可能会合并为一个 margin，这种现象叫做折叠（collapse）
+  - 水平方向上的 margin 永远不会折叠
+  - 折叠后的 margin 会取折叠前的较大者
+  - 如何防止出现折叠
+    - 只设置其中一个元素的 margin
+  - 折叠的两种情况
+    - 两个兄弟块级元素之间上下 margin 的折叠
+    - 父子块级元素之间 margin 的折叠
+  
+  ![](../images/margin-collapse.png)
 
 ### outline
 
-outline表示元素的外轮廓，外轮廓不占用元素的空间，默认显示在border的外面
+outline 表示元素的外轮廓，外轮廓不占用元素的空间，默认显示在 border 的外面
 
 - `outline-width`：外轮廓的宽度
 - `outline-style`：外轮廓的样式
 - `outline-color`：外轮廓的颜色
-- `outline`：outline-width、outline-style、outline-color的简写属性，跟border写法类似
+- `outline`：outline-width、outline-style、outline-color 的简写属性，跟 border 写法类似
 
-outline很少使用，常常用于去除a元素或input元素的focus轮廓效果
+outline 很少使用，常常用于去除 a 元素或 input 元素的 focus 轮廓效果
 
-### box-shadow
+### box-shadow⭐
 
-`box-shadow`属性可以设置一个或多个阴影
+`box-shadow` 属性可以设置一个或多个阴影
 
-- 每个阴影用`<shadow>`表示
+- 每个阴影用 `<shadow>` 表示
 - 多个阴影之间用逗号隔开，从前到后叠加
 
-`<shadow>`的常见格式如下
+`<shadow>` 的常见格式如下
 
-- 当给出两个、三个或四个`<length>`值时
-  - 如果只给出两个值，那么这两个值将会被当作 `<offset-x><offset-y>` 来解释
-  - 如果给出了第三个值，那么第三个值将会被当作`<blur-radius>`解释
-  - 如果给出了第四个值，那么第四个值将会被当作`<spread-radius>`来解释
-- 可选，`inset`关键字
-- 可选，`<color>`值
+- 当给出两个、三个或四个 `<length>` 值时
+  - 如果只给出两个值，那么这两个值将会被当作 `<offset-x> <offset-y>` 来解释
+  
+    offset-x：x 偏移量 offset-y：y 偏移量
+  
+  - 如果给出了第三个值，那么第三个值将会被当作 `<blur-radius>` 解释
+  
+    blur-radius：阴影模糊半径
+  
+  - 如果给出了第四个值，那么第四个值将会被当作 `<spread-radius>` 来解释
+  
+    spread-radius：阴影扩散半径
+  
+- 可选，`inset` 关键字
+
+  如果没有指定 inset，默认阴影在边框外，即阴影向外扩散。
+
+  使用 inset 关键字会使得阴影落在盒子内部，这样看起来就像是内容被压低了。
+
+  此时阴影会在边框之内 (即使是透明边框）、背景之上、内容之下。
+
+- 可选，`<color>` 值
 
 [Box Shadow CSS Generator](https://html-css-js.com/css/generator/box-shadow/)
 
-### box-sizing
+### box-sizing⭐
 
-`box-sizing`用来设置盒子模型中宽高的行为
+`box-sizing` 用来设置盒子模型中宽高的行为
 
-- `content-box`：padding和border都布置在width/height以外
+- `content-box`：padding 和 border都布置在 width 和 height 以外
 
-  元素的实际占用宽度=border+padding+width
+  元素的实际占用宽度 = border + padding + width
 
-  元素的实际占用高度=border+padding+height
+  元素的实际占用高度 = border + padding + height
 
-  W3C的标准盒子模型是`content-box`
+  W3C 的标准盒子模型是 `content-box`
 
-- `border-box`：padding和border都布置在width/height以内
+- `border-box`：padding 和 border 都布置在 width 和 height 以内
 
-  元素的实际占用宽度=width
+  元素的实际占用宽度 = width
 
-  元素的实际占用高度=height
+  元素的实际占用高度 = height
 
-  IE盒子模型（IE8以下）是`border-box`
+  IE 盒子模型（IE8以下）是 `border-box`
 
-- box-sizing在生效时有一个前提，即明确的设置了宽度和高度
+- box-sizing 在生效时有一个前提，即明确的设置了宽度和高度
   
   - 无作用的场景1：没有设置宽度或高度
   
@@ -398,11 +411,11 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 
 ### text-decoration⭐
 
-`text-decoration`用于设置文本的装饰线
+`text-decoration` 用于设置文本的装饰线
 
 - `none`：无任何装饰线
 
-  可以用于去除a元素默认的下划线
+  可以用于去除 a 元素默认的下划线
 
 - `underline`：下划线
 
@@ -410,11 +423,11 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 
 - `line-through`：中划线（删除线）
 
-`color`属性也会改变装饰线的颜色
+`color` 属性也会改变装饰线的颜色
 
 ### text-transform
 
-`text-transform`用于设置文本的大小写转换
+`text-transform` 用于设置文本的大小写转换
 
 - `capitalize`：将每个单词的首字符变为大写
 - `uppercase`：将每个单词的所有字符变为大写
@@ -423,13 +436,13 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 
 ### text-indent
 
-`text-indent`用于设置第一行内容的缩进
+`text-indent` 用于设置第一行内容的缩进
 
-`text-indent: 2em`刚好是缩进两个文字
+`text-indent: 2em` 刚好是缩进两个文字
 
 ### text-align⭐
 
-`text-align`用于设置文本的对齐方式
+`text-align` 用于设置文本的对齐方式
 
 本质是定义**行内内容**（文字、图片）如何相对它的块父元素对齐
 
@@ -441,7 +454,9 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 
 - `justify`：两端对齐
 
-  `text-align: justify;`最后一行是无效的，可以通过`text-align-last: justify;`使最后一行也变成两端对齐
+  `text-align: justify;` 最后一行是无效的
+  
+  可以通过`text-align-last: justify;` 使最后一行也变成两端对齐
 
 > W3C中的解释：
 >
@@ -449,19 +464,19 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 
 ### word/letter-spacing
 
-`word-spacing`、`letter-spacing`分别用于设置**单词、字母**之间的间距
+`word-spacing`、`letter-spacing` 分别用于设置**单词、字母**之间的间距
 
 ### text-shadow
 
-`text-shadow`的用法类似于`box-shadow`，用于给文字添加阴影效果
+`text-shadow` 的用法类似于 `box-shadow`，用于给文字添加阴影效果
 
-相当于没有`<spread-radius>`和`inset`的`box-shadow`
+相当于没有 `<spread-radius>` 和 `inset` 的 `box-shadow`
 
 [Text Shadow CSS Generator](https://html-css-js.com/css/generator/text-shadow/)
 
 ### white-space
 
-`white-space`用于设置空白处理和换行规则
+`white-space` 用于设置空白处理和换行规则
 
 空白包含：Spaces、Tabs 和 NewLines
 
@@ -473,12 +488,12 @@ outline很少使用，常常用于去除a元素或input元素的focus轮廓效�
 
 ### text-overflow
 
-`text-overflow`通常用于设置文字溢出时的行为
+`text-overflow` 通常用于设置文字溢出时的行为
 
 - clip：直接裁剪掉溢出的内容
 - ellipsis：溢出那行的结尾处用省略号表示
 
-text-overflow生效的前提是overflow不为vi
+text-overflow 生效的前提是 overflow 不为 visible
 
 > **单行显示省略号的实现**
 >
@@ -504,7 +519,7 @@ text-overflow生效的前提是overflow不为vi
 
 ### font-size
 
-`font-size`用于设置文字的大小
+`font-size` 用于设置文字的大小
 
 - 具体数值+单位：比如100px、2em
 
@@ -514,15 +529,15 @@ text-overflow生效的前提是overflow不为vi
 
 ### font-family
 
-`font-family`用于设置文字的字体名称
+`font-family` 用于设置文字的字体名称
 
 - 可以设置一个或者多个文字的字体名称
 - 浏览器会选择列表中第一个该计算上有安装的字体
-- 或者是通过`@font-face`指定的可以直接下载的字体
+- 或者是通过 `@font-face` 指定的可以直接下载的字体
 
 ### font-weight
 
-`font-weight`用于设置文字的粗细（重量）
+`font-weight` 用于设置文字的粗细（重量）
 
 - `number`：1|100|200|...|900|1000
 - `normal`：400
@@ -530,35 +545,37 @@ text-overflow生效的前提是overflow不为vi
 - `lighter`：比从父元素继承来的值更细
 - `bolder`：比从父元素继承来的值更粗
 
-strong、b、h1-h6等标签的font-weight默认就是bold
+strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 
 ### line-height⭐
 
-`line-height`用于设置文本的行高，行高即一行文字所占据的高度，行高的作用是提高文本的阅读体验
+`line-height` 用于设置文本的行高，行高即一行文字所占据的高度
+
+行高的作用是提高文本的阅读体验
 
 行高的严格定义是：两行文字基线（baseline）之间的间距，基线是与小写字母最底部对齐的线 
 
 ![](../images/baseline.png)
 
-行距 = line-height 减 文本的高度
+行距 = line-height 减文本的高度
 
-行距是上下等分的，所以通过使`height`的值和`line-height`的值相等可以实现文本的垂直居中，但只能对文本使用
+行距是上下等分的，所以通过使 `height` 的值和 `line-height` 的值相等可以实现文本的垂直居中，但只能对文本使用
 
 ### font⭐
 
-`font`是一个缩写属性
+`font` 是一个缩写属性
 
 `font: font-style font-variant font-weight font-size/line-height font-family`
 
 规则：
 
-- `font-style`、`font-variant`、`font-weight`可以随意调换顺序，也可以省略
+- `font-style`、`font-variant`、`font-weight` 可以随意调换顺序，也可以省略
 
-- `/line-height`可以省略，如果不省略必须放在`font-size`后面
+- `/line-height` 可以省略，如果不省略必须放在 `font-size` 后面
 
-  在`font`中`line-height=1.5`是相对于`font-size`的
+  在 `font` 中 `line-height=1.5` 是相对于 `font-size` 的
 
-- `font-size`和`font-family`不可以调换顺序，不可以省略
+- `font-size` 和 `font-family` 不可以调换顺序，不可以省略
 
 ### fony-style
 
@@ -579,24 +596,24 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 
 ### background-image
 
-`background-image`用于设置元素的背景图片
+`background-image` 用于设置元素的背景图片
 
-- 背景图片会盖在`background-color`的上面
+- 背景图片会盖在 `background-color` 的上面
 
 - 如果设置了多张背景图片，设置的第一张图片将显示在最上面，其他图片按顺序层叠在下面
 
 - 如果设置了背景图片后，元素没有具体的宽高，背景图片是不会显示出来的
 
-`background-image`和`img`的对比
+`background-image` 和 `img` 的对比
 
 ![](../images/bgc&img.png)
 
-- `img`是网页内容的重要组成部分，比如广告图片、LOGO图片、文章配图、产品图片
-- `background-image`在网页中可有可无，有可以让网页更加美观，无也不影响用户获取完整的网页内容信息
+- `img` 是网页内容的重要组成部分，比如广告图片、LOGO图片、文章配图、产品图片
+- `background-image` 在网页中可有可无，有可以让网页更加美观，无也不影响用户获取完整的网页内容信息
 
 ### background-repeat
 
-`background-repeat`用于设置背景图片是否要平铺
+`background-repeat` 用于设置背景图片是否要平铺
 
 - `repeat`：平铺
 - `no-repeat`：不平铺
@@ -605,7 +622,7 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 
 ### background-size
 
-`background-size`用于设置背景图片的大小
+`background-size` 用于设置背景图片的大小
 
 - `auto`：默认值，以背景图本身大小显示
 - `cover`：缩放背景图，以完全覆盖铺满元素，可能背景图片部分看不见
@@ -615,16 +632,16 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 
 ### background-position
 
-`background-position`用于设置背景图片在水平、垂直方向上的具体位置
+`background-position`  用于设置背景图片在水平、垂直方向上的具体位置
 
 - 只可以设置具体的数值，比如20px 30px
 - 水平方向还可以设值：left、center、right
 - 垂直方向还可以设值：top、center、bottom
-- 如果只设置了一个方向，另一个方向默认为center
+- 如果只设置了一个方向，另一个方向默认为 center
 
 ### background-attachment
 
-`background-attachment`决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动
+`background-attachment` 决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动
 
 - `scroll`：表示背景**相对于元素本身固定**，而不是随着它的内容滚动
 - `local`：表示背景**相对于元素的内容固定**，如果一个元素拥有滚动机制，背景将会随着元素的内容滚动
@@ -647,9 +664,12 @@ strong、b、h1-h6等标签的font-weight默认就是bold
   - `<bg-size>`
   - `<repeat-style>`
 
-- `<bg-size>`只能紧跟着`<position>`出现，以`/`分割，如`center/80%`
+- `<bg-size>` 只能紧跟着 `<position>` 出现，以 `/` 分割，如 `center/80%`
 
-- `<box>`可能出现0次、1次或2次。如果出现1次，它同时设定`background-origin`和`background-clip`。如果出现2次，第一次的出现设置`background-origin`，第二次的出现设置`background-clip`
+- `<box>` 可能出现0次、1次或2次。
+  - 如果出现1次，它同时设定 `background-origin` 和 `background-clip`。
+
+  - 如果出现2次，第一次的出现设置 `background-origin`，第二次的出现设置 `background-clip`。
 
 - `<background-color>`只能被包含在最后一层
 
@@ -661,9 +681,9 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 
 - transform 属性允许对某一个元素进行某些形变，包括**旋转、缩放、倾斜或平移**等
 
-- 并非所有盒子都可以进行 transform 的转换，比如行内非替换元素或表格中的元素
+- 并非所有盒子都可以进行 transform 的转换，比如行内非替换元素或表格中的元素不支持 transform
 
-- transform属性可以指定为关键字值 none 或一个或多个 `<transform-function>` 值
+- transform 属性可以指定为关键字值 none 或一个或多个 `<transform-function>` 值
 
   [transform-function - CSS：层叠样式表 | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform-function)
 
@@ -676,7 +696,7 @@ strong、b、h1-h6等标签的font-weight默认就是bold
   - 用于移动元素在平面上的位置
   - 只设置一个值时代表 x 轴上的位移
   - 设置百分比是相对于自身宽高的
-  - translate是translateX和translateY的简写属性
+  - translate 是 translateX 和 translateY 的简写属性
 
 - 缩放：scale(x, y)
 
@@ -684,14 +704,14 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 
   - 只设置一个值时代表 x 轴上的缩放
   - 可设置小数或百分比代表缩放倍数
-  - scale是scaleX和scaleY的简写属性
+  - scale 是 scaleX 和 scaleY 的简写属性
 
 - 旋转：rotate(deg)
 
   - 用于旋转元素
   - 可设置一个值表示旋转的角度
-  - 常用单位为deg，即旋转的角度
-  - 也支持百分度grad、圈数turn、弧度rad
+  - 常用单位为 deg，即旋转的角度
+  - 也支持百分度 grad、圈数 turn、弧度 rad
   - 正数为顺时针、负数为逆时针
 
 - 倾斜：skew(deg, deg)
@@ -704,27 +724,28 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 
 - 用于设置元素变形的原点
 
-- 设置一个值表示原点在x或y轴上偏移量
+- 设置一个值表示原点在 x 或 y 轴上偏移量
 
   必须是`<length>`，`<percentage>`，或 left, center, right, top, bottom关键字中的一个
 
-- 设置两个值表示原点在x和y轴上偏移量
+- 设置两个值表示原点在 x 和 y 轴上偏移量
 
   其中一个必须是`<length>`，`<percentage>`，或left, center, right关键字中的一个
   另一个必须是`<length>`，`<percentage>`，或top, center, bottom关键字中的一个
 
-- 设置三个值表示原点在x、y和z轴上偏移量
+- 设置三个值表示原点在 x、y 和 z 轴上偏移量
 
-  前两个值和只有两个值时的用法相同。
-  第三个值必须是`<length>`，它始终代表 Z 轴偏移量
+  前两个值和设置两个值时的用法相同
+  
+  第三个值必须是`<length>`，它始终代表 z 轴偏移量
 
 ### transition
 
 **transition 的概念**
 
-- CSS transitions 提供了一种在更改CSS属性时控制动画速度的方法
-- 可以让CSS属性的变化成为一个持续一段时间的过程，而不是立即生效的
-- 比如将一个元素从一个位置移动到另一个位置，默认在修改完CSS属性后会立即生效
+- CSS transition 提供了一种在更改 CSS 属性时控制动画速度的方法
+- 可以让 CSS 属性的变化成为一个持续一段时间的过程，而不是立即生效的
+- 比如将一个元素从一个位置移动到另一个位置，默认在修改完 CSS 属性后会立即生效
 - 但是我们可以通过 CSS transition，让这个过程加上一定的过渡效果，包括一定的曲线速率变化
 
 **implicit transitions**
@@ -791,10 +812,10 @@ strong、b、h1-h6等标签的font-weight默认就是bold
 - animation-duration：指定动画的持续时间
 - animation-timing-function：指定动画的变化曲线
 - animation-delay：指定延迟执行的时间
-- animation-iteration-count：指定动画执行的次数，infinite表示无限
-- animation-direction：指定方向，常用值为normal和reverse
+- animation-iteration-count：指定动画执行的次数，infinite 表示无限
+- animation-direction：指定方向，常用值为 normal 和 reverse
 - animation-fill-mode：执行动画最后保留哪一个值
   - none：回到没有执行动画的位置
   - forwards：动画最后一帧的位置
   - backwards：动画第一帧的位置
-- animation-play-state：指定动画运行或者暂停（在Js中控制动画的暂停）
+- animation-play-state：指定动画运行或者暂停（在 JS 中控制动画的暂停）
