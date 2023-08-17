@@ -351,7 +351,7 @@ classList 对象提供了一些方法对类进行操作
 
 ### 克隆元素
 
-`cloneNode(deep)` 可以复制一个现有的元素
+`elem.cloneNode(deep)` 可以复制一个现有的元素
 
 - 可以传入一个 Boolean 类型的值 deep，来决定是否深度克隆
 - 深度克隆会克隆对应元素的子元素，否则不会
@@ -396,9 +396,9 @@ scroll
 
 获取宽高
 
-- `innerWidth、innerHeight`：获取 window 窗口的宽度和高度（包含滚动条）
-- `outerWidth、outerHeight`：获取 window 窗口的整个宽度和高度（包括调试工具、工具栏）
-- `documentElement.clientHeight、documentElement.clientWidth`：获取 html 的宽度和高度（不包含滚动条）
+- `innerWidth / innerHeight`：获取 window 窗口的宽度和高度（包含滚动条）
+- `outerWidth / outerHeight`：获取 window 窗口的整个宽度和高度（包括调试工具、工具栏）
+- `documentElement.clientHeight / documentElement.clientWidth`：获取 html 的宽度和高度（不包含滚动条）
 
 滚动位置
 
@@ -410,5 +410,51 @@ scroll
 - `scrollBy(x, y)`：将页面滚动至相对于当前位置的 (x, y) 位置
 - `scrollTo(pageX, pageY)`：将页面滚动至绝对坐标  (pageX, pageY)
 
-# BOM
+## 定时器
 
+有时我们并不想立即执行一个函数，而是等待特定一段时间之后再执行，我们称之为**计划调用（scheduling a call）**
+
+实现计划调用的两种方式
+
+- `setTimeout`：允许我们将函数推迟到一段时间间隔之后再执行
+- `setInterval`：允许我们重复运行一个函数，从一段时间间隔之后开始运行，之后以该时间间隔连续重复运行该函数
+
+对应的取消方法
+
+- `clearTimeout`：取消 setTimeout 的定时器
+- `clearInterval`：取消 setInterval 的定时器
+
+### 定时执行
+
+`setTimeout` 的语法如下
+
+`let timerId = setTimeout(func|code, [delay], [arg1], [arg2], ...)`
+
+- func|code：想要执行的函数或代码字符串
+
+   一般传入的都是函数，由于某些历史原因，支持传入代码字符串，但是不建议这样做
+
+- delay：执行前的延时，以毫秒为单位（1000 毫秒 = 1 秒），默认值是 0
+- arg1，arg2…：要传入被执行函数（或代码字符串）的参数列表
+
+`clearTimeout` 的使用
+
+setTimeout 在调用时会返回一个“定时器标识符（timer identifier）”，我们可以使用它来取消执行
+
+`clearTimeout(timerID)`
+
+### 循环执行
+
+`setInterval` 和 `setTimeout` 的语法相同
+
+`let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)`
+
+`setInterval`  参数含义与 `setTimeout` 相同
+
+`clearInterval` 的使用
+
+setInterval 也会返回一个“定时器标识符（timer identifier）”，我们可以通过clearInterval 来取消这个定时器
+
+`clearInterval(timerID)`
+
+# BOM
