@@ -13,27 +13,27 @@
     <div class="news-panel">
       <ul class="news-img">
         <li>
-          <a href="#"><img src="./images/new.png" alt=""></a>
+          <a href="#"><img src="./images/banner01.jpeg" alt=""></a>
         </li>
         <li>
-          <a href="#"><img src="./images/new.png" alt=""></a>
+          <a href="#"><img src="./images/banner02.jpeg" alt=""></a>
         </li>
         <li>
-          <a href="#"><img src="./images/new.png" alt=""></a>
+          <a href="#"><img src="./images/banner03.jpeg" alt=""></a>
         </li>
         <li>
-          <a href="#"><img src="./images/new.png" alt=""></a>
+          <a href="#"><img src="./images/banner04.jpeg" alt=""></a>
         </li>
         <li>
-          <a href="#"><img src="./images/new.png" alt=""></a>
+          <a href="#"><img src="./images/banner05.jpeg" alt=""></a>
         </li>
       </ul>
       <ul class="news-btn">
-        <li class="active">王者萌萌假日</li>
-        <li>王者萌萌假日</li>
-        <li>王者萌萌假日</li>
-        <li>王者萌萌假日</li>
-        <li>王者萌萌假日</li>
+        <li class="active">海诺设计理念</li>
+        <li>王者女子赛</li>
+        <li>校园主理人</li>
+        <li>英雄练习场更新</li>
+        <li>虔诚人物志</li>
       </ul>
     </div>
     <div class="news-center">
@@ -108,5 +108,63 @@
       <a href="#" class="exper"></a>
     </div>
   </div>
+  <script>
+
+    var banner = document.querySelector('.news-panel')
+    var imgs = document.querySelector(".news-img")
+    var btns = document.querySelector(".news-btn")
+    var activeBtn = btns.querySelector(".active")
+    var curIndex = 0
+    var timerId = null
+
+    function switchBanner() {
+      elem = btns.children[curIndex]
+      elem.classList.add("active")
+      activeBtn.classList.remove("active")
+      activeBtn = elem
+
+      imgs.style.transform = `translateX(${-604 * curIndex}px)`
+      imgs.style.transition = `all 300ms ease`
+      /*
+        第二种实现思路（官网的实现方式）是用绝对定位实现
+          左边的小于curIndex的元素全部 left: -100%;
+          正在显示的等于curIndex的元素为 left: 0;
+          右边的大于curIndex的元素为 left: 100%;
+        但是在切换的过程中需要去除部分元素的过渡效果
+        只保留要切到的元素和切之前的元素的过渡效果
+      */
+    }
+
+    function startTimer() {
+      timerId = setInterval(() => {
+        curIndex++
+        if (curIndex === btns.children.length) curIndex = 0
+        switchBanner()
+      }, 3000);
+    }
+
+    banner.onmouseenter = function() {
+      clearInterval(timerId)
+    }
+
+    banner.onmouseleave = function() {
+      startTimer()
+    }
+
+    btns.onmouseover = function(event) {
+      // 找到索引的方法1：for循环
+      // for (var imgIndex = 0; imgIndex < btns.children.length; imgIndex++) {
+      //   if (btns.children[imgIndex] === event.target) break
+      // }
+      // 找到索引的方法1：findIndex
+      // Array.from() 可以将可迭代对象转化为数组
+      var mouseoverIndex = Array.from(btns.children).findIndex(function(item) {
+        return item === event.target
+      })
+      curIndex = mouseoverIndex
+      switchBanner()
+    }
+
+  </script>
 </body>
 </html>

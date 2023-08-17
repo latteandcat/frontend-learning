@@ -5,12 +5,12 @@
 }
 
 .main-top .news-panel {
-  width: 605px;
+  width: 604px;
+  overflow: hidden;
 }
 
 .main-top .news-panel .news-img {
   display: flex;
-  overflow: hidden;
 }
 
 .main-top .news-panel .news-btn {
