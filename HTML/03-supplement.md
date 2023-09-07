@@ -14,14 +14,13 @@
 
 ## URL
 
+![](../images/url.png)
+
 - [URL](https://developer.mozilla.org/zh-CN/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL) 是统一资源定位符（Uniform Resource Locator）
   - 通俗地讲：URL 就是一个给定的独特资源在 Web 上的地址
   - 理论上每个有效的 URL 都指向一个唯一的资源
   - 这个资源可以是一个 HTML 页面，一个 CSS 文档，一幅图像，等等
   - URL 的标准格式：`[协议类型]://[服务器地址]:[端口号]/[文件路径][文件名]?[查询]#[片段ID]`
-
-
-  ![](../images/url.png)
 
 - URI 是统一资源标识符（Uniform Resource Identifier）
 

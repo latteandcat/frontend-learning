@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function foo(name, age) {
+      console.log(this, name, age);
+    }
+
+    Function.prototype.myExecFn = function(thisArg, otherArgs) {
+      thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
+
+      Object.defineProperty(thisArg, "fn", {
+        enumerable: false,
+        configurable: true,
+        value: this
+      })
+
+      thisArg.fn(...otherArgs)
+
+      delete thisArg.fn
+    }
+
+    Function.prototype.myApply = function(thisArg, otherArgs) {
+      this.myExecFn(thisArg, otherArgs)
+    }
+
+    console.log("myapply test");
+    foo.myApply({ name: "me"}, ["james", 25])
+    foo.myApply(123, ["curry", 23])
+    foo.myApply(null, ["kobe", 33])
+
+    Function.prototype.myCall = function(thisArg, ...otherArgs) {
+      this.myExecFn(thisArg, otherArgs)
+    }
+
+    console.log("mycall test");
+    foo.myCall({ name: "me"}, "james", 25)
+    foo.myCall(123, "curry", 23)
+    foo.myCall(null, "kobe", 33)
+
+    function bar(name, age, height, address) {
+      console.log(this, name, age, height, address);
+    }
+
+    Function.prototype.myBind = function(thisArg, ...otherArgs) {
+      thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
+      Object.defineProperty(thisArg, "fn", {
+        enumerable: false,
+        configurable: true,
+        value: this
+      })
+      return (...newArgs) => {
+        // var allArgs = otherArgs.concat(newArgs)
+        var allArgs = [...otherArgs, ...newArgs]
+        thisArg.fn(...allArgs)
+      }
+    }
+
+    console.log("mybind test");
+    var newBar = bar.myBind({ name: "me"}, "kobe", 30)
+    newBar(1.88, "LA")
+
+  </script>
+</body>
+</html>

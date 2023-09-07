@@ -9,12 +9,21 @@
 
 HTML5 中新增了一些语义化的元素
 
+- `<main>`：文档主内容
+
 - `<header>`：头部元素
 - `<nav>`：导航元素
 - `<section>`：定义文档某个区域的元素
 - `<article>`：内容元素
 - `<aside>`：侧边栏元素
 - `<footer>`：尾部元素
+
+语义化的优点
+
+1. 提高代码的阅读性和可维护性
+2. 有利于 SEO，搜索引擎会根据标签确定上下文和各个关键字的搜索权重
+3. 易于用户阅读，样式丢失的时候能让页面呈现清晰的结构
+4. 方便其他设备解析，可以准确识别元素的用途
 
 ## 媒体元素
 
@@ -28,12 +37,12 @@ Video 和 Audio 的使用方式
 - 直接通过元素使用
 - 通过 JS 中的 API 对其进行控制
 
-**Video**
+### Video
 
 - `<video>` 元素用于在 HTML 或者 XHTML 文档中嵌入媒体播放器，用于支持文档内的视频播放
 - `<video>` 的常见属性
 
-![](../images/video-attr.png)
+    ![](../images/video-attr.png)
 
 - 支持的视频格式
 
@@ -54,12 +63,12 @@ Video 和 Audio 的使用方式
   </video>
   ```
 
-**Audio**
+### Audio
 
 - `<audio>` 元素用于在文档中嵌入音频内容，和 `<video>` 元素的用法非常类似
 - `<audio>` 的常见属性
 
-![](../images/audio-attr.png)
+    ![](../images/audio-attr.png)
 
 - 支持的音频格式
 
@@ -98,7 +107,7 @@ HTML5 对 input 元素也进行了扩展
 
 HTML5 中新增了一种全局属性的格式 `data-*`，用于自定义数据属性
 
-- data 设置的属性可以在 JavaScript 的 DOM 操作中通过 dataset 轻松获取到
+- data 设置的属性可以在 JavaScript 的 DOM 操作中通过 `dataset` 轻松获取到
 - 通常用于 HTML 和 JavaScript 数据之间的传递
 
 ```html
@@ -106,7 +115,7 @@ HTML5 中新增了一种全局属性的格式 `data-*`，用于自定义数据�
     box
 </div>
 <script>
-	const box = document.querySelector(".box")
+    const box = document.querySelector(".box")
     console.log(box.dataset)
 </script>
 ```

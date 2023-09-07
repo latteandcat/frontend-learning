@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pushState和replaceState</title>
+</head>
+<body>
+  <button class="resetBtn">reset</button>
+  <button class="replaceBtn">replaceState</button>
+  <button class="pushBtn">pushState</button>
+  <button onclick="history.back()">back</button>
+  <script>
+    window.onpopstate = function(event) {
+      console.log(event.state)
+    }
+
+    resetBtnEl = document.querySelector(".resetBtn")
+    resetBtnEl.onclick = function() {
+      history.replaceState(null, "", "http://127.0.0.1:5500/JavaScript/pratice/bom-history.html")
+    }
+
+    replaceBtnEl = document.querySelector(".replaceBtn")
+    replaceBtnEl.onclick = function() {
+      history.replaceState({ page: 0 }, "", "/userlist")
+      console.log(history.length)
+    }
+
+    pushBtnEl = document.querySelector(".pushBtn")
+    pushBtnEl.onclick = function() {
+      history.pushState({ page: 1 }, "", "/userlist")
+      console.log(history.length)
+    }
+  </script>
+</body>
+</html>

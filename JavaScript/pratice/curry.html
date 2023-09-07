@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function add(a, b, c) {
+        return a + b + c;
+      }
+
+      function autoCurrying(fn) {
+        function curryFn(...args) {
+          debugger
+          if (args.length >= fn.length) {
+            // return fn(...args)
+            return fn.apply(this, args);
+          } else {
+            return function (...newArgs) {
+              // return curryFn.apply(...args.concat(newArgs))
+              return curryFn.apply(this, args.concat(newArgs));
+            };
+          }
+        }
+        return curryFn;
+      }
+
+      var addCurry = autoCurrying(add);
+      var result = addCurry(10)(20)(30);
+      console.log(result);
+    </script>
+  </body>
+</html>

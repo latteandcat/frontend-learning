@@ -98,10 +98,10 @@ JavaScript 的运行依赖于浏览器的 **JavaScript 引擎**
 
 常见的 JavaScript 交互方式
 
-- alert()：接受一个参数，在浏览器弹窗中查看
-- console.log()：接受多个参数，在浏览器控制台查看
-- document.write()：接受多个字符串，在浏览器页面查看
-- prompt()：接受一个参数，在浏览器接受用户输入并返回
+- `alert()`：接受一个参数，在浏览器弹窗中查看
+- `console.log()`：接受多个参数，在浏览器控制台查看
+- `document.write()`：接受多个字符串，在浏览器页面查看
+- `prompt()`：接受一个参数，在浏览器接受用户输入并返回
 
 ## 语句和分号
 
@@ -202,7 +202,7 @@ var name = "bob", age = 18, height = 1.8
 JS 中的值都具有**特定的类型**
 
 - 将特定类型的值赋值给一个变量，那么这个变量就具备了特定的类型
-- JavaScript 是动态类型的编程语言，即一个变量可以在前一刻是一个字符串，下一个就存储一个数字
+- JavaScript 是动态类型的编程语言（一个变量可以在前一刻是一个字符串，下一个就存储一个数字）
 
 JS 中有**八种基本的数据类型**（7种原始类型和1种复杂类型）
 
@@ -758,7 +758,7 @@ function sum() {
 
   var 定义的变量没有块级作用域
 
-- 作用域表示标识符的作用有效范围
+- 作用域表示标识符的有效作用范围
 
 - 函数的作用域表示在函数内部定义的变量，只有在函数内部可以被访问到
 
@@ -923,6 +923,51 @@ foo(function() {
     }
     ```
 
+### 箭头函数
+
+箭头函数（arrow function）是 ES6 之后增加的一种编写函数的方法，并且它比函数表达式要更加简洁
+
+- 箭头函数不会绑定this、arguments 和 super 参数
+
+- 箭头函数中没有显式原型，所以不能作为构造函数来使用
+
+- 箭头函数的编写方式
+
+  - `()`：函数的参数
+  - `{}`：函数的执行体
+
+  ```js'
+  var foo = (arg1, arg2, ...) => {
+  	statement
+  }
+  ```
+
+- 箭头函数的编写优化
+  1. 只有一个参数时，`()` 可以省略
+  
+     `nums.forEach(item => {})`
+  
+  2. 如果函数执行体中只有一行代码（没有 return 关键字），那么 `{}` 可以省略
+  
+     并且这行代码的返回值会作为整个函数的默认返回值
+  
+     `nums.forEach(item => console.log(item))`
+  
+     `nums.filter(item => true)`
+  
+  3. 如果省略 `{}` 时的默认返回值是一个对象，那么这个对象必须加上 `()`
+  
+     `var bar = () => ({ name: "abc" })`
+
+- 案例：箭头函数实现 nums 的所有偶数平方的和
+
+```js
+var nums = [20, 30, 11, 45, 24, 13]
+var result = nums.filter(item => item % 2 === 0)
+                 .map(item => item * item)
+                 .reduce((prev, cur) => prev + cur)
+```
+
 ## 对象
 
 ### 对象的使用
@@ -935,7 +980,7 @@ foo(function() {
   - value 是任意类型
 - 创建方法
   1. 对象字面量 `{}`
-  2. 通过构造函数：new Object() + 动态添加属性
+  2. 通过构造函数：`new Object()` + 动态添加属性
   3. new 其他类
 - 对象的属性之间是以逗号分隔的
 
@@ -998,12 +1043,14 @@ foo(function() {
 
 ### 对象的内存存储
 
+不同类型的内存存储不同
+
 - 保存的位置
   - 原始类型占据的空间是在**栈内存**中分配的
   - 对象类型占据的空间是在**堆内存**中分配的
 - 保存的方式
   - 原始类型在变量中保存的是值本身，所以原始类型也叫做**值类型**
-  - 对象类型在变量中保存的是对象的”引用“，所以对象类型也被称之为**引用类型**
+  - 对象类型在变量中保存的是对象的 ”引用“，所以对象类型也被称之为**引用类型**
 
 对象的内存存储引起的现象
 
@@ -1076,27 +1123,208 @@ console.log(obj.name) // me
 
 函数中默认有一个 this 变量，this 变量大多数情况下会指向一个对象
 
-1. 如果函数被默认调用，this 指向的就是 window 对象
+如果函数被默认调用，this 指向的就是 window 对象
 
-2. 如果函数被某一个对象引用并且调用，this 指向的就是这个对象
+如果函数被某一个对象引用并且调用，this 指向的就是这个对象
+
+this 可以增加对象中方法的复用性，可以比较方便地拿到当前对象的一些属性
+
+```js
+var obj = {
+   name: "me",
+   running: function() {
+       console.log(this)
+       console.log(obj)
+       console.log(this === obj)
+   }
+}
+
+obj.running() // this 指向 obj
+
+var fn = obj.running
+fn() // this 指向 window
+```
+
+**this 的绑定**
+
+- 函数在调用时，JavaScript 会默认给 this 绑定一个值
+- this 的绑定和定义的位置（编写的位置）没有关系
+- this 的绑定和调用方式以及调用的位置有关系
+- this 是在运行时被绑定的
+
+**this 的绑定规则**
+
+- 默认绑定
+
+  即独立函数调用，可以理解成函数没有被绑定到某个对象上进行调用
+
+  ```js
+  function foo() {
+      console.log(this) // window
+  }
+  foo()
+  ```
+
+  严格模式下，独立函数调用时的 this 指向 undefined
+
+- 隐式绑定
+
+  通过某个对象进行调用
+
+  ```js
+  var obj = {
+      name: "me",
+      running: function() {
+          console.log(this)
+          console.log(obj)
+          console.log(this === obj)
+      }
+  }
+  
+  obj.running() // this 指向 obj
+  
+  var fn = obj.running
+  fn() // this 指向 window
+  ```
+
+  隐式绑定的前提条件：调用的对象内部有一个对函数的引用，否则就找不到这个函数
+
+- 显式绑定
+
+  显式绑定就是在调用函数时明确的绑定了 this 指向的对象
+
+  - call 和 apply
+
+    call 和 apply 都可以用于显式绑定
+
+    `func.apply(thisArg, [argsArray])`
+
+    `func.call(thisArg, arg1, arg2, ...)`
+
+    ```js
+    function foo(name, age, height) {
+        console.log(this)
+    }
+    
+    foo.apply("apply", ["kobe", 30, 1.98])
+    
+    foo.call("call", "kobe", 30, 1.98)
+    ```
+
+  - bind
+
+    bind 方法可以创建一个新的绑定函数，将一个函数总是显式的绑定到一个对象上
+
+    在 bind 被调用时，这个新函数的 this 被指定为 bind 的第一个参数，而其余参数将作为新函数的参数，供调用时使用
+
+    `func.bind(thisArg, arg1, arg2, ...)`
+
+    ```js
+    function foo(name, age, height, address) {
+        console.log(this) // { name: "obj" }
+        console.log(name, age, height, address) // "kobe", 18, 1.98, "洛杉矶"
+    }
+    
+    var obj = { name: "obj" }
+    var bar = foo.bind(obj, "kobe", 18, 1.98)
+    bar("洛杉矶")
+    ```
+
+- new 绑定
+
+  JavaScript 中的函数可以当做一个类的构造函数来使用，也就是使用 new 关键字
+
+  构造函数中的 this 会指向构造函数创建的新对象
+
+  ```js
+  function foo() {
+      this.name = "myname"
+      console.log(this)
+  }
+  new foo()
+  ```
+
+- 回调函数中的 this 的绑定
+
+  1. 事件处理程序中，this 对象指向当前事件发生的元素 event.target
+  2. setTimeout 中的 this 指向 window
+  3. forEach 中的 this 可以通过第二个参数指定 `forEach(callbackfn, thisArg)`
+  
+
+**this 的绑定规则优先级**
+
+1. 默认绑定的优先级最低
+
+2. 显式绑定的优先级高于隐式绑定
+
+3. new 绑定的优先级高于显式绑定
+
+4. new 绑定的优先级高于 bind
+
+   - new 绑定和 call、apply 是不允许同时使用的，所以不存在谁的优先级更高
+
+   - new 绑定可以和 bind 一起使用，new 绑定优先级更高
+
+5. bind 的优先级高于 call、apply
+
+**绑定规则之外的特殊情况**
+
+1. 如果在显式绑定中传入一个 null 或者 undefined，那么这个显示绑定会被忽略，使用默认绑定规则
+
+2. 创建一个函数的间接引用时，会使用默认绑定规则
 
    ```js
+   function foo() {
+       console.log(this)
+   }
+   
+   var obj1 = {
+       name: "obj1",
+       foo: foo
+   }
+   var obj2 = {
+       name: "obj2"
+   }
+   obj1.foo(); // this 指向 obj1
+   (obj2.foo = obj1.foo)(); // 相当于 foo() this 指向 window
+   ```
+
+3. 箭头函数中并不绑定 this 对象
+
+   在箭头函数里使用 this 会像局部变量一样向外层作用域查找
+
+   不绑定 this 的应用
+
+   ```js
+   function request(url, callbackFn) {
+       var results = ["kobe", "james", "curry"]
+       callbackFn(results)
+   }
+   
    var obj = {
-       name: "me",
-       running: function() {
-           console.log(this)
-           console.log(obj)
-           console.log(this === obj)
+       names: []
+       network: function() {
+           var _this = this
+           request("/names", function(res) {
+               // obj.names = [].concat(res) 第一种做法：不方便修改
+               // this.names = [].concat(res)  第二种做法：不可行 this 指向 window
+               _this.names = [].concat(res) // 第三种做法：使用变量保存外层的 this
+           })
        }
    }
    
-   obj.running() // this 指向 obj
+   // 第四种做法：使用箭头函数直接使用外层的 this
+   var obj = {
+       names: []
+       network: function() {
+           request("/names", (res) => {
+               this.names = [].concat(res)
+           })
+       }
+   }
    
-   var fn = obj.running
-   fn() // this 指向 window
+   obj.network()
    ```
-
-this 可以增加对象中方法的复用性，可以比较方便地拿到当前对象的一些属性
 
 ### 对象的构造函数
 
@@ -1130,8 +1358,8 @@ this 可以增加对象中方法的复用性，可以比较方便地拿到当前
   如果一个函数被 new 关键字调用了，那么它会执行**如下操作**
 
   1. 在内存中创建一个新的对象（空对象）
-  2. 这个对象内部的 [[prototype]] 属性会被赋值为该构造函数的 prototype 属性
-  3. 构造函数内部的this，会指向创建出来的新对象
+  2. 这个对象内部的 `[[prototype]]` 属性会被赋值为该构造函数的 prototype 属性
+  3. 构造函数内部的 this，会指向创建出来的新对象
   4. 执行函数的内部代码（函数体代码）
   5. 如果构造函数没有返回非空对象，则返回创建出来的新对象
 

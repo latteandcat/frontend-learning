@@ -23,7 +23,7 @@
 
 `position` 的取值
 
-- static：决定定位（默认值）
+- static：静态定位（默认值）
 
 以下四个值可以让元素变为定位元素（positioned element）
 
@@ -109,7 +109,7 @@ position 的不同值之间的比较
 
 - 达到阈值点之后变成固定定位
 
-- sticky 的参照对象是最近的祖先滚动容器的滚动视口
+- sticky 的定位参照对象是最近的祖先滚动容器的滚动视口
 
   （the nearest ancestor scroll container's scrollport)
 

@@ -117,7 +117,7 @@
    - 元素是网页的一部分
    - 一个元素可以包含一个数据项，一个文本，或者一张照片，亦或是什么也不包含
 
-2. [HTML 中的元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element)
+2. [HTML 元素参考](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element)
 
 3. 元素的组成部分：
 
@@ -469,6 +469,14 @@ table {
 
   在最上边的单元格写上 rowspan 属性，并且省略掉后面 tr 中的 td
 
+**表格内部元素的编写顺序**
+
+1. 一个可选的 `<caption>` 元素
+2. 零个或多个 `<colgroup>` 元素
+3. 一个可选的 `<thead>` 元素
+4. 零个或多个 `<tbody>` 元素
+5. 一个可选的 `<tfoot>` 元素
+
 ### 表单元素
 
 表单元素是和用户交互的重要方式之一，在很多网站都需要使用表单
@@ -500,7 +508,7 @@ form 通常作为表单元素的父元素，可以将整个表单作为一个整
 
 - type：input 的类型
 
-  `text/password/radio/checkbox/button/reset/submit/file`
+  `text / password / radio / checkbox / button / reset / submit / file`
 
 - readonly：只读
 
@@ -628,6 +636,7 @@ form 通常作为表单元素的父元素，可以将整个表单作为一个整
 - select 的常用属性
   - multiple：可多选
   - size：显示多少项
+  - name
 - option 的常用属性
   - selected：默认被选中
   - value

@@ -264,7 +264,7 @@ HTML 中的每一个元素都可以看作一个盒子，盒子可以分为以下
 
 **margin 的传递和折叠**
 
-- `margin`的上下传递 
+- `margin` 的上下传递 
 
   - 如果块级元素的顶部线和父元素的顶部线重叠，那么这个块级元素的 **margin-top** 会传递给父元素
   - 如果块级元素的底部线和父元素的底部线重叠，并且**父元素的高度是 auto**，那么这个块级元素的 **margin-bottom **会传递给父元素
@@ -523,7 +523,7 @@ text-overflow 生效的前提是 overflow 不为 visible
 
 - 具体数值+单位：比如100px、2em
 
-  1em=父元素的font-size
+  1em = 父元素的font-size
 
 - 百分比：基于父元素的`font-size`计算
 
@@ -565,7 +565,7 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 
 `font` 是一个缩写属性
 
-`font: font-style font-variant font-weight font-size/line-height font-family`
+`font: font-style font-variant font-weight font-size/line-height font-family;`
 
 规则：
 
@@ -634,7 +634,7 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 
 `background-position`  用于设置背景图片在水平、垂直方向上的具体位置
 
-- 只可以设置具体的数值，比如20px 30px
+- 可以设置具体的数值，比如20px 30px
 - 水平方向还可以设值：left、center、right
 - 垂直方向还可以设值：top、center、bottom
 - 如果只设置了一个方向，另一个方向默认为 center
@@ -691,14 +691,14 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 
 **常见的 transform-function**
 
-- 平移：translate(x, y)
+- 平移：`translate(x, y)`
 
   - 用于移动元素在平面上的位置
   - 只设置一个值时代表 x 轴上的位移
   - 设置百分比是相对于自身宽高的
   - translate 是 translateX 和 translateY 的简写属性
 
-- 缩放：scale(x, y)
+- 缩放：`scale(x, y)`
 
   - 用于改变元素的大小
 
@@ -706,7 +706,7 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
   - 可设置小数或百分比代表缩放倍数
   - scale 是 scaleX 和 scaleY 的简写属性
 
-- 旋转：rotate(deg)
+- 旋转：`rotate(deg)`
 
   - 用于旋转元素
   - 可设置一个值表示旋转的角度
@@ -714,7 +714,7 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
   - 也支持百分度 grad、圈数 turn、弧度 rad
   - 正数为顺时针、负数为逆时针
 
-- 倾斜：skew(deg, deg)
+- 倾斜：`skew(deg, deg)`
 
   - 定义一个元素在二维平面上的倾斜转换
   - 只设置一个值时表示 x 轴上的倾斜角度
@@ -727,6 +727,8 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 - 设置一个值表示原点在 x 或 y 轴上偏移量
 
   必须是`<length>`，`<percentage>`，或 left, center, right, top, bottom关键字中的一个
+
+  设置一个另一个就是默认值 center
 
 - 设置两个值表示原点在 x 和 y 轴上偏移量
 

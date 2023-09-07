@@ -159,7 +159,7 @@ event 对象的**常见方法**：
 
 ```js
 box.addEventListener("click", function(event) {
-    console.log(this === event.currentTarget) // true
+    console.log(this === event.target) // true
 })
 ```
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const s = Symbol("name")
+    const info = {
+      [s]: "zsw",
+      age: 24,
+      address: "zz"
+    }
+
+    console.log("info:", info);
+
+    console.log(Object.keys(info)); // Object.keys 不包含 symbol
+    console.log(Reflect.ownKeys(info)); // Reflect.ownKeys 包含 symbol
+    
+    console.log(Object.getOwnPropertyNames(info));
+    console.log(Object.getOwnPropertySymbols(info));
+
+
+    console.log(s in info); // true
+    console.log("age" in info); // true
+    for (const key in info) {
+      console.log(key); // for in 遍历不包含 symbol
+    }
+
+    console.log(Object.hasOwn(info, s)) // true
+    console.log(Object.hasOwn(info, "age")) // true
+
+    console.log(info.hasOwnProperty(s)); // true
+    console.log(info.hasOwnProperty("age")); // true
+  </script>
+</body>
+</html>
