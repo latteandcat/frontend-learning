@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function* foo(init) {
+        console.log("函数开始执行");
+
+        const value1 = yield init + "aaa";
+        console.log(value1);
+
+        const value2 = yield value1 + "bbb";
+        console.log(value2);
+
+        const value3 = yield value2 + "ccc";
+        console.log(value3);
+
+        console.log("函数结束执行");
+      }
+
+      const generator = foo("hello");
+      const res1 = generator.next();
+      console.log(res1);
+      const res2 = generator.next(res1.value);
+      console.log(res2);
+
+      res = generator.return("ddd");
+      console.log(res);
+
+      const res3 = generator.next(res2.value);
+      console.log(res3);
+      const res4 = generator.next();
+      console.log(res4);
+
+      function* foo2() {
+        const value1 = yield "why";
+        console.log("valuel:", valuel);
+        const value2 = yield value1;
+        const value3 = yield value2;
+      }
+
+      const generator2 = foo2();
+      console.log("generator2");
+      console.log(generator2.next());
+      console.log(generator2.return(123));
+      console.log(generator2.next());
+
+      function* foo3() {
+        console.log("函数开始执行");
+
+        try {
+          yield "why";
+        } catch (error) {
+          console.log("内部捕获异常：", error);
+        }
+
+        yield "why";
+
+        console.log("函数结束执行");
+      }
+
+      const generator3 = foo3();
+      console.log("generator3");
+      console.log(generator3.next());
+      generator3.throw(new Error("something went wrong"));
+      console.log(generator2.next());
+    </script>
+  </body>
+</html>

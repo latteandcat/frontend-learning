@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function request(url) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(url);
+          }, 1000);
+        });
+      }
+
+      // Promise
+      function getData1(url) {
+        request(url)
+          .then(res1 => {
+            console.log(res1);
+            return request(res1 + "aaa");
+          })
+          .then(res2 => {
+            console.log(res2);
+            return request(res2 + "bbb");
+          })
+          .then(res3 => {
+            console.log(res3);
+            return request(res3 + "ccc");
+          })
+          .then(res4 => {
+            console.log(res4);
+          });
+      }
+      // getData1("hello")
+
+      // Generator
+      function* getData2(url) {
+        const res1 = yield request(url);
+        console.log(res1);
+        const res2 = yield request(res1 + "aaa");
+        console.log(res2);
+        const res3 = yield request(res2 + "bbb");
+        console.log(res3);
+        const res4 = yield request(res3 + "ccc");
+        console.log(res4);
+        // const res5 = yield request(res4 + "ddd");
+        // console.log(res5);
+      }
+
+      const gen = getData2("hello");
+      
+      
+      function execGenerator(gen) {
+        gen.next().value.then(res1 => {
+          gen.next(res1).value.then(res2 => {
+            gen.next(res2).value.then(res3 => {
+              gen.next(res3).value.then(res4 => {
+                gen.next(res4)
+              });
+            });
+          });
+        });
+      }
+      // execGenerator(gen)
+
+      function autoExecGenerator(generator) {
+        function exec(res) {
+          const result = generator.next(res);
+          if (result.done) return result.value;
+          result.value.then(res => {
+            exec(res);
+          });
+        }
+        exec();
+      }
+      // autoExecGenerator(gen)
+
+      // async/await
+      async function getData3(url) {
+        const res1 = await request(url);
+        console.log(res1);
+        const res2 = await request(res1 + "aaa");
+        console.log(res2);
+        const res3 = await request(res2 + "bbb");
+        console.log(res3);
+        const res4 = await request(res3 + "ccc");
+        console.log(res4);
+      }
+      // getData3("hello")
+    </script>
+  </body>
+</html>

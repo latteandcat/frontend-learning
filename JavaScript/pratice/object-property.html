@@ -13,27 +13,45 @@
       age: 24,
       address: "zz"
     }
-
+    Reflect.defineProperty(info, "school", {
+      value: "zzu"
+    })
     console.log("info:", info);
-
-    console.log(Object.keys(info)); // Object.keys 不包含 symbol
-    console.log(Reflect.ownKeys(info)); // Reflect.ownKeys 包含 symbol
-    
+    /*
+      Object.keys 不包含 symbol 属性 和 enumerable 为 false 的属性
+      Reflect.ownKeys 包含 symbol 属性 和 enumerable 为 false 的属性
+      Object.getOwnPropertyNames 包含 enumerable 为 false 的属性
+      Object.getOwnPropertySymbols 获取到的只有 symbol 属性
+    */
+    console.log(Object.keys(info));
+    console.log(Reflect.ownKeys(info));
     console.log(Object.getOwnPropertyNames(info));
     console.log(Object.getOwnPropertySymbols(info));
 
-
     console.log(s in info); // true
     console.log("age" in info); // true
+    console.log("school" in info); // true
+    // for in 遍历不包含 symbol 属性 和 enumerable 为 false 的属性
     for (const key in info) {
-      console.log(key); // for in 遍历不包含 symbol
+      console.log(key);
     }
 
+    /* hasOwn 的优点 
+      1. 类方法不会被对象内部重写的方法覆盖
+      2. 不会受到原型的影响，隐式原型指向 null 的对象也可以用 hasOwn 判断
+    */
     console.log(Object.hasOwn(info, s)) // true
     console.log(Object.hasOwn(info, "age")) // true
+    console.log(Object.hasOwn(info, "school")) // true
 
     console.log(info.hasOwnProperty(s)); // true
     console.log(info.hasOwnProperty("age")); // true
+    console.log(info.hasOwnProperty("school")); // true
+
+    let nullInfo = Object.create(null)
+    nullInfo.name = "me"
+    // console.log(nullInfo.hasOwnProperty("name")) // 报错
+    console.log(Object.hasOwn(nullInfo, "name")) // true
   </script>
 </body>
 </html>

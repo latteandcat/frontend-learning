@@ -212,6 +212,9 @@ function foo({ name = "why", age = "20" } = {}) {
 展开语法（Spread syntax）
 
 - 可以在**函数调用**或**数组构造**时，将数组表达式或者字符串在语法层面展开（ES6）
+
+  只能传入可迭代对象
+
 - 还可以在**构造字面量对象**时, 将对象表达式按 key-value 的方式展开（ES9）
 
 ```js
@@ -708,7 +711,7 @@ registry.register(obj, "obj value")
 obj = null
 ```
 
-## WeakRefs
+## WeakRef
 
 如果我们默认将一个对象赋值给另外一个引用，那么这个引用是一个强引用
 
@@ -793,19 +796,19 @@ Object 中新增了一个静态方法（类方法）
 class Person {
     // Instance public field 公共实例属性
     address = "china"
-    
+
     // Static public field 公共类属性（静态属性）
     static population = "70亿"
-    
+
     // Instance public method 公共实例方法
     publicMethod() {
         return "public method has been called"
     }
-    
+
     // Static public method 公共类方法（静态方法）
     static publicStaticMethod() {
-    	return "public static method has been called"
-  	}
+        return "public static method has been called"
+    }
 }
 ```
 
