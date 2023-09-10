@@ -495,7 +495,7 @@ window 对象在浏览器中的两个视角
 
 - 提供了大量的事件
 
-- 包含了从 EventTarget 继承过来的方法
+- 包含了从 EventTarget 继承过来的方法（Window 类也是继承自 EventTarget 的）
 
   `addEventListener / removeEventListener / dispatchEvent`
 
@@ -564,7 +564,7 @@ location 其实是 URL 的一个抽象对象
 - 将字符串转换为 URLSearchParams 类型
 
   ```js
-  var urlsearch = new URLSearchParams ("name=me&age=18")
+  var urlsearch = new URLSearchParams("name=me&age=18")
   console.log(urlsearch.get("name"))
   ```
 
@@ -583,7 +583,7 @@ location 其实是 URL 的一个抽象对象
 
 ## history 对象
 
-history对象允许我们访问浏览器曾经的会话历史记录
+history 对象允许我们访问浏览器曾经的会话历史记录
 
 history 和 hash 目前是vue、react等框架实现路由的底层原理
 
@@ -612,13 +612,17 @@ history 和 hash 目前是vue、react等框架实现路由的底层原理
 
   - state：JS 对象（可为空），导航到新的 state会触发 `popstate` 事件，且该事件的 `state` 属性包含 `history.state` 的副本
 
-    > 备注： 调用 history.pushState() 或者 history.replaceState() 不会触发 popstate 事件。popstate 事件只会在浏览器某些行为下触发，比如点击后退按钮（或者在 JavaScript 中调用 history.back() 方法）。即在同一文档的两个历史记录条目之间导航会触发该事件。
+    > 备注： 调用 history.pushState() 或者 history.replaceState() 不会触发 popstate 事件。
+    >
+    > popstate 事件只会在浏览器某些行为下触发，比如点击后退按钮（或者在 JavaScript 中调用 history.back() 方法）。
+    >
+    > 即在同一文档的两个历史记录条目之间导航会触发该事件。
 
   - unused：页面标题，由于历史原因，该参数存在且不能忽略；传递一个空字符串是安全的，以防将来对该方法进行更改
 
   - url：新历史条目的 URL，可以是当前 URL 的相对路径，必须同源不能跨域，没有指定则设置为当前文档的URL
 
-    `http://127.0.0.1:5500/JavaScript/pratice/bom-history.html`
+    当前 url `http://127.0.0.1:5500/JavaScript/pratice/bom-history.html`
 
     - `/userlist` 是绝对路径，会跳转到 `http://127.0.0.1:5500/userlist`
 

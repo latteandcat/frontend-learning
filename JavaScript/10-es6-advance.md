@@ -792,7 +792,7 @@ for (const s of classRoom) {
 
 迭代器在某些情况下会在没有完全迭代的情况下中断
 
-- 比如遍历的过程中通过break、return、throw中断了循环操作
+- 比如遍历的过程中通过 break、return、throw 中断了循环操作
 - 比如在解构的时候，没有解构所有的值
 
 在迭代器中添加 return 方法可以监听迭代的中断
@@ -831,17 +831,18 @@ for (const s of classRoom) {
 
 它可以让我们更加灵活地控制函数什么时候继续执行、暂停执行等
 
+生成器由生成器函数返回，并且符合可迭代协议和迭代器协议
+
 生成器函数和普通函数的区别
 
-1. 生成器函数需要在function的后面加一个符号：*
+1. 生成器函数需要在 function 的后面加一个符号：`function*`
 
 2. 生成器函数可以通过 yield 关键字来控制函数的执行流程
 
-3. 生成器函数的返回值是一个 Generator
+3. 生成器函数的返回值是生成器
 
-   生成器事实上是一种特殊的迭代器
+   生成器事实上是一种特殊的迭代器，也是可迭代对象
 
-   MDN：Instead, they return a special type of iterator, called a Generator
 
 ## 生成器函数的执行
 
@@ -918,14 +919,14 @@ console.log(res4); // {value: undefined, done: true}
 
 ## 生成器的提前结束
 
-还有一个可以给生成器函数传递参数的方法是通过 return 函数
+还有一个可以给生成器函数传递参数的方法是通过 return 方法
 
-`return()` 方法返回给定的值并结束生成器
+`return()` 方法：返回给定的值并结束生成器
 
 ```js
 function* bar() {
     const value1 = yield "why"
-    console.log("value1:", valuel)
+    console.log("value1:", value1)
     const value2 = yield value1 
     const value3 = yield value2
 }
@@ -933,31 +934,43 @@ function* bar() {
 const barGenerator = bar()
 console.log(barGenerator.next()) // { value: 'why', done: false }
 console.log(barGenerator.return(123)) // { value: 123, done: true }
-console.log(barGenerator.next()) // { value: undefined, done: true }
+console.log(barGenerator.next(123)) // { value: undefined, done: true }
 ```
 
 ## 生成器抛出异常
 
-除了给生成器函数内部传递参数之外，也可以给生成器函数内部抛出异常
+`throw()` 方法可以用于向生成器抛出异常，并恢复生成器的执行
 
-`throw()` 方法用来向生成器抛出异常，并恢复生成器的执行
+并会返回带有 `done` 及 `value` 两个属性的对象
 
 抛出异常后我们可以在生成器函数中通过 `try...catch` 块捕获异常
 
+捕获异常以后在 catch 语句中不能继续 yield 新的值了
+
+但是可以在 catch 语句外使用 yield 继续中断函数的执行
+
 ```js
-function* foo() {
+function* foo3() {
+    console.log("函数开始执行");
+
     try {
-        yield "why"
+        yield 111;
+        console.log("无异常发生"); // 不会打印
     } catch (error) {
         console.log("内部捕获异常：", error);
     }
-    yield "why"
+
+    console.log("函数执行中");
+    
+    yield 222;
+
+    console.log("函数结束执行");
 }
 
-const generator = foo()
-console.log(generator.next()) // { value: 'why', done: false }
-generator.throw(new Error("something went wrong"))
-console.log(generator.next()) // { value: undefined, done: true }
+const generator3 = foo3();
+console.log(generator3.next()); // {value: 111, done: false}
+console.log(generator3.throw(new Error("something went wrong"))) // {value: 222, done: false}
+console.log(generator3.next()); // {value: undefined, done: true}
 ```
 
 ## 生成器的应用
@@ -1123,5 +1136,101 @@ getData("hello")
 
 # async/await
 
+## 异步函数
 
+async 关键字用于声明一个异步函数
 
+- async 是 asynchronous 的缩写
+
+- sync 是 synchronous 的缩写
+
+async 函数的写法
+
+```js
+async function foo() {
+    
+}
+
+const foo = async function() {
+    
+}
+
+const foo = async () => {
+    
+}
+
+class Person {
+    async foo() {
+        
+    }
+}
+```
+
+## 异步函数执行流程
+
+异步函数的内部代码执行过程和普通的函数是一致的，默认情况下也是会被同步执行
+
+但异步函数有返回值时，和普通函数会有区别
+
+1. 返回普通值，返回值会包裹到 Promise.resolve() 中返回
+2. 返回 Promise，状态由返回的 Promise 决定
+3. 返回 thenable 对象，由对象的 then 方法决定
+
+没有返回值时相当于返回 Promise.resolve(undefined)
+
+异步函数中抛出异常时，这个异常不会立即被浏览器处理
+
+而是作为 Promise 的 reject 传递给 catch 回调函数处理 `Promise.reject(error)`
+
+## await 关键字
+
+异步函数中可以使用 await 关键字
+
+await 关键字通常会跟上一个返回 Promise 的表达式
+
+await 会等到 Promise 的状态变成 fulfilled 状态再继续执行异步函数
+
+- await 后面的 Promise 接受了一个普通值，那么会直接返回这个值
+- await 后面是一个 thenable 对象，那么会根据对象的 then 方法的调用结果决定后续的值
+- await 后面的 Promise 是 rejected 状态，那么会将这个 reject 结果直接作为异步函数的 Promise 的 reject 结果
+
+由于异步函数本身就返回 Promise 所以 await 后面也可以跟上异步函数结合使用
+
+# 事件循环
+
+## JS 单线程
+
+JS 是单线程的（可以开启 workers）
+
+- 多数浏览器都是多进程的，每打开一个页面就会开启一个新的进程
+- 每个页面的进程有很多线程，其中有一个线程是用于执行 JS 代码的线程
+
+JS 的代码执行是在一个单独的线程中执行的
+
+- 这就意味着 JS 在同一个时刻，只能做一件事
+- 如果这件事十分耗时，当前线程就会被阻塞
+- 所以一些耗时的操作，比如网络请求或定时器，会交给浏览器的其他线程执行
+  只需要在特定的时候执行对应的回调即可
+
+## 浏览器的事件循环
+
+浏览器的事件循环：浏览器的其他线程、事件队列和JS 线程之间的循环
+
+- 浏览器来处理定时器的计时，计时结束后定时器的回调函数会加入事件队列，出队时交给浏览器的 JS 线程执行代码
+- 浏览器来处理 DOM 点击事件的监听，触发点击事件时对应的处理程序会加入事件队列，出队时交给浏览器的 JS 线程执行代码
+
+## 宏任务和微任务
+
+事件循环中并非只维护着一个队列，事实上是有两个队列
+
+- 宏任务队列（macrotask queue）：ajax、setTimeout、setInterval、DOM 监听、UI Rendering 等
+- 微任务队列（microtask queue）：Promise 的 then 回调、 Mutation Observer API、queueMicrotask() 等
+
+两个队列的优先级
+
+1. main script 中的代码优先执行（编写的顶层script代码）
+2. 在执行任何一个宏任务之前（不是队列，是一个宏任务），都会先查看微任务队列中是否有任务需要执行
+   - 也就是宏任务执行之前，必须保证微任务队列是空的
+   - 如果不为空，那么就优先执行微任务队列中的任务（回调）
+
+await 后面的代码也可以看作加入了微任务队列

@@ -293,7 +293,7 @@ s1 === s2 // false
 
 `Object.keys(obj)` 只能获取非 Symbol 属性名对应的 keys
 
-而 `Object.getOwnPropertySymbols(obj)` 可以获取 Symbol 属性名对应的 keys
+`Object.getOwnPropertySymbols(obj)` 可以获取 Symbol 属性名对应的 keys
 
 ```js
 consy symbolKeys = Object.getOwnPropertySymbols(obj)

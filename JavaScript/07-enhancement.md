@@ -488,7 +488,7 @@ ES6 中新增了一个从数组或对象中方便获取数据的方法，称之�
 
 解构是一种特殊的赋值语法，它使我们可以将数组或对象 “拆包” 至一系列变量中
 
-解构常用于函数的参数和fan'hui'zh
+解构常用于函数的参数和返回值
 
 ### 数组的解构
 
@@ -525,6 +525,36 @@ var { name, age, height, address: schoolAddress } = obj
 var { name, age, height, address: schoolAddress = "china", sex = "male" } = obj
 // 剩余变量可以解构在一个对象里
 var { name, age, ...rest } = obj
+```
+
+## 深拷贝
+
+深拷贝、浅拷贝和引用赋值的对比
+
+```js
+const info = {
+    name: "me",
+    friend: {
+        name: "you"
+    }
+}
+
+// 引用赋值
+const obj1 = info // obj1 和 info 保存的是同一个内存地址
+
+// 浅拷贝
+const obj2 = {
+    ...info,
+    age: 20
+}
+obj2.friend.name = "kobe" // info 中的也会发生改变
+// Object.assign(target, ...sources) 会将一个或多个源对象中的属性浅拷贝到目标对象
+
+// 深拷贝：使用 JSON 或者 使用深拷贝函数
+const obj3 = JSON.parse(JSON.stringfy(info))
+
+// lodash 的深拷贝函数
+const obj4 = _.cloneDeep(info)
 ```
 
 # 其他增强知识
@@ -603,3 +633,101 @@ ECMAScript5 中 JS 提出了严格模式（Strict Mode）的概念
 - 严格模式下，this绑定不会默认转成对象类型
 
 - 独立函数执行默认模式下，this 会绑定 window 对象，而严格模式下是 undefined
+
+## 错误处理
+
+### throw
+
+在函数中想告知外界自己内部出现了错误可以通过 throw 关键字抛出一个异常
+
+throw 语句
+
+- throw 语句用于抛出一个用户自定义的异常
+- 当遇到 throw 语句时，当前的函数执行会被停止（ throw 后面的语句不会执行）
+
+- throw 语句就是 `throw expression` 即在 throw 后面可以跟上一个表达式来表示具体的异常信息
+  - 表达式可以是基本数据类型：比如Number、String、Boolean
+  - 也可以是对象类型：对象类型可以包含更多的信息
+  - 可以使用内置的 Error 类创建的对象
+
+### Error
+
+JS 中提供了一个 Error 类
+
+Error 类有三个属性
+
+- message：创建 Error 对象时传入的 message
+- name：Error 的名称，通常和类的名称一致
+- stack：整个 Error 的错误信息，包括函数的调用栈，当我们直接打印 Error 对象时，打印的就是 stack
+
+Error 类的子类
+
+- RangeError：下标值越界时使用的错误类型
+- SyntaxError：解析语法错误时使用的错误类型
+- TypeError：出现类型错误时，使用的错误类型
+
+### try catch
+
+函数抛出异常时，如果没有被捕获处理，程序会被终止
+
+- 如果我们在调用一个函数时，这个函数抛出了异常，但是我们并没有对这个异常进行处理，那么这个异常会继续传
+  递到上一个函数调用中
+- 而如果到了最顶层（全局）的代码中依然没有对这个异常的处理代码，这个时候就会报错并且终止程序的运行
+
+但是很多情况下当出现异常时，我们并不希望程序直接退出，而是希望可以正确的处理异常
+
+这个时候可以使用 try catch 捕获异常
+
+```js
+try {
+    try_statements
+}
+[catch(exception_var_1) {
+    catch_statements_1  
+}]
+[finally {
+    finally_statements
+}]
+```
+
+ES10 中 catch 后面绑定的 error 可以省略
+
+如果有一些必须要执行的代码，我们可以使用 finally 来执行
+
+- finally 表示最终一定会被执行的代码结构
+- 如果 try 和 finally 中都有返回值，那么会使用 finally 当中的返回值
+
+## WebStorage
+
+WebStorage 主要提供了一种机制，可以让浏览器提供一种比 cookie 更直观的 key、value 存储方式
+
+- localStorage：本地存储，提供的是一种永久性的存储方法，在关闭掉网页重新打开时，存储的内容依然保留
+- sessionStorage：会话存储，提供的是本次会话的存储，在关闭掉会话时，存储的内容会被清除
+
+> localStorage 和 sessionStorage 的区别
+>
+> - 关闭网页后重新打开，localStorage会保留，而sessionStorage会被删除
+> - 在页面内实现跳转，localStorage会保留，sessionStorage也会保留
+> - 在页面外实现跳转（打开新的网页），localStorage会保留，sessionStorage不会被保留
+
+**Storage常见的方法和属性**
+
+- 属性
+
+  - `Storage.length`：只读属性
+
+    返回一个整数，表示存储在Storage对象中的数据项数量
+
+- 方法
+
+  - `Storage.key(index)`：该方法接受一个数值 n 作为参数，返回存储中的第 n 个 key 名称
+
+  - `Storage.getItem()`：该方法接受一个 key 作为参数，并且返回 key 对应的 value
+
+  - `Storage.setItem()`：该方法接受一个 key 和 value，并且将会把 key 和 value 添加到存储中
+
+    如果 key 存在，则更新其对应的值
+
+  - ` Storage.removeItem()`：该方法接受一个 key 作为参数，并把该 key 从存储中删除
+
+  - `Storage.clear()`：该方法的作用是清空存储中的所有 key

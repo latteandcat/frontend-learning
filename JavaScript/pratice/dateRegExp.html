@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const time = Date.now()
+    console.log(time);
+
+    function formatDate(time, formatString) {
+      const date = new Date(time)
+
+      const obj = {
+        "y+": date.getFullYear(),
+        "M+": date.getMonth() + 1,
+        "d+": date.getDate(),
+        "h+": date.getHours(),
+        "m+": date.getMinutes(),
+        "s+": date.getSeconds()
+      }
+
+      for (const key in obj) {
+        const ketRe = new RegExp(key)
+        if (new RegExp(`(${key})`).test(formatString)) {
+          const value = (obj[key] + "").padStart(2, "0")
+          formatString = formatString.replace(ketRe, value)
+        }
+      }
+
+      return formatString
+    }
+
+    console.log(formatDate(time, "yyyy-MM-dd hh:mm:ss"));
+  </script>
+</body>
+</html>

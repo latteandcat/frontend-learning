@@ -7,6 +7,7 @@
   </head>
   <body>
     <script>
+      console.log("generator1");
       function* foo(init) {
         console.log("函数开始执行");
 
@@ -27,47 +28,48 @@
       console.log(res1);
       const res2 = generator.next(res1.value);
       console.log(res2);
-
-      res = generator.return("ddd");
-      console.log(res);
-
       const res3 = generator.next(res2.value);
       console.log(res3);
-      const res4 = generator.next();
+      const res4 = generator.next(res3.value);
       console.log(res4);
 
+      console.log("generator2");
+      
       function* foo2() {
         const value1 = yield "why";
-        console.log("valuel:", valuel);
+        console.log("value1:", value1);
         const value2 = yield value1;
         const value3 = yield value2;
       }
 
       const generator2 = foo2();
-      console.log("generator2");
       console.log(generator2.next());
       console.log(generator2.return(123));
-      console.log(generator2.next());
+      console.log(generator2.next(123));
+      
+      console.log("generator3");
 
       function* foo3() {
         console.log("函数开始执行");
 
         try {
-          yield "why";
+          yield 111;
+          console.log("无异常发生")
         } catch (error) {
           console.log("内部捕获异常：", error);
         }
 
-        yield "why";
+        console.log("函数执行中");
+
+        yield 222;
 
         console.log("函数结束执行");
       }
 
       const generator3 = foo3();
-      console.log("generator3");
       console.log(generator3.next());
-      generator3.throw(new Error("something went wrong"));
-      console.log(generator2.next());
+      console.log(generator3.throw(new Error("something went wrong")))
+      console.log(generator3.next());
     </script>
   </body>
 </html>
