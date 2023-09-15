@@ -46,7 +46,7 @@
 
    ```js
    var colors = new Array()
-   var colors = new Array(20) // 很少设置长度
+   var colors = new Array(20) // 很少设置长度，每一项都是 undefined
    var colors = new Array("Red", "Blue", "Green")
    ```
 
@@ -120,18 +120,17 @@
 
 ### 常用方法
 
-**截取拼接**
+#### 截取拼接
 
 - `arr.slice(begin, end)`：用于对数组进行截取
 
-  包含 begin 不包含 end
-
-  不会修改原数组
+  包含 begin 不包含 end，不会修改原数组
 
 - `arr.concat(value1, ... , valueN)`：创建一个新数组，其中包含来自于其他数组或其他项的值
+
 - `arr.join(separator)`：将一个数组的所有元素连接成一个字符串并返回这个字符串
 
-**查找元素**
+#### 查找元素
 
 - `arr.indexOf(searchElement, fromIndex)`：查找某个元素的索引
 
@@ -154,7 +153,7 @@
   })
   ```
 
-**数组排序**
+#### 数组排序
 
 - `arr.sort()`
 
@@ -182,7 +181,7 @@
 
   - 反转数组项的顺序
 
-**迭代方法**
+#### 迭代方法
 
 以下迭代方法都会在数组的每一项上运行给定函数
 
@@ -194,7 +193,7 @@
 - `map()`：返回每次函数调用的结果组成的数组（返回每一项的运行结果组成的数组）
 - `some()`：如果该函数对任一项返回 true，则返回 true（返回一个布尔值）
 
-**归并方法**
+#### 归并方法
 
 - `reduce()` 和 `reduceRight()` 方法都会迭代数组的所有项，并构建一个最终的返回值
 

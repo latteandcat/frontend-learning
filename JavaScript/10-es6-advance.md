@@ -1192,7 +1192,7 @@ await 会等到 Promise 的状态变成 fulfilled 状态再继续执行异步函
 
 - await 后面的 Promise 接受了一个普通值，那么会直接返回这个值
 - await 后面是一个 thenable 对象，那么会根据对象的 then 方法的调用结果决定后续的值
-- await 后面的 Promise 是 rejected 状态，那么会将这个 reject 结果直接作为异步函数的 Promise 的 reject 结果
+- await 后面的 Promise 是 rejected 状态，那么会将这个 reject 结果直接作为异步函数返回的 Promise 的 reject 结果
 
 由于异步函数本身就返回 Promise 所以 await 后面也可以跟上异步函数结合使用
 

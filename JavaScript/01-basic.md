@@ -880,7 +880,7 @@ foo(function() {
 
 **立即执行函数**
 
-立即执行函数（Immediately-Invoked Function Expression）指的是一个函数在定义后被立即执行
+立即执行函数表达式（Immediately-Invoked Function Expression）指的是一个函数在定义后被立即执行
 
 - 立即执行函数包含函数的定义和函数的执行两部分
 
@@ -1355,31 +1355,31 @@ fn() // this 指向 window
 
 - 构造函数也是一个普通的函数，但是如果使用 new 关键字调用这个函数的时候，这个函数就是一个构造函数
 
-  如果一个函数被 new 关键字调用了，那么它会执行**如下操作**
-
-  1. 在内存中创建一个新的对象（空对象）
-  2. 这个对象内部的 `[[prototype]]` 属性会被赋值为该构造函数的 prototype 属性
-  3. 构造函数内部的 this，会指向创建出来的新对象
-  4. 执行函数的内部代码（函数体代码）
-  5. 如果构造函数没有返回非空对象，则返回创建出来的新对象
+  > 如果一个函数被 new 关键字调用了，那么它会执行**如下操作**
+  >
+  > 1. 在内存中创建一个新的对象（空对象）
+  > 2. 这个对象内部的 `[[prototype]]` 属性会被赋值为该构造函数的 prototype 属性
+  > 3. 构造函数内部的 this，会指向创建出来的新对象
+  > 4. 执行函数的内部代码（函数体代码）
+  > 5. 如果构造函数没有返回非空对象，则返回创建出来的新对象
 
 - 通过构造函数创建的对象是有具体的类型的
 
-```js
-function Person(name, age, height, address) {
-    this.name = name
-    this.age = age
-    this.height = height
-    this.address = address
-    
-    this.eating = function() {
-        console.log(this.name + "在吃东西~")
+    ```js
+    function Person(name, age, height, address) {
+        this.name = name
+        this.age = age
+        this.height = height
+        this.address = address
+
+        this.eating = function() {
+            console.log(this.name + "在吃东西~")
+        }
+        this.running = function() {
+            console.log(this.name + "在跑步~")
+        }
     }
-    this.running = function() {
-        console.log(this.name + "在跑步~")
-    }
-}
-```
+    ```
 
 ### window 对象
 
