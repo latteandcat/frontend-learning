@@ -1,4 +1,4 @@
-CSS 属性
+# CSS 属性
 
 ## 属性特性
 
@@ -124,11 +124,30 @@ vertical-align 会影响行内级元素在一个行盒中垂直方向的位置
 
   - <percentage>：使元素的基线对齐到父元素的基线之上的给定百分比
 
-    该百分比是`line-height`属性的百分比，可以是负数
+    该百分比是 `line-height` 属性的百分比，可以是负数
 
   - <length>：使元素的基线对齐到父元素的基线之上的给定长度
 
     可以是负数
+
+>解决图片下边缘间隙的方法
+>
+>1. 将 vertical-align 设置为 top/middle/bottom
+>2. 将图片设置为 block 方法
+
+### overflow
+
+overflow用于控制内容溢出时的行为
+
+- visible：溢出的内容照样可见
+
+- hidden：溢出的内容直接裁剪
+
+- scroll：溢出的内容被裁剪，但可以通过滚动机制查看
+
+  会一直显示滚动条区域，滚动条区域占用的空间属于 width、height
+
+- auto：自动根据内容是否溢出来决定是否提供滚动机制
 
 ## 盒子模型
 
@@ -187,14 +206,13 @@ HTML 中的每一个元素都可以看作一个盒子，盒子可以分为以下
 ### border
 
 - `border-width`：边框宽度
-
-  - `border-top-width`
-
-  - `border-right-width`
-
-  - `border-bottom-width`
-
-  - `border-left-width`
+- `border-top-width`
+  
+- `border-right-width`
+  
+- `border-bottom-width`
+  
+- `border-left-width`
 
 
 - `border-color`：边框颜色
@@ -226,7 +244,7 @@ HTML 中的每一个元素都可以看作一个盒子，盒子可以分为以下
 
   - `border-style`的常用样式
 
-![](../images/border-style.png)
+    ![](../images/border-style.png)
 
 - `border`：边框缩写属性
 
@@ -237,11 +255,14 @@ HTML 中的每一个元素都可以看作一个盒子，盒子可以分为以下
 ​	注意：背景色是包含border的
 
 - `border-radius`：边框圆角
+  
+  支持数值或百分比
+  
   - `border-top-left-radius`
   - `border-top-right-radius`
   - `border-bottom-right-radius`
   - `border-bottom-left-radius`
-
+  
   > 如果一个元素是正方形，设置border-radius大于或等于50%时就会变成一个圆。
 
 ### margin⭐
@@ -259,23 +280,23 @@ HTML 中的每一个元素都可以看作一个盒子，盒子可以分为以下
 
 > 块级元素水平居中的方法
 >
-> 1. 将块级元素的display设置为inline-block，然后在其父元素中设置text-align为center
-> 2. 将块级元素的margin设置为 0 auto
+> 1. 将块级元素的 display 设置为 inline-block，然后在其父元素中设置 text-align 为 center
+> 2. 将块级元素的 margin 设置为 0 auto
 
 **margin 的传递和折叠**
 
 - `margin` 的上下传递 
 
-  - 如果块级元素的顶部线和父元素的顶部线重叠，那么这个块级元素的 **margin-top** 会传递给父元素
-  - 如果块级元素的底部线和父元素的底部线重叠，并且**父元素的高度是 auto**，那么这个块级元素的 **margin-bottom **会传递给父元素
+  - 如果块级元素的顶部线和父元素的**顶部线重叠**，那么这个块级元素的 **margin-top** 会传递给父元素
+  - 如果块级元素的底部线和父元素的**底部线重叠**，并且**父元素的高度是 auto**，那么这个块级元素的 **margin-bottom **会传递给父元素
   - 如何防止出现传递
-    - 改为给父元素设置 padding
+    - 取消 margin 改为给父元素设置 padding
     - 给父元素设置 border
     - 触发BFC：设置 overflow 为 auto
 
 - `margin` 的上下折叠
   
-  - 垂直方向上相邻的2个 margin 有可能会合并为一个 margin，这种现象叫做折叠（collapse）
+  - 垂直方向上相邻的 2 个 margin 有可能会合并为一个 margin，这种现象叫做折叠（collapse）
   - 水平方向上的 margin 永远不会折叠
   - 折叠后的 margin 会取折叠前的较大者
   - 如何防止出现折叠
@@ -299,7 +320,7 @@ outline 很少使用，常常用于去除 a 元素或 input 元素的 focus 轮�
 
 ### box-shadow⭐
 
-`box-shadow` 属性可以设置一个或多个阴影
+`box-shadow` 属性可以设置一个或多个盒子阴影
 
 - 每个阴影用 `<shadow>` 表示
 - 多个阴影之间用逗号隔开，从前到后叠加
@@ -309,7 +330,9 @@ outline 很少使用，常常用于去除 a 元素或 input 元素的 focus 轮�
 - 当给出两个、三个或四个 `<length>` 值时
   - 如果只给出两个值，那么这两个值将会被当作 `<offset-x> <offset-y>` 来解释
   
-    offset-x：x 偏移量 offset-y：y 偏移量
+    offset-x：x 偏移量
+  
+    offset-y：y 偏移量
   
   - 如果给出了第三个值，那么第三个值将会被当作 `<blur-radius>` 解释
   
@@ -328,6 +351,8 @@ outline 很少使用，常常用于去除 a 元素或 input 元素的 focus 轮�
   此时阴影会在边框之内 (即使是透明边框）、背景之上、内容之下。
 
 - 可选，`<color>` 值
+
+  阴影的颜色，如果没有设置，就跟随 color 属性的颜色
 
 [Box Shadow CSS Generator](https://html-css-js.com/css/generator/box-shadow/)
 
@@ -438,7 +463,7 @@ outline 很少使用，常常用于去除 a 元素或 input 元素的 focus 轮�
 
 `text-indent` 用于设置第一行内容的缩进
 
-`text-indent: 2em` 刚好是缩进两个文字
+`text-indent: 2em;` 刚好是缩进两个文字
 
 ### text-align⭐
 
@@ -466,6 +491,8 @@ outline 很少使用，常常用于去除 a 元素或 input 元素的 focus 轮�
 
 `word-spacing`、`letter-spacing` 分别用于设置**单词、字母**之间的间距
 
+默认是 0，可以设置为负数
+
 ### text-shadow
 
 `text-shadow` 的用法类似于 `box-shadow`，用于给文字添加阴影效果
@@ -485,6 +512,14 @@ outline 很少使用，常常用于去除 a 元素或 input 元素的 focus 轮�
 - pre：阻止合并所有连续的空白，不允许单词超屏时自动换行
 - pre-wrap：阻止合并所有连续的空白，允许单词超屏时自动换行
 - pre-line：合并所有连续的空白（但保留换行），允许单词超屏时自动换行
+
+| value    | 合并连续的空格 | 自动换行 |
+| :------- | :------------: | :------: |
+| normal   |       √        |    √     |
+| nowrap   |       √        |    ×     |
+| pre      |       ×        |    ×     |
+| pre-wrap |       ×        |    √     |
+| pre-line | √（保留换行）  |    √     |
 
 ### text-overflow
 
@@ -523,7 +558,7 @@ text-overflow 生效的前提是 overflow 不为 visible
 
 - 具体数值+单位：比如100px、2em
 
-  1em = 父元素的font-size
+  1em = 父元素的 font-size
 
 - 百分比：基于父元素的`font-size`计算
 
@@ -549,11 +584,15 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 
 ### line-height⭐
 
-`line-height` 用于设置文本的行高，行高即一行文字所占据的高度
+`line-height` 用于设置文本的行高
 
-行高的作用是提高文本的阅读体验
+- 行高可以理解为一行文字所占据的高度（不等于文本高度）
 
-行高的严格定义是：两行文字基线（baseline）之间的间距，基线是与小写字母最底部对齐的线 
+- 行高的作用是提高文本的阅读体验
+
+- 行高的严格定义是：两行文字基线（baseline）之间的间距
+
+  基线是与小写字母最底部对齐的线 
 
 ![](../images/baseline.png)
 
@@ -673,6 +712,15 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 
 - `<background-color>`只能被包含在最后一层
 
+推荐编写顺序
+
+```js
+// 非最后一层
+image position/size repeat attachment origin clip
+// 最后一层
+color image position/size repeat attachment origin clip
+```
+
 ## 动态效果
 
 ### transform
@@ -688,6 +736,8 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
   [transform-function - CSS：层叠样式表 | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform-function)
 
 - transform设置多个 `<transform-function>` 值时以空格分隔
+
+![](../images/transform-functions.png)
 
 **常见的 transform-function**
 
@@ -719,21 +769,25 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
   - 定义一个元素在二维平面上的倾斜转换
   - 只设置一个值时表示 x 轴上的倾斜角度
   - 单位与 rotate 的单位相同
+  - 正数为顺时针、负数为逆时针
+  - 倾斜的原点受 transform-origin 的影响
 
 **transform-origin**
 
 - 用于设置元素变形的原点
 
+  比如缩放、旋转或倾斜
+
 - 设置一个值表示原点在 x 或 y 轴上偏移量
 
-  必须是`<length>`，`<percentage>`，或 left, center, right, top, bottom关键字中的一个
+  必须是`<length>`，`<percentage>`，或 left, center, right, top, bottom 关键字中的一个
 
   设置一个另一个就是默认值 center
 
 - 设置两个值表示原点在 x 和 y 轴上偏移量
 
-  其中一个必须是`<length>`，`<percentage>`，或left, center, right关键字中的一个
-  另一个必须是`<length>`，`<percentage>`，或top, center, bottom关键字中的一个
+  其中一个必须是`<length>`，`<percentage>`，或left, center, right 关键字中的一个
+  另一个必须是`<length>`，`<percentage>`，或top, center, bottom 关键字中的一个
 
 - 设置三个值表示原点在 x、y 和 z 轴上偏移量
 
@@ -745,10 +799,10 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 
 **transition 的概念**
 
-- CSS transition 提供了一种在更改 CSS 属性时控制动画速度的方法
-- 可以让 CSS 属性的变化成为一个持续一段时间的过程，而不是立即生效的
+- CSS transition 提供了一种在更改 **CSS 属性**时控制**动画速度的方法**
+- 可以让 CSS 属性的变化成为一个**持续一段时间的过程**，而不是立即生效的
 - 比如将一个元素从一个位置移动到另一个位置，默认在修改完 CSS 属性后会立即生效
-- 但是我们可以通过 CSS transition，让这个过程加上一定的过渡效果，包括一定的曲线速率变化
+- 但是我们可以通过 CSS transition，让这个过程加上一定的**动画效果**，包括一定的曲线速率变化
 
 **implicit transitions**
 
@@ -773,9 +827,9 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 
 - transition-property：指定应用过渡的属性
 
-  - all
-  - none
-  - CSS属性名称
+  - all：所有属性都执行动画
+  - none：所有属性都不执行动画
+  - CSS 属性名称：要执行动画的CSS属性名称
 
 - transition-duration：指定过渡所需的时间
 
@@ -798,13 +852,14 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 **CSS animation 的使用分成两个步骤**
 
 1. 使用 keyframes 定义动画序列（每一帧动画如何执行）
-2. 配置动画执行的名称、持续时间、动画曲线、延迟、执行次数、方向等等
+2. 配置动画：包括动画的执行的名称、持续时间、动画曲线、延迟、执行次数、方向等等
 
-**@keyframes 关键帧规则**
+**@keyframes**
 
 可以使用 @keyframes 来定义多个变化状态，并使用 animation-name 来声明匹配
 
-- 关键帧使用百分比来指定动画发生的时间点
+关键帧使用百分比来指定动画发生的时间点
+
 - 0% 表示动画的第一时刻，100% 表示动画的最终时刻
 - from关键字相当于 0%，to关键字相当于 100%
 

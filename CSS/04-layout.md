@@ -274,7 +274,7 @@ position 的不同值之间的比较
 
 ### flex box
 
-**flex box（弹性盒子）**是一种用于**按行或按列布局元素**的**一维布局方法**
+**flex box 弹性盒子**是一种用于**按行或按列布局元素**的**一维布局方法**
 
 - 元素可以膨胀以填充额外的空间，收缩以适应更小的空间
 - 使用弹性盒子来进行布局的方案叫做 flex 布局
@@ -313,7 +313,7 @@ position 的不同值之间的比较
 
     - nowrap（默认值）：单行
     - wrap：多行
-    - wrap-reverse：多行（cross start 与 cross end 相反）
+    - wrap-reverse：多行（跟 wrap 相比 cross start 与 cross end 相反）
 
   - `flex-flow`：`flex-direction` 和 `flex-wrap` 的简写
 
@@ -416,7 +416,7 @@ position 的不同值之间的比较
   
     - 可以设置任意非负数字
   
-    - 当 flex container 在主轴方向上有剩余 size 时 `flex-grow` 才会有效
+    - 当 flex container 在主轴方向上有剩余 **size** 时 `flex-grow` 才会有效
   
     - 如果所有 flex items 的 `flex-grow` 的总和 sum 超过 1
   
@@ -481,7 +481,7 @@ position 的不同值之间的比较
 
 ### 常见问题
 
-1. 多行布局中最后一行 justify-content 导致的对齐变形
+1. 多行布局中最后一行 justify-content:  导致的对齐变形
 
    解决方法：在多行 flex items 后面加上 **列数-2** 个 i 元素或者 span 元素，并且将其宽度设置为 flex item 的宽度
 

@@ -19,7 +19,7 @@ FC 的全称是 Formatting Context
 - BFC 的全称是 Block Formatting Context
 
 - BFC 是页面的一块渲染区域，并且有一套渲染规则，决定了子元素如何定位，以及与其他元素之间的排列关系
-- BFC 是一个独立的布局环境，相当于是一个容器，在其中按照一定的规则对块级元素进行摆放，并且不会影响其他的布局环境中的盒子，如果一个元素触发 BFC ，则 BFC 中的元素布局不受外界的影响
+- BFC 是一个独立的布局环境，BFC 中的块级元素会按照一定的规则摆放，不会影响其他 BFC，也不会受外界 BFC 的影响
 - 块级元素在标准流中的布局是属于 BFC 的
 
 ![](../images/bfc.png)
@@ -36,9 +36,9 @@ FC 的全称是 Formatting Context
 
 - 表格单元格（元素的 display 为 table-cell，HTML表格单元格默认为该值）
 
-  表格标题（元素的display为table-caption，HTML表格标题默认为该值）
+  表格标题（元素的 display 为table-caption，HTML表格标题默认为该值）
 
-  匿名表格单元格（元素的display为table、table-row、table-row-group、table-header-group、table-footer-group，分别是HTML中table、row、tbody、thead、tfoot的默认属性）
+  匿名表格单元格（元素的 display 为table、table-row、table-row-group、table-header-group、table-footer-group，分别是HTML中table、row、tbody、thead、tfoot的默认属性）
 
 - overflow 计算值不为 visible 的元素
 
@@ -84,4 +84,3 @@ FC 的全称是 Formatting Context
   4. 如果有浮动子元素，会增加高度以包含这些浮动元素的下边缘
   
   ![](../images/bfc-height.png)
-  
