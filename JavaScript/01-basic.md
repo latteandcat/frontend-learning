@@ -2,7 +2,9 @@
 
 ## 计算机语言和编程语言
 
-HTML 是标记语言，CSS 是样式语言，它们都是计算机语言，JavaScript 也是计算机语言，但更精确的说法是 JavaScript 是一种编程语言。
+HTML 是标记语言，CSS 是样式语言，它们都是计算机语言
+
+JavaScript 也是计算机语言，但更精确的说法是 JavaScript 是一种编程语言。
 
 - 计算机语言：指用于人与计算机之间通讯的语言，是人与计算机之间传递信息的介质，但是其概念比通用的编程语言要更广泛。例如，HTML 是标记语言，也是计算机语言，但并不是编程语言
 - 编程语言：是用来定义计算机程序的形式语言。它是一种被标准化的交流技巧，用来向计算机发出指令，一种能够让程序员准确地定义计算机所需要使用数据的计算机语言，并精确地定义在不同情况下所应当采取的行动。
@@ -23,8 +25,8 @@ HTML 是标记语言，CSS 是样式语言，它们都是计算机语言，JavaS
 ## JavaScript 的定义
 
 - JS 是一种高级的、解释型的编程语言
-- JS 是一门基于原型、头等函数的语言，是一门多范式的语言，它支持面向对象程序设计、指令式编程以及函数式编程。
-- 通俗的讲，JS是一门高级编程语言，是前端开发的重要组成部分！
+- JS 是一门基于原型、头等函数的语言，是一门多范式的语言，它支持**面向对象**程序设计、**指令式编程**以及**函数式编程**。
+- 通俗的讲，JS是一门高级编程语言，是前端开发的重要组成部分
 
 ## JavaScript 的组成
 
@@ -36,7 +38,7 @@ HTML 是标记语言，CSS 是样式语言，它们都是计算机语言，JavaS
 
 JavaScript 的运行依赖于浏览器的 **JavaScript 引擎**
 
-- 高级的编程语言都是需要转成最终的机器指令来执行的、
+- 高级的编程语言都是需要转成最终的机器指令来执行的
 - JS 是解释型语言，而 JS 引擎是 JS 语言的运行解释器
 - JavaScript 引擎可以将 JavaScript 代码翻译成 CPU 指令来执行
 
@@ -73,7 +75,9 @@ JavaScript 的运行依赖于浏览器的 **JavaScript 引擎**
 
 ## noscript
 
-`<noscript>` 元素用于给不支持 JS 的浏览器提供替代内容，当出现以下情况时，浏览器将显示包含在 `<noscript>` 中的内容
+`<noscript>` 元素用于给不支持 JS 的浏览器提供替代内容
+
+当出现以下情况时，浏览器将显示包含在 `<noscript>` 中的内容
 
 - 浏览器不支持脚本
 - 浏览器对脚本的支持被关闭
@@ -221,12 +225,13 @@ typeof 操作符可以用于确定变量的数据类型
 
 对一个值使用 typeof 操作符会返回下列字符串之一
 
-- `undefined`：表示值未定义
-- `boolean`：表示值为布尔值
-- `string`：表示值为字符串
 - `number`：表示值为数值
+- `string`：表示值为字符串
+- `boolean`：表示值为布尔值
+- `undefined`：表示值未定义
 - `object`：表示值为对象（而不是函数）或 null
 - `function`：表示值为函数
+- `bigint`：表示值为大整数
 - `symbol`：表示值为符号
 
 ### Number
@@ -299,7 +304,7 @@ typeof 操作符可以用于确定变量的数据类型
 
 - Null 类型同样只有一个值，即特殊值 null
 
-- null 类型通常用来表示一个对象为空
+- Null 类型通常用来表示一个对象为空
 
   所以通常在给一个对象进行初始化时，会赋值为 null
 
@@ -315,7 +320,7 @@ typeof 操作符可以用于确定变量的数据类型
 
 大多数情况下，运算符和函数会自动将授予它们的值转换为正确的类型，这是一种隐式转换
 
-我们也可以通过显示的方式对数据类型进行转换
+我们也可以通过显式的方式对数据类型进行转换
 
 ### String
 
@@ -353,7 +358,7 @@ typeof 操作符可以用于确定变量的数据类型
 
   - 其他值都是 true
 
-    注意：包含 0 的字符串 `"0"` 为 true
+    注意：包含 0 的字符串 `"0"` 为 true，空的对象 `{}` 也为 true
 
 - 显式转换
   - 调用 `Boolean()` 函数
@@ -401,7 +406,7 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
   `++` 用于将变量加一
 
-  ``--` 用于将变量减一
+  `--` 用于将变量减一
 
 - 自增和自减只能用于变量
 
@@ -468,13 +473,13 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
 - 逻辑运算符有三个
 
-  - `||`：或（也成为短路或）
+  - `||`：或（也称为短路或）
 
     逻辑或的本质：或运算符会从左到右依次计算操作数，处理每一个操作数时都将其转换为布尔值，如果结果是 true，就停止计算，返回这个操作数的初始值。如果所有操作数的结果都是 false，则返回最后一个操作数（返回的是初始形式）。
 
     换句话说，一个或运算符的链，将返回其中的第一个真值，如果不存在真值，就返回该链的最后一个值。
 
-  - `&&`：与（也成为短路与）
+  - `&&`：与（也称为短路与）
 
     逻辑与的本质：与运算符会从左到右依次计算操作数，处理每一个操作数时都将其转换为布尔值，如果结果是 false，就停止计算，返回这个操作数的初始值。如果所有操作数的结果都是 true，则返回最后一个操作数（返回的是初始形式）.
 
@@ -563,7 +568,7 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
 switch 语句通过判断表达式结果或变量是否等于 case 语句的常量，执行相应的分支体的
 
-switch 语句只能做值得相等判断（===），而 if 语句可以做值的范围判断
+switch 语句只能做值的相等判断（===），而 if 语句可以做值的范围判断
 
 ```js
 switch(变量) {
@@ -674,7 +679,9 @@ function 函数名() {
 ```
 
 - 函数名的命名规则与变量的命名规范是相同的
+
 - 函数名要做到见名知意
+
 - 函数定义后其中的代码是不会执行的，调用的时候才会执行
 
 - 在函数的内部调用自身叫做**函数的递归**
@@ -682,11 +689,10 @@ function 函数名() {
   - 无限地调用自身会导致内存溢出
 
     所以函数在调用自身时必须有结束条件
-
-
+  
   - 递归可以将一个复杂任务转换成可以重复执行的相同任务
-
-    递归的案例：
+  
+  - 递归的案例：
 
     ```js
     // 递归求幂
@@ -701,10 +707,12 @@ function 函数名() {
         return fibonacci(n-1) + fibonacci(n-2)
     }
     ```
-
-  - 递归的优缺点
-    - 缺点：性能较低，占用过多内存
-    - 优点：代码简洁，更好理解
+  
+  
+    - 递归的优缺点
+      - 缺点：性能较低，占用过多内存
+      - 优点：代码简洁，更好理解
+  
 
 
 ### 函数的参数
@@ -1148,108 +1156,109 @@ fn() // this 指向 window
 **this 的绑定**
 
 - 函数在调用时，JavaScript 会默认给 this 绑定一个值
-- this 的绑定和定义的位置（编写的位置）没有关系
+- this 的绑定和函数定义的位置（编写的位置）没有关系
 - this 的绑定和调用方式以及调用的位置有关系
 - this 是在运行时被绑定的
 
 **this 的绑定规则**
 
-- 默认绑定
+1. 默认绑定
 
-  即独立函数调用，可以理解成函数没有被绑定到某个对象上进行调用
+即独立函数调用，可以理解成函数没有被绑定到某个对象上进行调用
 
-  ```js
-  function foo() {
-      console.log(this) // window
-  }
-  foo()
-  ```
+```js
+function foo() {
+    console.log(this) // window
+}
+foo()
+```
 
-  严格模式下，独立函数调用时的 this 指向 undefined
+严格模式下，独立函数调用时的 this 指向 undefined
 
-- 隐式绑定
+2. 隐式绑定
 
-  通过某个对象进行调用
+通过某个对象进行调用
 
-  ```js
-  var obj = {
-      name: "me",
-      running: function() {
-          console.log(this)
-          console.log(obj)
-          console.log(this === obj)
-      }
-  }
-  
-  obj.running() // this 指向 obj
-  
-  var fn = obj.running
-  fn() // this 指向 window
-  ```
-
-  隐式绑定的前提条件：调用的对象内部有一个对函数的引用，否则就找不到这个函数
-
-- 显式绑定
-
-  显式绑定就是在调用函数时明确的绑定了 this 指向的对象
-
-  - call 和 apply
-
-    call 和 apply 都可以用于显式绑定
-
-    `func.apply(thisArg, [argsArray])`
-
-    `func.call(thisArg, arg1, arg2, ...)`
-
-    ```js
-    function foo(name, age, height) {
+```js
+var obj = {
+    name: "me",
+    running: function() {
         console.log(this)
+        console.log(obj)
+        console.log(this === obj)
     }
-    
-    foo.apply("apply", ["kobe", 30, 1.98])
-    
-    foo.call("call", "kobe", 30, 1.98)
-    ```
+}
 
-  - bind
+obj.running() // this 指向 obj
 
-    bind 方法可以创建一个新的绑定函数，将一个函数总是显式的绑定到一个对象上
+var fn = obj.running
+fn() // this 指向 window
+```
 
-    在 bind 被调用时，这个新函数的 this 被指定为 bind 的第一个参数，而其余参数将作为新函数的参数，供调用时使用
+隐式绑定的前提条件：调用的对象内部有一个对函数的引用，否则就找不到这个函数
 
-    `func.bind(thisArg, arg1, arg2, ...)`
+3. 显式绑定
 
-    ```js
-    function foo(name, age, height, address) {
-        console.log(this) // { name: "obj" }
-        console.log(name, age, height, address) // "kobe", 18, 1.98, "洛杉矶"
-    }
-    
-    var obj = { name: "obj" }
-    var bar = foo.bind(obj, "kobe", 18, 1.98)
-    bar("洛杉矶")
-    ```
+显式绑定就是在调用函数时明确的绑定了 this 指向的对象
 
-- new 绑定
+- call 和 apply
 
-  JavaScript 中的函数可以当做一个类的构造函数来使用，也就是使用 new 关键字
+  call 和 apply 都可以用于显式绑定，只是传入参数的形式不同
 
-  构造函数中的 this 会指向构造函数创建的新对象
+  `func.apply(thisArg, [argsArray])`
+
+  `func.call(thisArg, arg1, arg2, ...)`
 
   ```js
-  function foo() {
-      this.name = "myname"
+  function foo(name, age, height) {
       console.log(this)
   }
-  new foo()
+  
+  foo.apply("apply", ["kobe", 30, 1.98])
+  
+  foo.call("call", "kobe", 30, 1.98)
   ```
 
-- 回调函数中的 this 的绑定
+- bind
 
-  1. 事件处理程序中，this 对象指向当前事件发生的元素 event.target
-  2. setTimeout 中的 this 指向 window
-  3. forEach 中的 this 可以通过第二个参数指定 `forEach(callbackfn, thisArg)`
+  bind 方法可以创建一个新的绑定函数，将一个函数总是显式的绑定到一个对象上
+
+  在 bind 被调用时，这个新函数的 this 被指定为 bind 的第一个参数，而其余参数将作为新函数的参数，供调用时使用
+
+  `func.bind(thisArg, arg1, arg2, ...)`
+
+  ```js
+  function foo(name, age, height, address) {
+      console.log(this) // { name: "obj" }
+      console.log(name, age, height, address) // "kobe", 18, 1.98, "洛杉矶"
+  }
   
+  var obj = { name: "obj" }
+  var bar = foo.bind(obj, "kobe", 18, 1.98)
+  bar("洛杉矶")
+  ```
+
+4. new 绑定
+
+JavaScript 中的函数可以当做一个类的构造函数来使用，也就是使用 new 关键字
+
+构造函数中的 this 会指向构造函数创建的新对象
+
+```js
+function foo() {
+    this.name = "myname"
+    console.log(this)
+}
+new foo()
+```
+
+5. 回调函数中的 this 的绑定
+
+   - 事件处理程序中，this 对象指向当前事件发生的元素 event.target
+
+   - setTimeout 中的 this 指向 window
+
+   - forEach 中的 this 可以通过第二个参数指定 `forEach(callbackfn, thisArg)`
 
 **this 的绑定规则优先级**
 
@@ -1371,7 +1380,7 @@ fn() // this 指向 window
         this.age = age
         this.height = height
         this.address = address
-
+    
         this.eating = function() {
             console.log(this.name + "在吃东西~")
         }
