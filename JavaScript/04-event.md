@@ -15,7 +15,7 @@
 - 事件处理就是 JS 和事件之间的桥梁
 - 当某个事件发生时，JS 可以执行针对该事件编写的处理程序
 
-如何监听事件
+==如何监听事件==
 
 1. 在 HTML 的元素属性中直接监听（很少使用）
 2. 通过 DOM 属性中元素的 `on+event` 属性来监听事件
@@ -26,14 +26,14 @@
 <div id="box2">box2</div>
 <div id="box3">box3</div>
 <script>
-    box2 = document.querySelector("#box2")
-    box2.onclick = function() {
-        alert("box2点击")
-    }
-    box3 = document.querySelector("#box3")
-    box3.addEventListener("click", function() {
-        alert("box3点击")
-    })
+  box2 = document.querySelector("#box2")
+  box2.onclick = function() {
+    alert("box2点击")
+  }
+  box3 = document.querySelector("#box3")
+  box3.addEventListener("click", function() {
+    alert("box3点击")
+  })
 </script>
 ```
 
@@ -50,7 +50,7 @@
   - `submit`：当访问者提交了一个 `<form>` 时
   - `focus`：当访问者聚焦于一个元素时，例如聚焦于一个 `<input>`
 - Document 事件
-  - `DOMContentLoaded `：当 HTML 的加载和处理均完成，DOM 被完全构建完成时
+  - `DOMContentLoaded `：当 HTML 的加载和处理均完成，DOM 树被完全构建完成时
 - CSS事件
   - ` transitionend`：当一个 CSS 动画完成时
 
@@ -124,9 +124,9 @@
 
 这个对象中包含着所有与事件有关的信息，包括导致事件的元素、事件的类型以及其他与特定事件相关的信息
 
-event 对象会传入事件对应的事件处理程序（event handler）
+event 对象会作为参数传入事件对应的事件处理程序（event handler）
 
-event 对象的**常见属性**：
+### 常见属性
 
 - `type`：事件的类
 - `target`：当前事件发生的元素
@@ -137,21 +137,21 @@ event 对象的**常见属性**：
 - `pageX / pageY`：事件发生在客户端相对于 document 的位置（页面中位置）
 - `screenX / screenY`：事件发生相对于屏幕的位置
 
-event 对象的**常见方法**：
+### 常见方法
 
 - `preventDefault`：取消事件的默认行为
 
   ```js
   // 阻止 a 链接的跳转
   link.onclick = function(event) {
-      console.log("a元素被点击")
-      event.preventDefault()
+    console.log("a元素被点击")
+    event.preventDefault()
   }
   ```
 
 - `stopPropagation`：阻止事件的进一步传递（冒泡或者捕获都可以阻止）
 
-事件处理程序中的 **this**
+### this 对象
 
 在事件处理程序中，this 对象指向当前事件发生的元素
 
@@ -159,7 +159,7 @@ event 对象的**常见方法**：
 
 ```js
 box.addEventListener("click", function(event) {
-    console.log(this === event.target) // true
+  console.log(this === event.target) // true
 })
 ```
 
@@ -183,10 +183,10 @@ EventTarget 是一个 DOM 接口，主要用于添加、删除、派发 Event �
 
     ```js
     box.addEventListener("click", function() {
-        window.dispatchEvent(new Event("myevent"))
+      window.dispatchEvent(new Event("myevent"))
     })
     window.addEventListener("myevent", function(event) {
-        console.log("监听到我的事件:", event)
+      console.log("监听到我的事件:", event)
     })
     ```
 
@@ -195,18 +195,20 @@ EventTarget 是一个 DOM 接口，主要用于添加、删除、派发 Event �
 事件委托（event delegation）是一种事件处理模式
 
 - 当子元素被点击的时候，父元素可以通过冒泡监听到子元素的点击
-- 并且可以通过 event.target 获取到当前监听的元素
-- 事件委托可以避免给多个子元素重复添加事件监听，提高代码效率
-- 本质上是将子元素的事件监听委托给父元素处理
+- 并且可以通过 event.target 获取到当前被点击的子元素
+
+事件委托可以避免给多个子元素重复添加事件监听，提高代码效率
+
+本质上是将子元素的事件监听委托给父元素处理
 
 ```js
 var listEl = document.querySelector(".list")
 var currentActive = null
 listEl.addEventListener("click", function() {
-    if (event.target === listEl) return // edge case
-    if (currentActive) currentActive.classList.remove("active")
-    event.target.classList.add("active")
-    currentActive = event.target
+  if (event.target === listEl) return // edge case
+  if (currentActive) currentActive.classList.remove("active")
+  event.target.classList.add("active")
+  currentActive = event.target
 })
 ```
 
@@ -224,7 +226,7 @@ listEl.addEventListener("click", function() {
 
 常见的鼠标事件
 
-![](../images/mouse-event.png)
+<img src="../images/mouse-event.png" style="zoom: 50%;" />
 
 `mouseover` 和 `mouseenter` 的区别
 
@@ -287,7 +289,7 @@ listEl.addEventListener("click", function() {
 
 常见的表单事件
 
-![](../images/form-event.png)
+<img src="../images/form-event.png" style="zoom:50%;" />
 
 `oninput` 和 `onchange` 的区别
 
@@ -302,7 +304,7 @@ listEl.addEventListener("click", function() {
 
   ```js
   window.onload = function() {
-      console.log("文档加载完成")
+    console.log("文档加载完成")
   }
   ```
 

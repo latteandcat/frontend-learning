@@ -528,7 +528,7 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
     ```js
     if (条件判断) {
-        代码块
+      代码块
     }
     ```
 
@@ -544,9 +544,9 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
     ```js
     if (条件判断) {
-        条件成立的代码块
+      条件成立的代码块
     } else {
-        条件不成立的代码块
+      条件不成立的代码块
     }
     ```
 
@@ -554,13 +554,13 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
     ```js
     if (条件1判断) {
-        条件1成立的代码块
+      条件1成立的代码块
     } else if (条件2判断) {
-        条件2成立的代码块
+      条件2成立的代码块
     } else if (条件3判断) {
-        条件3成立的代码块
+      条件3成立的代码块
     } else {
-        条件都不成立的代码块
+      条件都不成立的代码块
     }
     ```
 
@@ -572,14 +572,14 @@ switch 语句只能做值的相等判断（===），而 if 语句可以做值的
 
 ```js
 switch(变量) {
-	case 常量1：
-        // 语句1
-        break
-    case 常量2：
-        // 语句2
-        break
-    default:
-        // 语句3
+  case 常量1：
+    // 语句1
+    break
+  case 常量2：
+    // 语句2
+    break
+  default:
+    // 语句3
 }
 ```
 
@@ -606,7 +606,7 @@ JS 中支持三种循环方式
 
 ```js
 while (循环条件) {
-    循环代码块
+  循环代码块
 }
 ```
 
@@ -619,7 +619,7 @@ while (循环条件) {
 
 ```js
 do {
-    循环代码块
+  循环代码块
 } while (循环条件)
 ```
 
@@ -629,10 +629,10 @@ for 循环是最常用的循环形式
 
 ```js
 for (begin; condition; step) {
-    // 循环代码块
+  // 循环代码块
 }
 for (let i = 0; i < 3; i++) {
-    alert(i)
+  alert(i)
 }
 ```
 
@@ -674,7 +674,7 @@ for 循环的执行顺序
 
 ```js
 function 函数名() {
-    函数封装的代码
+  函数封装的代码
 }
 ```
 
@@ -697,14 +697,14 @@ function 函数名() {
     ```js
     // 递归求幂
     function pow(x, n) {
-        if (n === 1) return x
-        return x * pow(x, n-1)
+      if (n === 1) return x
+      return x * pow(x, n-1)
     }
     
     // 递归实现斐波那契数列
     function fibonacci(n) {
-        if (n === 1 || n === 2) return 1
-        return fibonacci(n-1) + fibonacci(n-2)
+      if (n === 1 || n === 2) return 1
+      return fibonacci(n-1) + fibonacci(n-2)
     }
     ```
   
@@ -749,12 +749,12 @@ function 函数名() {
 
 ```js
 function sum() {
-    var total = 0
-    for (var i = 0; i < arguments.length; i++) {
-        var num = arguments[i]
-        total += num
-    }
-    return total
+  var total = 0
+  for (var i = 0; i < arguments.length; i++) {
+    var num = arguments[i]
+    total += num
+  }
+  return total
 }
 ```
 
@@ -793,7 +793,7 @@ function sum() {
 
 ```js
 var foo = function() {
-    
+
 }
 ```
 
@@ -808,11 +808,11 @@ var foo = function() {
 ```js
 // 使用函数声明
 function foo() {
-    
+
 }
 // 使用函数表达式
 var foo = function() {
-    
+
 }
 ```
 
@@ -857,10 +857,10 @@ JS 就是符合函数式编程的语言
 
 ```js
 function foo(fn) {
-    fn()
+  fn()
 }
 function bar() {
-    console.log("bar")
+  console.log("bar")
 }
 foo(bar)
 ```
@@ -882,7 +882,7 @@ foo(bar)
 ```js
 // 匿名函数的写法
 foo(function() {
-    console.log("bar")
+  console.log("bar")
 })
 ```
 
@@ -896,7 +896,7 @@ foo(function() {
 
   ```js
   (function() {
-      console.log("立即执行函数")
+    console.log("立即执行函数")
   })()
   ```
 
@@ -910,11 +910,11 @@ foo(function() {
 
     ```js
     var messageModule = (function() {
-       var messageModule = {}
-       var message = "Hello World~"
-       console.log(message)
-       messageModule.message = message
-       return messageModule
+      var messageModule = {}
+      var message = "Hello World~"
+      console.log(message)
+      messageModule.message = message
+      return messageModule
     })()
     ```
 
@@ -923,11 +923,11 @@ foo(function() {
     ```js
     var btns = document.quertSelectorAll(".btn")
     for (var i = 0; i < btns.length; i++) {
-        (function(m) {
-            btns[m].onclick = function() {
-                console.log(`第${m+1}个按钮被点击了`)
-            }
-        })(i)
+      (function(m) {
+        btns[m].onclick = function() {
+          console.log(`第${m+1}个按钮被点击了`)
+        }
+      })(i)
     }
     ```
 
@@ -944,7 +944,7 @@ foo(function() {
   - `()`：函数的参数
   - `{}`：函数的执行体
 
-  ```js'
+  ```js
   var foo = (arg1, arg2, ...) => {
   	statement
   }
@@ -1016,7 +1016,7 @@ var result = nums.filter(item => item % 2 === 0)
 
   ```js
   var obj = {
-      "my friend": "you"
+    "my friend": "you"
   }
   console.log(obj["my friend"])
   fKeyName = "my friend"
@@ -1034,9 +1034,9 @@ var result = nums.filter(item => item % 2 === 0)
    ```js
    var infoKeys = Object.keys(info)
    for (var i = 0; i < infoKeys.length; i++) {
-       var key = infoKeys[i]
-       var value = info[key]
-       console.log(`key：${key}, value: ${value}`)
+     var key = infoKeys[i]
+     var value = info[key]
+     console.log(`key：${key}, value: ${value}`)
    }
    ```
 
@@ -1044,8 +1044,8 @@ var result = nums.filter(item => item % 2 === 0)
 
    ```js
    for (var key in info) {
-       var value = info[key]
-       console.log(`key：${key}, value: ${value}`)
+     var value = info[key]
+     console.log(`key：${key}, value: ${value}`)
    }
    ```
 
@@ -1078,10 +1078,10 @@ console.log(m === n) // false
 
 ```js
 var info = {
-    name: "me",
-    friend: {
-        name: "kobe"
-    }
+  name: "me",
+  friend: {
+    name: "kobe"
+  }
 }
 
 var friend = info.friend // 这里取出的是 friend 的地址
@@ -1098,7 +1098,7 @@ console.log(info.friend.name) // james
 ```js
 // 值传递
 function foo(a) {
-    a = 200
+  a = 200
 }
 var num = 100
 foo(num)
@@ -1106,22 +1106,22 @@ console.log(num) // 100
 
 // 引用传递1（创建新对象）
 function foo(a) {
-    a = {
-        name: "me"
-    }
+  a = {
+    name: "me"
+  }
 }
 var obj = {
-    name: "you"
+  name: "you"
 }
 foo(obj)
 console.log(obj.name) // you
 
 // 引用传递2（修改传递对象）
 function foo(a) {
-    a.name = "me"
+  a.name = "me"
 }
 var obj = {
-    name: "you"
+  name: "you"
 }
 foo(obj)
 console.log(obj.name) // me
@@ -1139,12 +1139,12 @@ this 可以增加对象中方法的复用性，可以比较方便地拿到当前
 
 ```js
 var obj = {
-   name: "me",
-   running: function() {
-       console.log(this)
-       console.log(obj)
-       console.log(this === obj)
-   }
+  name: "me",
+  running: function() {
+    console.log(this)
+    console.log(obj)
+    console.log(this === obj)
+  }
 }
 
 obj.running() // this 指向 obj
@@ -1168,7 +1168,7 @@ fn() // this 指向 window
 
 ```js
 function foo() {
-    console.log(this) // window
+  console.log(this) // window
 }
 foo()
 ```
@@ -1181,12 +1181,12 @@ foo()
 
 ```js
 var obj = {
-    name: "me",
-    running: function() {
-        console.log(this)
-        console.log(obj)
-        console.log(this === obj)
-    }
+  name: "me",
+  running: function() {
+    console.log(this)
+    console.log(obj)
+    console.log(this === obj)
+  }
 }
 
 obj.running() // this 指向 obj
@@ -1211,7 +1211,7 @@ fn() // this 指向 window
 
   ```js
   function foo(name, age, height) {
-      console.log(this)
+    console.log(this)
   }
   
   foo.apply("apply", ["kobe", 30, 1.98])
@@ -1229,8 +1229,8 @@ fn() // this 指向 window
 
   ```js
   function foo(name, age, height, address) {
-      console.log(this) // { name: "obj" }
-      console.log(name, age, height, address) // "kobe", 18, 1.98, "洛杉矶"
+    console.log(this) // { name: "obj" }
+    console.log(name, age, height, address) // "kobe", 18, 1.98, "洛杉矶"
   }
   
   var obj = { name: "obj" }
@@ -1246,8 +1246,8 @@ JavaScript 中的函数可以当做一个类的构造函数来使用，也就是
 
 ```js
 function foo() {
-    this.name = "myname"
-    console.log(this)
+  this.name = "myname"
+  console.log(this)
 }
 new foo()
 ```
@@ -1284,15 +1284,15 @@ new foo()
 
    ```js
    function foo() {
-       console.log(this)
+     console.log(this)
    }
    
    var obj1 = {
-       name: "obj1",
-       foo: foo
+     name: "obj1",
+     foo: foo
    }
    var obj2 = {
-       name: "obj2"
+     name: "obj2"
    }
    obj1.foo(); // this 指向 obj1
    (obj2.foo = obj1.foo)(); // 相当于 foo() this 指向 window
@@ -1306,30 +1306,30 @@ new foo()
 
    ```js
    function request(url, callbackFn) {
-       var results = ["kobe", "james", "curry"]
-       callbackFn(results)
+     var results = ["kobe", "james", "curry"]
+     callbackFn(results)
    }
    
    var obj = {
-       names: []
-       network: function() {
-           var _this = this
-           request("/names", function(res) {
-               // obj.names = [].concat(res) 第一种做法：不方便修改
-               // this.names = [].concat(res)  第二种做法：不可行 this 指向 window
-               _this.names = [].concat(res) // 第三种做法：使用变量保存外层的 this
-           })
-       }
+     names: []
+     network: function() {
+       var _this = this
+       request("/names", function(res) {
+         // obj.names = [].concat(res) 第一种做法：不方便修改
+         // this.names = [].concat(res)  第二种做法：不可行 this 指向 window
+         _this.names = [].concat(res) // 第三种做法：使用变量保存外层的 this
+       })
+     }
    }
    
    // 第四种做法：使用箭头函数直接使用外层的 this
    var obj = {
-       names: []
-       network: function() {
-           request("/names", (res) => {
-               this.names = [].concat(res)
-           })
-       }
+     names: []
+     network: function() {
+       request("/names", (res) => {
+         this.names = [].concat(res)
+       })
+     }
    }
    
    obj.network()
@@ -1337,7 +1337,7 @@ new foo()
 
 ### 对象的构造函数
 
-创建一系列相似对象的方法
+**创建一系列相似对象的方法**
 
 - 一个一个创建：存在大量重复代码
 

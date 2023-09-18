@@ -18,6 +18,7 @@
     resetBtnEl = document.querySelector(".resetBtn")
     resetBtnEl.onclick = function() {
       history.replaceState(null, "", "http://127.0.0.1:5500/JavaScript/pratice/bom-history.html")
+      console.log(history.length)
     }
 
     replaceBtnEl = document.querySelector(".replaceBtn")

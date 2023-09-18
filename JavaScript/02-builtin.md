@@ -98,15 +98,17 @@
 
    ```js
    for (var i = 0; i < arr.length; i++) {
-       console.log(arr[i])
+     const item = arr[i]
+     console.log(item)
    }
    ```
 
 2. for in
 
    ```js
-   for (var index in arr) {
-       console.log(arr[index])
+   for (var i in arr) {
+     const item = arr[i]
+     console.log(item)
    }
    ```
 
@@ -114,7 +116,7 @@
 
    ```js
    for (var item of arr) {
-       console.log(item)
+     console.log(item)
    }
    ```
 
@@ -145,11 +147,11 @@
 
   ```js
   var stu = students.find(function(item, index, arr) {
-      return item.id === 100
+    return item.id === 100
   })
   
   var stuIndex = students.findIndex(function(item, index, arr) {
-      return item.id === 100
+    return item.id === 100
   })
   ```
 
@@ -168,12 +170,12 @@
     ```js
     // 升序
     arr.sort(function(value1, value2) {
-        return value1 - value2
+      return value1 - value2
     })
     
     // 降序
     arr.sort(function(value1, value2) {
-        return value2 - value1
+      return value2 - value1
     })
     ```
 
@@ -199,16 +201,20 @@
 
 - `reduce()` 从前向后遍历、 `reduceRight()` 从后向前遍历
 
-- 接收的参数包括一个用于归并的函数和归并初始值
+- 接收的参数包括一个用于归并的回调函数和归并初始值
 
   归并函数的参数包含：前一个值、当前值、项的索引和数组对象
 
   归并函数的返回值会作为下一次迭代的第一个参数自动传给下一项
 
+  如果指定初始值从 `accumulator=指定值, currentValue=arr[0], currentIndex=0, array=arr` 开始
+  
+  否则从`accumulator=arr[0], currentValue=arr[1], currentIndex=1, array=arr` 开始
+  
   ```js
   var values = [1, 2, 3, 4, 5]
-  var sum = values.reduce(function(prev, cur, index, arr) {
-      return prev + cur
+  var sum = values.reduce(function(accumulator, currentValue, currentIndex, array) {
+    return prev + cur
   })
   console.log(sum) // 15
   ```
@@ -219,7 +225,9 @@ Date 类型使用自 UTC 1970 年 1 月 1 日零时开始经过的毫秒数来�
 
 自 UTC 1970 年 1 月 1 日零时开始经过的毫秒数即为 Unix 时间戳
 
-获取 Unix 时间戳的方法 `var date = new Date()`
+获取 Unix 时间戳的方法
+
+`var date = new Date()`
 
 1. `date.getTime()`
 2. `date.valueOf()`
@@ -228,7 +236,7 @@ Date 类型使用自 UTC 1970 年 1 月 1 日零时开始经过的毫秒数来�
 
 ### 创建日期对象
 
-通常使用 new 操作符和 Date() 构造函数来创建日期对象
+通常使用 `new Date()` 来创建日期对象
 
 1. 不传入任何参数时自动获得当前日期和时间
 
@@ -285,6 +293,7 @@ Date 类型使用自 UTC 1970 年 1 月 1 日零时开始经过的毫秒数来�
 - `getMinutes()`：获取分钟
 - `getSeconds()`：获取秒钟
 - `getMilliseconds()`：获取毫秒
+- `getTime()`：获取 Unix 时间戳
 - `getDay()`：获取一周中的第几天，从 0（星期日）到 6（星期六）
 
 ### 设置日期信息
@@ -391,9 +400,9 @@ const re2 = /hello/i
 
    - `{n}`：确切的位数
    - `{n,m}`：某个范围的位数
-   - `+`：代表一个或多个，等价于 `{1,}`，意味着必须出现
-   - `?`：代表零个或一个，等价于 `{0,1}`，意味着可有可无
-   - `*`：代表零个或多个，等价于 `{0,}`，意味着可以多次出现或不出现
+   - `+`：等价于 `{1,}`，代表一个或多个，意味着必须出现
+   - `?`：等价于 `{0,1}`，代表零个或一个，意味着可有可无
+   - `*`：等价于 `{0,}`，代表零个或多个，意味着可以多次出现或不出现
 
 ### 贪婪模式和惰性模式
 
@@ -433,14 +442,16 @@ const results = message.match(/《.+?》/g)
 
 ```js
 const str = "<h1>title</h1>"
-const result = str.match(\<(.+?)>\)
+const result = str.match(/<(.+?)>/)
 console.log(result[0]) // <h1>
 console.log(result[1]) // h1
+
+const results = str.matchAll(/<(.+?)>/g)
 ```
 
 命名组：在开始括号之后立即放置 `?<name>` 来对一个组进行命名，捕获的命名组也会放在结果的 groups 对象中
 
-非捕获组：当需要使用括号对一个整体应用量词时，我们可能不希望它们的内容出现在结果中，在开始括号之后添加 `?:` 可以排除组
+非捕获组：当需要使用括号对一个整体应用量词时，我们可能不希望捕获它们的内容，在开始括号之后添加 `?:` 可以排除组
 
 组内使用或：`|` 在正则表达式中表示或，通常会和捕获组一起使用，在其中表示多个值
 
@@ -466,7 +477,7 @@ JS 中的**原始类型**并非对象类型，所以它们是没有办法获取�
 
 - 通常 JavaScript 引擎会进行很多的优化
 
-  它可以跳过创建包装类的过程在内部直接完成属性的获取或者方法的调用
+  它可以跳过创建包装类型对象的过程在内部直接完成属性的获取或者方法的调用
 
 包装类型的对象也可以通过构造函数手动创建
 
@@ -486,7 +497,7 @@ JS 中的**原始类型**并非对象类型，所以它们是没有办法获取�
 **常见实例方法**
 
 - `toString(base)`：将数字转成字符串，并且按照 base 进制进行转化
-  - base 的范围为2~36，默认为10
+  - base 的范围为 2~36，默认为 10
   - 直接对数字操作可以`123..toString()`
 
 - `toFixed(digits)`：格式化一个数字，保留 digits 位小数
@@ -520,17 +531,17 @@ JS 中的**原始类型**并非对象类型，所以它们是没有办法获取�
 
   而 `charAt(index)` 没有找到会返回空字符串
 
-  因为 index 在 `0~str.length-1` 范围外的时候会返回空字符串
+  因为 `charAt(index)` 在 `0~str.length-1` 范围外的时候会返回空字符串
 
   字符串的遍历
 
   ```js
   for (var i = 0; i < message.length; i++) {
-      console.log(message[i])
+    console.log(message[i])
   }
   // 字符串和数组都是可迭代对象，可以用 for of 迭代
   for (var char of message) {
-      console.log(char)
+    console.log(char)
   }
   ```
 
@@ -557,7 +568,7 @@ JS 中的**原始类型**并非对象类型，所以它们是没有办法获取�
 **获取子字符串**
 
 - `slice(start, end)`：获取从 start 到 end（不含end）的子字符串，允许参数为负值（常用）
-- `substring(start, end)`：获取从 start 到 end（不含end）的子字符串，参数为负值会转换为0
+- `substring(start, end)`：获取从 start 到 end（不含end）的子字符串，参数为负值会转换为 0
 - `substr(start, length)`：获取从 start 开始长度为 length 的子字符串，start 允许为负值，length 为负值会转换为0
 
 **其他方法**

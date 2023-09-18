@@ -2,7 +2,9 @@
 
 ![](../images/window.png)
 
-window 对象中除了 JS 的一些内置类和对象以外，还包含一些浏览器提供的 DOM、BOM 相关的 API，这些 API 用于对页面和浏览器进行操作。
+window 对象中除了 JS 的一些内置类和对象以外
+
+还包含一些浏览器提供的 DOM、BOM 相关的 API，用于对页面和浏览器进行操作
 
 - DOM：文档对象模型（Document Object Model）
 
@@ -35,7 +37,7 @@ Document 节点表示整个载入的网页，它的实例是全局的 document �
 
 - 整个 HTML 文档都会被抽象到 document 对象中
 - 对 DOM 的所有操作都是从 document 对象开始的
-- document 对象是 DOM 的入口点，可以从 document 开始去访问任何节点元素 
+- ==document 对象是 DOM 的入口点==，可以从 document 开始去访问任何节点元素 
 
 对于最顶层的 html、head、body 元素，我们可以直接在 document 对象中获取到
 
@@ -47,7 +49,10 @@ Document 节点表示整个载入的网页，它的实例是全局的 document �
 **DOM Tree**
 
 - 页面中所有的元素最终会形成一个树结构
-- 在抽象成 DOM 对象时，这些元素对应的对象也会形成一个树结构，称之为 DOM Tree
+
+- 在将页面中的元素抽象成 DOM 对象时
+
+  这些元素对应的对象也会形成一个树结构，称之为 DOM Tree
 
 **DOM 的继承关系**
 
@@ -95,13 +100,13 @@ Document 节点表示整个载入的网页，它的实例是全局的 document �
 
 `<thead>/<tfoot>/<tdody>` 元素提供了 rows 属性获取其内部 `<tr>` 元素的集合
 
-`<tr>` 
+`<tr>` 的属性
 
-- `tr.cells`：`<tr>` 中 `<td>` 和 `<th>` 的集合
+- `tr.cells`：`<tr>` 中 `<td>` 元素和 `<th>` 元素的集合
 - `tr.sectionRowIndex`：`<tr>` 在 `<thead>/<tfoot>/<tdody>` 中的索引
 - `tr.rowIndex`：`<tr>` 在整个表格中的索引
 
-`<td>` 和 `<th>` 
+`<td>` 和 `<th>` 的属性
 
 - `td.cellIndex`：在 `<tr>` 中单元格的编号
 
@@ -129,7 +134,7 @@ Document 节点表示整个载入的网页，它的实例是全局的 document �
 
 DOM 提供了获取元素和元素集合的一系列方法
 
-![](../images/getElement.png)
+<img src="../images/getElement.png" style="zoom: 67%;" />
 
 目前开发中最常用的是 `querySelector` 和 `querySelectorAll`
 
@@ -144,7 +149,7 @@ DOM 提供了获取元素和元素集合的一系列方法
   - nodeType 属性可用于区分不同类型的节点，比如 元素, 文本 和 注释。
   - nodeType 是一个代表节点类型的整数
 
-  ![](../images/node-type.png)
+  <img src="../images/node-type.png" style="zoom: 80%;" />
 
 - `nodeName`：获取节点的名字
 
@@ -157,9 +162,11 @@ DOM 提供了获取元素和元素集合的一系列方法
   元素节点的 nodeName 和 tagName 相同
 
 - `innerHTML`
+  
   - 将元素中的 HTML 获取为字符串形式
   - 设置元素中的内容
 - `outerHTML`
+  
   - 包含了元素的完整 HTML
   - 即 `innerHTML` 加上元素本身
 - `textContent`：获取元素中的文本内容
@@ -219,7 +226,7 @@ attribute 的特征
 
 `elem.className`
 
-`elem.abc(undefined)`
+`elem.abc // undefined`
 
 在大多数情况下，它们是相互作用的
 
@@ -241,12 +248,12 @@ dataset 属性中可以获取到用 `data-*` 自定义的属性
 
 ```js
 <div class="box" title="abc" data-name="why" data-age="18">
-    box
+  box
 </div>
 <script>
-    const box = document.querySelector(".box")
-   	console.log(box.dataset.name)
-   	console.log(box.dataset.age)
+  const box = document.querySelector(".box")
+  console.log(box.dataset.name)
+  console.log(box.dataset.age)
 </script>
 ```
 
@@ -259,7 +266,7 @@ dataset 属性中可以获取到用 `data-*` 自定义的属性
 
 **className 和 classList**
 
-元素的 class attribute 对应的 property 叫做 className
+元素的 class attribute 对应的 DOM 中的 property 叫做 className
 
 className 可以用于获取和修改元素的 class 属性
 
@@ -374,9 +381,10 @@ client
 - clientLeft：border-left 的宽度
 - clientTop：border-top 的宽度
 
->box-sizing: content-box; 里 contentWith = width - scrollbar
->
->box-sizing: border-box; 里 contentWith = width - padding - border - scrollbar
+contentWith 的计算
+
+- `box-sizing: content-box;`时 contentWith = width - scrollbar
+- `box-sizing: border-box;`时 contentWith = width - padding - border - scrollbar
 
 offset
 
@@ -407,8 +415,8 @@ scroll
 
 滚动方法
 
-- `scrollBy(x, y)`：将页面滚动至相对于当前位置的 (x, y) 位置
-- `scrollTo(pageX, pageY)`：将页面滚动至绝对坐标  (pageX, pageY)
+- `scrollBy(x, y)`：将页面滚动至相对于当前位置的 `(x, y)` 位置
+- `scrollTo(pageX, pageY)`：将页面滚动至绝对坐标  `(pageX, pageY)`
 
 ## 定时器
 
@@ -509,7 +517,7 @@ window 对象在浏览器中的两个视角
 
 ### 常见方法
 
-- `scrollBy(x, y)`：将页面滚动至相对于当前位置的 (x, y) 位置
+- `scrollBy(x, y)`：将页面滚动至相对于当前位置的 `(x, y)` 位置
 
 - `scrollTo(pageX, pageY)`：将页面滚动至绝对坐标  (pageX, pageY)
 
@@ -542,7 +550,7 @@ location 其实是 URL 的一个抽象对象
 - `hostname`：主机地址（不带端口）
 - `port`：端口
 - `pathname`：路径
-- `search`：查询字符串
+- `search`：查询字符串（带问号）
 - `hash`：哈希值
 - `username`：URL 中的 username（很多浏览器已经禁用）
 - `password`：URL 中的 password（很多浏览器已经禁用）
@@ -585,13 +593,13 @@ location 其实是 URL 的一个抽象对象
 
 history 对象允许我们访问浏览器曾经的会话历史记录
 
-history 和 hash 目前是vue、react等框架实现路由的底层原理
+history 和 hash 目前是 vue、react 等框架实现路由的底层原理
 
-- 前端路由核心：修改 URL，但是页面不刷新
+前端路由核心：修改 URL，但是页面不刷新
 
-  可以通过修改 hash 和修改 history 来实现修改 URL 而页面不刷新的效果
+可以通过修改 hash 和修改 history 来实现修改 URL 而页面不刷新的效果
 
-- hash 发生改变的时候不会刷新整个页面，所以监听 hash 的改变就可以动态渲染部分页面
+hash 发生改变的时候不会刷新整个页面，所以监听 hash 的改变就可以动态渲染部分页面
 
 ### 常见属性
 
@@ -606,29 +614,29 @@ history 和 hash 目前是vue、react等框架实现路由的底层原理
 
 - `go()`：加载历史中的某一页
 
-- `pushState()`：打开一个指定的地址
+- `pushState(state, unused, url)`：增加一条新的历史记录条目
 
-  `pushState(state, unused, url)`
+  - state：JS 对象（可为空）
 
-  - state：JS 对象（可为空），导航到新的 state会触发 `popstate` 事件，且该事件的 `state` 属性包含 `history.state` 的副本
+    导航到新的 state 会触发 `popstate` 事件，且该事件的 `state` 属性包含 `history.state` 的副本
 
     > 备注： 调用 history.pushState() 或者 history.replaceState() 不会触发 popstate 事件。
     >
-    > popstate 事件只会在浏览器某些行为下触发，比如点击后退按钮（或者在 JavaScript 中调用 history.back() 方法）。
+    > popstate 事件只会在浏览器某些行为下触发，比如点击后退按钮或者在 JavaScript 中调用 history.back() 方法。
     >
-    > 即在同一文档的两个历史记录条目之间导航会触发该事件。
+    > 即，在同一文档的两个历史记录条目之间导航会触发该事件。
 
   - unused：页面标题，由于历史原因，该参数存在且不能忽略；传递一个空字符串是安全的，以防将来对该方法进行更改
 
   - url：新历史条目的 URL，可以是当前 URL 的相对路径，必须同源不能跨域，没有指定则设置为当前文档的URL
 
-    当前 url `http://127.0.0.1:5500/JavaScript/pratice/bom-history.html`
+    如果当前 url 为 `http://127.0.0.1:5500/JavaScript/pratice/bom-history.html`
 
     - `/userlist` 是绝对路径，会跳转到 `http://127.0.0.1:5500/userlist`
 
     - `userlist` 是相对路径，会跳转到 `http://127.0.0.1:5500/JavaScript/pratice/userlist`
 
-- `replaceState()`：打开一个新的地址，并且使用 replace
+- `replaceState()`：替换当前的历史记录条目
 
   与 `pushState()` 的使用相同，但是不能返回
 
