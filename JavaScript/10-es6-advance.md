@@ -29,7 +29,7 @@ Object.keys(obj).forEach(key => {
 
 ## Proxy 基本使用
 
-在 ES6 中，新增了一个 Proxy 类，用于帮助我们创建一个代理
+在 ES6 中，新增了一个 Proxy 类，==用于创建一个用于监听对象操作的代理对象==
 
 如果我们希望监听一个对象的相关操作，那么我们可以先创建一个代理对象（Proxy对象）
 
@@ -375,6 +375,8 @@ requestData("http://hello.com").then(res => {
 ## resolve 的传入值
 
 1. 传入一个普通的值或者对象，这个值会作为 then 回调的参数
+
+   该 Promise 的状态变成 fulfilled
 
 2. 传入另外一个 Promise，那么这个新的 Promise 会决定原 Promise 的状态
 

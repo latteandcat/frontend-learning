@@ -40,7 +40,11 @@ var f2 = new Foo()
 
 由构造函数创建出来的所有对象，都会共享这些值
 
-注意：如果在创建的实例对象上修改原型对象上存在的属性，会在这个对象上添加这个属性，而不是修改原型对象上属性的值
+注意：
+
+如果在创建的实例对象上修改原型对象上存在的属性，会在这个对象上添加这个属性
+
+而不是修改原型对象上属性的值
 
 ```js
 Person.prototype.address = "zh"
@@ -63,11 +67,12 @@ function Person() {
 
 Person.prototype = {
     name: "me",
-    age: 18,
+    age: 18,w
     height: 1.88,
     // constructor: Person
 }
 
+// 手动指定新原型对象的 constructor 属性
 Object.defineProperty(Person.prototype, "constructor", {
     enumerable: false,
     configurable: true,
@@ -105,7 +110,7 @@ p.__proto__.constructor === Person //true
 
 # ES5  继承
 
-## 面向对象的te'xi
+## 面向对象
 
 面向对象有三大特性：封装、继承、多态
 
@@ -147,13 +152,13 @@ p.__proto__.constructor === Person //true
 5. 在子类构造函数的原型对象上添加内容
 
 ```js
-// 定义父类构造函数
+// 1.定义父类构造函数
 function Person(name, age) {
     this.name = name
     this.age = age
 }
 
-// 在父类原型上添加内容
+// 2.在父类原型上添加内容
 Person.prototype.running = function() {
     
 }
@@ -161,16 +166,18 @@ Person.prototype.eating = function() {
     
 }
 
-// 定义子类构造函数
+// 3.定义子类构造函数
 function Student(sno, name, age) {
     this.name = name
     this.age = age
     this.sno = sno
 }
 
-// 如果直接让 Student.prototype = Person.prototype 可以让子类调用父类原型上的方法，但是后续在在子类原型上添加内容时，父类原型上也会添加，让父类的实例对象作为子类的原型对象可以解决这个问题
+// 如果直接让 Student.prototype = Person.prototype 也可以让子类调用父类原型上的方法
+// 但是后续在在子类原型上添加内容时，父类原型上也会添加
+// 让父类的实例对象作为子类的原型对象可以解决这个问题
 
-// 创建父类实例对象，并且作为子类的原型对象
+// 4.创建父类实例对象，并且作为子类的原型对象
 var p = new Person("me", 18)
 Student.prototype = p
 
@@ -237,24 +244,24 @@ function Student(sno, name, age) {
 var p = new Person("me", 18)
 Student.prototype = p
 
-// 方案一：使用新对象
+// 解决方案一：使用新对象
 var obj = {}
 Object.setPrototypeOf(obj, Person.prototype)
 Student.prototype = obj
 
-// 方案二：使用新构造函数的实例对象
+// 解决方案二：使用新构造函数的实例对象
 function F() {}
 F.prototype = Person.prototype
 Student.prototype = new F()
 
-// 方案三：使用 Object.create()
+// 解决方案三：使用 Object.create()
 var obj = Object.create(Person.prototype)
 Student.prototype = obj
 ```
 
 将以上三种方案封装成函数就叫做原型式继承函数
 
-作用是返回一个继承自传入对象的新对象
+原型式继承函数的作用是返回一个继承自传入对象的新对象
 
 ```js
 function createObject(obj) {
@@ -276,7 +283,7 @@ function createObject(obj) {
 
 ## 寄生式继承函数
 
-寄生式继承的思路是结合原型式继承和工厂模式
+寄生式继承函数的思路是结合原型式继承和工厂模式
 
 创建一个封装继承过程的函数，该函数在内部以某种方式增强对象，最后将这个对象返回
 
@@ -299,15 +306,13 @@ function createStudent(person, sno) {
 
 ## 寄生组合式继承
 
-```js
-function createObject(obj) {
-    function F() {}
-    F.prototype = obj
-    return new F()
-}
+将寄生式继承和组合继承结合起来可以解决组合继承中的弊端
 
+这种方案就叫做寄生组合式继承
+
+```js
 function inherit(subType, superType) {
-    subType.prototype = createObject(superType.prototype)
+    subType.prototype = Object.create(superType.prototype)
     Object.defineProperty(subType.prototype, "constructor", {
         enumerable: false,
         configurable: true,
@@ -316,13 +321,7 @@ function inherit(subType, superType) {
     })
     Object.setPrototypeOf(subType, superType) // 保证类方法的继承
 }
-```
 
-将寄生式继承和组合继承结合起来可以解决组合继承中的弊端
-
-这种方案就叫做寄生组合式继承
-
-```js
 function Person(name, age) {
     this.name = name
     this.age = age
@@ -356,7 +355,7 @@ ES6 之前只能使用构造函数来创建类，但可读性较差，不容易�
 
 ES6 中使用了 class 关键字来直接定义类
 
-### 类的定义
+## 类的定义
 
 定义类的两种方式
 
@@ -372,7 +371,7 @@ var Student = class {
 
 类只能通过 new 操作符调用
 
-### 类的构造函数
+## 类的构造函数
 
 使用 class 定义类时可以通过类里面的 constructor 构造函数传递参数
 
@@ -396,7 +395,7 @@ var p1 = new Person("me", 18)
 Person.prototype === p1.__proto__ // true
 ```
 
-### 类的实例方法
+## 类的实例方法
 
 实例方法也可以直接在类里面定义，这些方法会放在类的原型对象上供实例对象使用 
 
@@ -419,7 +418,7 @@ class Person {
 
 注意：类中定义的多个内容不需要使用，进行分割
 
-### 类的访问器方法
+## 类的访问器方法
 
 ```js
 class Person {
@@ -462,7 +461,7 @@ console.log(rect1.position)
 console.log(rect1.size)
 ```
 
-### 类的静态方法
+## 类的静态方法
 
 静态方法通常用于定义直接使用类来执行的方法，不需要有类的实例，使用 static 关键字来定义
 
@@ -526,7 +525,7 @@ class 提供了 super 关键字来调用父类的 constructor 和父类的方法
 
   最好放在子类构造函数的最前面
 
-通过继承内置类可以对内置类进行一些扩展
+应用：通过继承内置类可以对内置类进行一些扩展
 
 ```js
 class myArray extends Array {
