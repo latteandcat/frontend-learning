@@ -72,11 +72,19 @@ bar("a", "b", "c")
 - arguments 是早期 ECMAScript 为了方便获取所有的参数提取的一个数据结构，而 rest 参数是 ES6 中提供并且希望替代 arguments 的
 - 剩余参数必须放到其他参数的最后
 
-> fn.length：形参个数
+> 参数编写顺序
 >
-> arguments.length：实参个数
+> 1. 无默认参数形参
+> 2. 有默认参数形参
+> 3. 剩余参数
 >
-> rest.length：非形参（剩余参数）个数
+> length 区分
+>
+> - fn.length：无默认参数形参个数
+>
+> - arguments.length：调用实参个数
+>
+> - rest.length：剩余参数个数
 
 ## 纯函数
 
@@ -87,16 +95,16 @@ JavaScript 符合函数式编程的范式，所以也有纯函数的概念
 纯函数的定义：如果一个函数符合以下条件，这个函数就是纯函数
 
 - 函数在相同的输入值下，需要产生相同的输出
-- **函数的输出**和输入值以外的其他隐藏信息或状态无关，也和由 I/O 设备产生的外部输出无关
+- 函数的输出与输入值以外的其他隐藏信息或状态无关，也和由 I/O 设备产生的外部输出无关
 - 函数不能有语义上可观察的函数副作用，诸如触发事件，使输出设备输出，或更改输出值以外物件的内容等
 
-纯函数总结
+==纯函数总结==
 
-- 对于确定的输入一定会产生确定的输出（输出只取决于函数的输入）
+- 对于确定的输入一定会产生确定的输出（也就是输出只取决于函数的输入）
 
 - 函数在执行过程中不能产生副作用
 
-  副作用指的是，在执行一个函数时，除了返回函数值之外，还对调用函数产生了附加的影响
+  副作用指的是，在执行一个函数时，除了返回函数值之外，还对外部产生了附加的影响
 
   比如修改了全局变量，修改了外部参数
 
@@ -318,7 +326,7 @@ var result = newFn(100)
 
 1. 数据属性描述符（Data Properties Descriptor）
 
-   - `[[Configurable]]`：表示属性是否可以通过 delete 删除属性，是否可以修改它的特性（属性miao'shu），或者是否可以将它修改为存取属性描述符
+   - `[[Configurable]]`：表示属性是否可以通过 delete 删除属性，是否可以修改它的特性（属性描述符），或者是否可以将它修改为存取属性描述符
      - 当我们直接在一个对象上定义某个属性时，这个属性的 `[[Configurable]]` 为 true
      - 当我们通过属性描述符定义一个属性时，这个属性的 `[[Configurable]]` 默认为 false
    - `[[Enumerable]]`：表示属性是否可以通过 `for-in` 或者 `Object.keys()` 返回该属性
@@ -327,7 +335,7 @@ var result = newFn(100)
    - `[[Writable]]`：表示是否可以修改属性的值
      - 当我们直接在一个对象上定义某个属性时，这个属性的 `[[Writable]]` 为 true
      - 当我们通过属性描述符定义一个属性时，这个属性的 `[[Writable]]` 默认为 false
-   - `[[value]]`：属性的value值，读取属性时会返回该值，修改属性时，会对其进行修改
+   - `[[value]]`：属性的 value 值，读取属性时会返回该值，修改属性时，会对其进行修改
      - 默认情况下这个值是 undefined
 
 2. 存取属性描述符（Accessor Properties Descriptor）
@@ -339,20 +347,20 @@ var result = newFn(100)
 
    ```js
    var obj = {
-       name: "you",
-       age: 18
+     name: "you",
+     age: 18
    }
    
    var _name = "me"
    Object.defineProperty(obj, "name", {
-       configurable: true,
-       enumerable: false,
-       set: function(value) {
-           _name = value
-       },
-       get: function() {
-           return _name
-       }
+     configurable: true,
+     enumerable: false,
+     set: function(value) {
+       _name = value
+     },
+     get: function() {
+       return _name
+     }
    })
    
    ```
@@ -361,33 +369,45 @@ var result = newFn(100)
 
 ```js
 var obj = {
-    _age: 18
+  _age: 18
 }
 
 Object.defineProperties(obj, {
-    name: {
-        writable: true,
-        value: "me"
-    },
-    age: {
-        get: function() {
-            return this._age
-        }
+  name: {
+    writable: true,
+    value: "me"
+  },
+  age: {
+    get: function() {
+      return this._age
     }
+  }
 })
 ```
 
-## 对象方法
+## 常见实例方法
 
-### 常见实例方法
+- `obj.hasOwnProperty(prop)`：判断对象是否有某一个属于自己的属性：
 
-- 判断对象是否有某一个属于自己的属性：`obj.hasOwnProperty(prop)`
+- `prop in obj`：判断对象或者其原型上是否有某一个属性
 
-- `in` 
+- `for (var key in obj) {}`：遍历对象或者其原型上的所有可枚举属性
 
-  - `prop in obj`：判断对象或者其原型上是否有某一个属性
+  for in 遍历的属性不包含 symbol 属性和不可枚举shu'xing
 
-  - `for (var key in obj) {}`：遍历对象或者其原型上的所有可枚举属性
+
+>typeof 操作符可以用于确定变量的数据类型
+>
+>对一个值使用 typeof 操作符会返回下列字符串之一
+>
+>- `number`：表示值为数值
+>- `string`：表示值为字符串
+>- `boolean`：表示值为布尔值
+>- `undefined`：表示值未定义
+>- `object`：表示值为对象（而不是函数）或 null
+>- `function`：表示值为函数
+>- `bigint`：表示值为大整数
+>- `symbol`：表示值为符号
 
 - `instanceof`：判断对象和类之间的关系
 
@@ -414,27 +434,46 @@ Object.defineProperties(obj, {
   obj.isPrototypeOf(info) // true
   ```
 
+## 常见类方法
 
-### 常见类方法
+- `Object.hasOwn(obj, propKey)`：判断一个对象中是否有某个属性
+- `Object.keys(obj)`：获取对象属性名，不包含 symbol 属性 和 enumerable 为 false 的属性
+- `Object.getOwnPropertyNames`：获取对象属性名，包含所有非 symbol 属性
+- `Object.getOwnPropertySymbols(obj)`：获取对象属性名，只有 symbol 属性
 
-- 返回指定对象的原型：`Object.getPrototypeOf(obj)`
-- 将一个指定对象的原型（即内部的 `[[Prototype]]` 属性）设置为另一个对象或者 null：`Object.setPrototypeOf(obj, prototype)`
+- `Object.getPrototypeOf(obj)`：返回指定对象的原型
 
-- 以一个现有对象作为原型，创建一个新对象：`Object.create(obj)`
+- `Object.setPrototypeOf(obj, prototype)`
 
-- 获取对象的属性描述符：`Object.getOwnPropertyDescriptor(obj, prop)`
+  将一个指定对象的原型（即内部的 `[[Prototype]]` 属性）设置为另一个对象或者 null
 
-- 获取对象的多个属性的属性描述符：`Object.getOwnPropertyDescriptors(obj)`
+- `Object.create(obj)`：以一个现有对象作为原型，创建一个新对象
 
-- 禁止对象扩展新属性：`Object.preventExtensions(obj)`
+- `Object.getOwnPropertyDescriptor(obj, prop)`：获取对象的属性描述符
 
-- 密封对象，不允许扩展、配置和删除属性：`Object.seal(obj)`
+- `Object.getOwnPropertyDescriptors(obj)`：获取对象的多个属性的属性描述符
+
+- `Object.preventExtensions(obj)`：禁止对象扩展新属性
+
+- `Object.seal(obj)`：密封对象，不允许扩展、配置和删除属性
+  
   - 实际是调用 `preventExtensions`
   - 并且将现有属性的 configurable 设置为 false
-
-- 冻结对象，不允许修改现有属性：`Object.freeze(obj)`
+  
+- `Object.freeze(obj)`：冻结对象，不允许修改现有属性
+  
   - 实际上是调用 seal
   - 并且将现有属性的 writable 设置为 false
+
+- `Object.values(obj)`：获取所有的 value 值
+
+  传入字符串可以获得包含每个字符的数组
+
+- `Object.entries(obj)`：获取存放可枚举属性的键值对数组
+
+  可以用于对象、数组、字符串
+
+- `Object.fromEntries()`：可以将 entries 转换成对象
 
 ## 增强对象字面量
 
@@ -446,8 +485,8 @@ ES6 中对对象字面量进行了增强，称之为 Enhanced object literals �
   var name = "me"
   var age = 18
   var obj = {
-      name, // 简写前：name: name
-      age // 简写前：age: age
+    name, // 简写前：name: name
+    age // 简写前：age: age
   }
   ```
 
@@ -455,18 +494,19 @@ ES6 中对对象字面量进行了增强，称之为 Enhanced object literals �
 
   ```js
   var obj = {
-      name, // 简写前：name: name
-      age // 简写前：age: age
-      running: function() {
-          
-      },
-      // 简写方法
-      sleeping() {
-          
-      }
-      eating: () => {
-          
-      }  
+    name, // 简写前：name: name
+    age // 简写前：age: age
+    // 简写前
+    running: function() {
+  
+    },
+    // 简写方法
+    sleeping() {
+  
+    }
+    eating: () => {
+  
+    }  
   }
   ```
 
@@ -579,7 +619,7 @@ with (obj) {
 内置函数 eval 允许执行一个代码字符串
 
 - eval 是一个特殊的函数，它可以将传入的字符串当做 JavaScript 代码来运行
-- eval 会将最后一句执行语句的结果，作为返回值\
+- eval 会将最后一句执行语句的结果，作为返回值
 - eval 函数的字符串中可以获取全局变量
 
 ```js
@@ -722,12 +762,12 @@ WebStorage 主要提供了一种机制，可以让浏览器提供一种比 cooki
 
   - `Storage.key(index)`：该方法接受一个数值 n 作为参数，返回存储中的第 n 个 key 名称
 
-  - `Storage.getItem()`：该方法接受一个 key 作为参数，并且返回 key 对应的 value
+  - `Storage.getItem(key)`：该方法接受一个 key 作为参数，并且返回 key 对应的 value
 
-  - `Storage.setItem()`：该方法接受一个 key 和 value，并且将会把 key 和 value 添加到存储中
+  - `Storage.setItem(key, value)`：该方法接受一个 key 和 value，并且将会把 key 和 value 添加到存储中
 
     如果 key 存在，则更新其对应的值
 
-  - ` Storage.removeItem()`：该方法接受一个 key 作为参数，并把该 key 从存储中删除
+  - ` Storage.removeItem(key)`：该方法接受一个 key 作为参数，并把该 key 从存储中删除
 
   - `Storage.clear()`：该方法的作用是清空存储中的所有 key

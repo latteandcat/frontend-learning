@@ -82,7 +82,7 @@ var 声明的变量是会进行作用域提升的，在声明之前访问的结�
 
 ```js
 function foo() {
-    console.log(message)
+  console.log(message)
 }
 foo() // 访问不到 message
 let message = "Hello World"
@@ -94,8 +94,8 @@ foo() // 可以访问 message
 ```js
 let message = "Hello World"
 function foo() {
-    console.log(message) // 访问不到
-    let message = "hhhhh"
+  console.log(message) // 访问不到
+  let message = "hhhhh"
 }
 foo()
 ```
@@ -138,9 +138,9 @@ foo()
 ```js
 var btns = document.querySelectorAll("button")
 for (let i = 0; i < btns.length; i++) {
-    btns[i].onclick = function() {
-        console.log("第" + i + "个按钮被点击")
-    }
+  btns[i].onclick = function() {
+    console.log("第" + i + "个按钮被点击")
+  }
 }
 ```
 
@@ -150,7 +150,7 @@ for (let i = 0; i < btns.length; i++) {
 >
 > 在开发过程中推荐使用 let 或 const
 >
-> - 优先推荐使用const，这样可以保证数据的安全性不会被随意的篡改
+> - 优先推荐使用 const，这样可以保证数据的安全性不会被随意的篡改
 > - 只有当我们明确知道一个变量后续会需要被重新赋值时，这个时候再使用 let
 
 ## 模板字符串
@@ -171,7 +171,7 @@ const name = "me"
 const age = 20
 
 function foo(...args) {
-    console.log(args)
+  console.log(args)
 }
 
 foo`Hello${name}World${age}`
@@ -188,18 +188,18 @@ ES6 中，我们允许给函数的参数设置一个默认值
 
 ```js
 function foo(arg1, arg2) {
-    // 函数内设置默认值
-    arg1 = arg1 ? arg1 : "default"
-    arg2 = arg2 || "default"
-    // 严谨的写法
-    arg1 = (arg1 === undefined || arg1 === null) ? arg1 : "default"
-    // 新增语法
-    arg2 = arg2 ?? "default"
+  // 函数内设置默认值
+  arg1 = arg1 ? arg1 : "default"
+  arg2 = arg2 || "default"
+  // 严谨的写法
+  arg1 = (arg1 === undefined || arg1 === null) ? arg1 : "default"
+  // 新增语法
+  arg2 = arg2 ?? "default"
 }
 
 // 默认参数
 function bar(arg1 = "default", arg2 = "default") {
-    
+
 }
 ```
 
@@ -217,11 +217,11 @@ function bar(arg1 = "default", arg2 = "default") {
 ```js
 // 写法一
 function foo({ name, age } = { name: "me", age: 20 }) {
-    console.log(name, age)    
+  console.log(name, age)    
 }
 // 写法二
 function foo({ name = "why", age = "20" } = {}) {
-    console.log(name, age)
+  console.log(name, age)
 }
 ```
 
@@ -240,21 +240,21 @@ const arr = ["a", "b", "c", "d"]
 const str = "Hello"
 
 function foo(...args) {
-    console.log(args)
+  console.log(args)
 }
 
 foo(...arr) // ["a", "b", "c", "d"]
 foo(...str) // ["H", "e", "l", "l", "o"]
 
 const obj = {
-    name: "me",
-    age: 20
+  name: "me",
+  age: 20
 }
 
 const info = {
-    ...obj, // 将 obj 中的属性浅拷贝到 info 里
-    height: 1.88,
-    address: "china"
+  ...obj, // 将 obj 中的属性浅拷贝到 info 里
+  height: 1.88,
+  address: "china"
 }
 ```
 
@@ -294,10 +294,9 @@ Symbol 的使用
 const s1 = Symbol()
 const s2 = Symbol()
 const obj = {
-    [s1]: "cba"
+  [s1]: "cba"
 }
 obj[s2] = "nba"
-
 ```
 
 Symbol 函数也可以传入一个描述 description（ES10 特性）
@@ -338,7 +337,7 @@ s1 === s3 // true
 
 ES6 之前存储多项数据元素的数据解构主要使用数组和对象
 
-ES6 新增了 Set、Map，以及它们的另外形式 WeakSet、WealMap
+ES6 新增了 Set、Map，以及它们的另外形式 WeakSet、WeakMap
 
 ### Set
 
@@ -649,9 +648,9 @@ console.log(message.trimEnd())
 
 在早期的JavaScript中，我们不能正确的表示过大的数字
 
-大于MAX_SAFE_INTEGER的数值，表示的可能是不正确的
+大于 MAX_SAFE_INTEGER的数值，表示的可能是不正确的
 
-ES11中，引入了新的数据类型 BigInt，用于表示大的整数
+ES11 中，引入了新的数据类型 BigInt，用于表示大的整数
 
 BitInt 的表示方法是在数值的后面加上 n
 
@@ -739,7 +738,7 @@ obj = null
 let obj = { msg: "Hello" } // 强引用
 const info1 = obj // 强引用赋值
 
-const info2 = new WeakRef(obj) 
+const info2 = new WeakRef(obj) // 弱引用赋值
 console.log(info2.deref().msg) // "Hello"
 
 obj = null 
@@ -812,21 +811,21 @@ Object 中新增了一个静态方法（类方法）
 
 ```js
 class Person {
-    // Instance public field 公共实例属性
-    address = "china"
+  // Instance public field 公共实例属性
+  address = "china"
 
-    // Static public field 公共类属性（静态属性）
-    static population = "70亿"
+  // Static public field 公共类属性（静态属性）
+  static population = "70亿"
 
-    // Instance public method 公共实例方法
-    publicMethod() {
-        return "public method has been called"
-    }
+  // Instance public method 公共实例方法
+  publicMethod() {
+    return "public method has been called"
+  }
 
-    // Static public method 公共类方法（静态方法）
-    static publicStaticMethod() {
-        return "public static method has been called"
-    }
+  // Static public method 公共类方法（静态方法）
+  static publicStaticMethod() {
+    return "public static method has been called"
+  }
 }
 ```
 
@@ -834,21 +833,21 @@ class Person {
 
 ```js
 class Person {
-    // Instance private field 私有实例属性
-    #sex = "male"
-    
-    // Static private field 私有类属性（静态属性）
-    static #malePopulation = "20亿"
-	
-	// Instance private method 私有实例方法
-	#privateMethod() {
-        return "private method has been called"
-    }
+  // Instance private field 私有实例属性
+  #sex = "male"
 
-	// Static private method 私有类方法（静态方法）
-	static #privateStaticMethod() {
-    	return "private static method has been called"
-  	}
+  // Static private field 私有类属性（静态属性）
+  static #malePopulation = "20亿"
+
+  // Instance private method 私有实例方法
+  #privateMethod() {
+    return "private method has been called"
+  }
+
+  // Static private method 私有类方法（静态方法）
+  static #privateStaticMethod() {
+    return "private static method has been called"
+  }
 }
 ```
 
