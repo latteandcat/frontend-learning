@@ -15,7 +15,7 @@ SSR 的缺点
 - 页面的一部分数据变化却需要重绘整个页面再返回给浏览器加载，重复性极高
 - 每次都需要返回整个 HTML 文档，会给网络带宽带来不必要的开销
 
-![](../images/ssr.png)
+<img src="../images/ssr.png" style="zoom: 67%;" />
 
 ### AJAX
 
@@ -25,7 +25,7 @@ AJAX：Asynchronous JavaScript And XML
 - AJAX 的异步特性可以让它在不重新刷新页面的情况下与服务器通信，交换数据或更新页面
 - AJAX 是前后端分离的核心
 
-![](../images/ajax.png)
+<img src="../images/ajax.png" style="zoom: 80%;" />
 
 ## HTTP
 
@@ -54,11 +54,11 @@ HTTP 的应用
 
 [HTTP 请求方法](https://developer.mozilla.org/zh-CN/docs/web/http/methods)
 
-![](../images/http-methods.png)
+<img src="../images/http-methods.png" style="zoom: 80%;" />
 
 [HTTP 响应状态码](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)
 
-![](../images/http-status.png)
+<img src="../images/http-status.png" style="zoom: 67%;" />
 
 ### 常见标头
 

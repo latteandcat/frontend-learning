@@ -6,17 +6,17 @@
 
 ```js
 Object.keys(obj).forEach(key => {
-    let value = obj[key]
-    Object.defineProperty(obj, key, {
-        set: function(newValue) {
-            value = newValue
-            console.log(`监听到给${key}设置值`)
-        }，
-        get: function() {
-            return value
-            console.log(`监听到获取${key}的值`)
-        }
-    })
+  let value = obj[key]
+  Object.defineProperty(obj, key, {
+    set: function(newValue) {
+      value = newValue
+      console.log(`监听到给${key}设置值`)
+    }，
+    get: function() {
+      return value
+      console.log(`监听到获取${key}的值`)
+    }
+  })
 })
 ```
 
@@ -39,13 +39,13 @@ Object.keys(obj).forEach(key => {
 
 ```js
 const obj = {
-    name: "me",
-    age: 19
+  name: "me",
+  age: 19
 }
 
 // 创建 proxy 对象
 const objProxy = new Proxy(obj, {
-    // handler 中可以添加多个捕捉器
+  // handler 中可以添加多个捕捉器
 })
 
 // 后续所有对 obj 的操作都转化为对 objProxy 的操作
@@ -72,20 +72,20 @@ get 函数有四个参数
 
 ```js
 const objProxy = new Proxy(obj, {
-    has: function(target, key) {
-      return key in target  
-    },
-    set: function(target, key, value) {
-        target[key] = value
-        console.log(`监听到给${key}设置值`)
-    },
-    get: function(target, key) {
-        return target[key]
-        console.log(`监听到获取${key}的值`)
-    },
-    deleteProperty: function(target, key) {
-        delete target[key]
-    }
+  has: function(target, key) {
+    return key in target  
+  },
+  set: function(target, key, value) {
+    target[key] = value
+    console.log(`监听到给${key}设置值`)
+  },
+  get: function(target, key) {
+    return target[key]
+    console.log(`监听到获取${key}的值`)
+  },
+  deleteProperty: function(target, key) {
+    delete target[key]
+  }
 })
 ```
 
@@ -111,16 +111,16 @@ construct 和 apply 是应用于函数对象的
 
 ```js
 function foo() {
-    console.log("foo")
+  console.log("foo")
 }
 
 const fooProxy = new Proxy(foo, {
-    apply: function(target, thisArg, otherArgs) {
-        return target.apply(thisArg, otherArgs)
-    },
-    construct: function(target, argArray, newTarget) {
-        return new target()
-    }
+  apply: function(target, thisArg, otherArgs) {
+    return target.apply(thisArg, otherArgs)
+  },
+  construct: function(target, argArray, newTarget) {
+    return new target()
+  }
 })
 ```
 
@@ -203,7 +203,11 @@ Reflect 提供了很多操作 JavaScript 对象的方法，有点像 Object 中�
 
 - `Reflect.construct(target, argumentsList[, newTarget])`
 
-  对构造函数进行 new 操作，相当于执行 new target(...args)
+  运行 `new target(...args)`
+  
+  返回一个以 target（如果newTarget存在，则为newTarget）函数为构造函数
+  
+  argumentList 为其初始化参数的对象实例
 
 ## Reflect 的使用
 
@@ -211,22 +215,22 @@ Reflect 提供了很多操作 JavaScript 对象的方法，有点像 Object 中�
 
 ```js
 const objProxy = new Proxy(obj, {
-    has: function(target, key) {
-        // return key in target  
-        return Reflect.has(target, key)
-    },
-    set: function(target, key, value) {
-        // target[key] = value
-        Reflect.set(target, key, value)
-    },
-    get: function(target, key) {
-        // return target[key]
-        Reflect.get(target, key)
-    },
-    deleteProperty: function(target, key) {
-        // delete target[key]
-        Reflect.deleteProperty((target, key))
-    }
+  has: function(target, key) {
+    // return key in target  
+    return Reflect.has(target, key)
+  },
+  set: function(target, key, value) {
+    // target[key] = value
+    Reflect.set(target, key, value)
+  },
+  get: function(target, key) {
+    // return target[key]
+    Reflect.get(target, key)
+  },
+  deleteProperty: function(target, key) {
+    // delete target[key]
+    Reflect.deleteProperty((target, key))
+  }
 })
 ```
 
@@ -238,24 +242,24 @@ const objProxy = new Proxy(obj, {
 
 ```js
 const obj = {
-    _name = "me",
-    set name(value) {
-        this._name = value
-    }
-    get name() {
-        return this._name
-    }
+  _name = "me",
+  set name(value) {
+    this._name = value
+  }
+  get name() {
+    return this._name
+  }
 }
 
 const objProxy = new Proxy(obj, {
-    set: function(target, key, newValue, receiver) {
-        console.log("set property")
-        Reflect.set(target, key, newValue, receiver)
-    },
-    get: function(target, key, receiver) {
-        console.log("get property")
-        return Reflect.get(target, key, receiver)
-    }
+  set: function(target, key, newValue, receiver) {
+    console.log("set property")
+    Reflect.set(target, key, newValue, receiver)
+  },
+  get: function(target, key, receiver) {
+    console.log("get property")
+    return Reflect.get(target, key, receiver)
+  }
 })
 
 obj.name = "you"
@@ -267,12 +271,12 @@ Reflect.construct 可以用于借用构造函数
 
 ```js
 function Person(name, age) {
-    this.name = name
-    this.age = age
+  this.name = name
+  this.age = age
 }
 
 function Student() {
-    // Person.call(this, name, age)
+  // Person.call(this, name, age)
 }
 
 const stu = Reflect.construct(Person, ["me", 18], Student)
@@ -293,13 +297,13 @@ console.log(stu.__proto__ === Student.prototype) // true
 
 ```js
 function requestData(url, successCallback, failureCallback) {
-    setTimeout(() => {
-        if (url === "http://hello.com") {
-            successCallback("一组成功数据")
-        } else {
-            failureCallback("请求失败")
-        }
-    }, 1000)
+  setTimeout(() => {
+    if (url === "http://hello.com") {
+      successCallback("一组成功数据")
+    } else {
+      failureCallback("请求失败")
+    }
+  }, 1000)
 }
 ```
 
@@ -320,14 +324,14 @@ Promise 是一个处理异步任务的类
 
 ```js
 const promise = new Promise((resolve, reject) => {
-    resolve("exec then callback")
-    reject("exec catch callback")
+  resolve("exec then callback")
+  reject("exec catch callback")
 })
 
 promise.then(res => {
-    console.log(res)
+  console.log(res)
 }).catch(err => {
-    console.log(err)
+  console.log(err)
 })
 ```
 
@@ -354,21 +358,21 @@ Promise 在使用过程中分为三个状态
 
 ```js
 function requestData(url) {
-    retrun new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (url === "http://hello.com") {
-                resolve("一组成功数据")
-            } else {
-                reject("请求失败")
-            }
-        }, 1000)
-    })
+  retrun new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (url === "http://hello.com") {
+        resolve("一组成功数据")
+      } else {
+        reject("请求失败")
+      }
+    }, 1000)
+  })
 }
 
 requestData("http://hello.com").then(res => {
-    console.log(res)
+  console.log(res)
 }).catch(err => {
-    console.log(err)
+  console.log(err)
 })
 ```
 
@@ -399,15 +403,15 @@ then 方法是 Promise 对象上的一个方法（实例方法）
 
 ```js
 promise.then(res => {
-    console.log(res)
+  console.log(res)
 }, err => {
-    console.log(err)
+  console.log(err)
 })
 // 等价于
 promise.then(res => {
-    console.log(res)
+  console.log(res)
 }).catch(err => {
-    console.log(err)
+  console.log(err)
 })
 ```
 
@@ -418,15 +422,15 @@ promise.then(res => {
 
 ```js
 promise.then(res => {
-    console.log(res)
+  console.log(res)
 })
 
 promise.then(res => {
-    console.log(res)
+  console.log(res)
 })
 
 promise.then(res => {
-    console.log(res)
+  console.log(res)
 })
 ```
 
@@ -467,13 +471,13 @@ catch 返回的 Promise 的所处状态也是根据 catch 方法的返回值来�
 
 ```js
 promise.then(res => {
-    
+
 }).then(res => {
-    
+
 }).then(res => {
-    
+
 }).catch(err => {
-    
+
 })
 ```
 
@@ -486,15 +490,15 @@ finally 是在ES9（ES2018）中新增的一个特性：表示无论 Promise 对
 
 ```js
 const promise = new Promise((resolve, reject) => {
-    
+
 })
 
 promise.then(res => {
-    
+
 }).catch(err => {
-    
+
 }).finally(() => {
-    
+
 })
 ```
 
@@ -541,21 +545,21 @@ Promise.all 也是类方法的一个，作用是将多个 Promise 包裹在一�
 
 ```js
 const p1 = new Promise((resolve, reject) => {
-    
+
 })
 
 const p2 = new Promise((resolve, reject) => {
-    
+
 })
 
 const p3 = new Promise((resolve, reject) => {
-    
+
 })
 
 Promise.all([p1, p2, p3]).then(res => {
-    console.log(res)
+  console.log(res)
 }).catch(err => {
-    console.log(err)
+  console.log(err)
 })
 ```
 
@@ -579,9 +583,9 @@ ES11 中新增了新的 API：Promise.allSettled
 
 ```js
 Promise.allSettled([p1, p2, p3]).then(res => {
-    console.log(res)
+  console.log(res)
 }).catch(err => {
-    console.log(err)
+  console.log(err)
 })
 ```
 
@@ -591,9 +595,9 @@ Promise.allSettled([p1, p2, p3]).then(res => {
 
 ```js
 Promise.race([p1, p2, p3]).then(res => {
-    console.log(res)
+  console.log(res)
 }).catch(err => {
-    console.log(err)
+  console.log(err)
 })
 ```
 
@@ -611,9 +615,9 @@ any 方法会等到一个 fulfilled 状态，才会决定新 Promise 的状态
 
 ```js
 Promise.any([p1, p2, p3]).then(res => {
-    console.log(res)
+  console.log(res)
 }).catch(err => {
-    console.log(err)
+  console.log(err)
 })
 ```
 
@@ -655,27 +659,27 @@ JS 中的迭代器协议就是一个特定的 next 方法
 const friends = ["a", "b", "c"]
 let index = 0
 const friendsIterator = {
-    next: function() {
-        if (index < friends.length) {
-            return { done: false, value: friends[index++] }
-        } else {
-            return { done: true, value: undefined} // value 可省略
-        }
+  next: function() {
+    if (index < friends.length) {
+      return { done: false, value: friends[index++] }
+    } else {
+      return { done: true, value: undefined} // value 可省略
     }
+  }
 }
 
 // 第二种写法
 function createArrayIterator(arr) {
-    let index = 0
-    return {
-        next: function() {
-            if (index < arr.length) {
-                return { done: false, value: arr[index++] }
-            } else {
-                return { done: true, value: undefined}
-            }
-        }
+  let index = 0
+  return {
+    next: function() {
+      if (index < arr.length) {
+        return { done: false, value: arr[index++] }
+      } else {
+        return { done: true, value: undefined}
+      }
     }
+  }
 }
 const friendsIterator = createArrayIterator(friends)
 ```
@@ -698,19 +702,19 @@ const friendsIterator = createArrayIterator(friends)
 
 ```js
 const info = {
-    friedns: ["a", "b", "c"],
-    [Symbol.iterator]: function() { // @@iterator 方法
-        let index = 0
-        return { // 迭代器
-            next: () => { // 使用箭头函数确保 this 指向 info
-                if (index < this.friends.length) {
-                    return { done: false, value: this.friends[index++] }
-                } else {
-                    return { done: true, value: undefined}
-                }
-            }
+  friedns: ["a", "b", "c"],
+  [Symbol.iterator]: function() { // @@iterator 方法
+    let index = 0
+    return { // 迭代器
+      next: () => { // 使用箭头函数确保 this 指向 info
+        if (index < this.friends.length) {
+          return { done: false, value: this.friends[index++] }
+        } else {
+          return { done: true, value: undefined}
         }
+      }
     }
+  }
 }
 ```
 
@@ -760,33 +764,33 @@ console.log(iterator.next())
 
 ```js
 class ClassRoom {
-    constructor(roomId, roomAddress, students) {
-        this.roomId = roomId
-        this.roomAddress = roomAddress
-        this.students = students || []
-    }
-    
-    enterClassRoom(studentName) {
-        this.students.push(studentName)
-    }
-    
-    [Symbol.iterator]() {
-        let index = 0
-        return {
-            next: () => {
-                if (index < this.students.length) {
-                    return { done: false, value: this.students[index++] }
-                } else {
-                    return { done: true }
-                }
-            }
+  constructor(roomId, roomAddress, students) {
+    this.roomId = roomId
+    this.roomAddress = roomAddress
+    this.students = students || []
+  }
+
+  enterClassRoom(studentName) {
+    this.students.push(studentName)
+  }
+
+  [Symbol.iterator]() {
+    let index = 0
+    return {
+      next: () => {
+        if (index < this.students.length) {
+          return { done: false, value: this.students[index++] }
+        } else {
+          return { done: true }
         }
+      }
     }
+  }
 }
 
 const classRoom = new ClassRoom("301", "9号楼", ["A", "B", "C"])
 for (const s of classRoom) {
-    console.log(s)
+  console.log(s)
 }
 ```
 
@@ -801,27 +805,27 @@ for (const s of classRoom) {
 
 ```js
 [Symbol.iterator]() {
-    let index = 0
-    return {
-        next: () => {
-            if (index < this.students.length) {
-                return { done: false, value: this.students[index++] }
-            } else {
-                return { done: true }
-            }
-        },
-        return: () => {
-            console.log("迭代器提前终止了")
-            return { done: true }
-        } 
-    }
+  let index = 0
+  return {
+    next: () => {
+      if (index < this.students.length) {
+        return { done: false, value: this.students[index++] }
+      } else {
+        return { done: true }
+      }
+    },
+    return: () => {
+      console.log("迭代器提前终止了")
+      return { done: true }
+    } 
+  }
 }
 
 for (const s of classRoom) {
-    console.log(s)
-    if (s === "C") {
-        break
-    }
+  console.log(s)
+  if (s === "C") {
+    break
+  }
 }
 ```
 
@@ -854,20 +858,20 @@ next 的默认返回值是 undefined，可以通过 yield 来返回一段代码�
 
 ```js
 function* foo() {
-    console.log("函数开始执行")
-    const value1 = 100
-    console.log(value1)
-    yield value1
-    
-    const value2 = 200
-    console.log(value2)
-    yield value2
-    
-    const value3 = 300
-    console.log(value3)
-    yield value3
-    
-    console.log("函数结束执行")
+  console.log("函数开始执行")
+  const value1 = 100
+  console.log(value1)
+  yield value1
+
+  const value2 = 200
+  console.log(value2)
+  yield value2
+
+  const value3 = 300
+  console.log(value3)
+  yield value3
+
+  console.log("函数结束执行")
 }
 
 const fooGenerator = foo()
@@ -894,18 +898,18 @@ console.log(fooGenerator.next())
 
 ```js
 function* foo(init) {
-    console.log("函数开始执行");
+  console.log("函数开始执行");
 
-    const value1 = yield init + "aaa"
-    console.log(value1); // helloaaa
+  const value1 = yield init + "aaa"
+  console.log(value1); // helloaaa
 
-    const value2 = yield value1 + "bbb"
-    console.log(value2); // helloaaabbb
+  const value2 = yield value1 + "bbb"
+  console.log(value2); // helloaaabbb
 
-    const value3 = yield value2 + "ccc"
-    console.log(value3); // undefined
+  const value3 = yield value2 + "ccc"
+  console.log(value3); // undefined
 
-    console.log("函数结束执行");
+  console.log("函数结束执行");
 }
 
 const generator = foo("hello")
@@ -927,10 +931,10 @@ console.log(res4); // {value: undefined, done: true}
 
 ```js
 function* bar() {
-    const value1 = yield "why"
-    console.log("value1:", value1)
-    const value2 = yield value1 
-    const value3 = yield value2
+  const value1 = yield "why"
+  console.log("value1:", value1)
+  const value2 = yield value1 
+  const value3 = yield value2
 }
 
 const barGenerator = bar()
@@ -953,20 +957,20 @@ console.log(barGenerator.next(123)) // { value: undefined, done: true }
 
 ```js
 function* foo3() {
-    console.log("函数开始执行");
+  console.log("函数开始执行");
 
-    try {
-        yield 111;
-        console.log("无异常发生"); // 不会打印
-    } catch (error) {
-        console.log("内部捕获异常：", error);
-    }
+  try {
+    yield 111;
+    console.log("无异常发生"); // 不会打印
+  } catch (error) {
+    console.log("内部捕获异常：", error);
+  }
 
-    console.log("函数执行中");
-    
-    yield 222;
+  console.log("函数执行中");
 
-    console.log("函数结束执行");
+  yield 222;
+
+  console.log("函数结束执行");
 }
 
 const generator3 = foo3();
@@ -977,73 +981,73 @@ console.log(generator3.next()); // {value: undefined, done: true}
 
 ## 生成器的应用
 
-生成器可以在某些情况下可以替代迭代器
+1. 生成器可以在某些情况下可以替代迭代器
 
 ```js
 const friends = ["a", "b", "c"]
 
 function createArrayIterator(arr) {
-    let index = 0
-    return {
-        next: function() {
-            if (index < arr.length) {
-                return { done: false, value: arr[index++] }
-            } else {
-                return { done: true, value: undefined}
-            }
-        }
+  let index = 0
+  return {
+    next: function() {
+      if (index < arr.length) {
+        return { done: false, value: arr[index++] }
+      } else {
+        return { done: true, value: undefined}
+      }
     }
+  }
 }
 
 const friendsIterator = createArrayIterator(friends)
 
 // 生成器的写法
 function* createArrayIterator(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        yield arr[i]
-    }
+  for (let i = 0; i < arr.length; i++) {
+    yield arr[i]
+  }
 }
 
 // 语法糖的写法
 function* createArrayIterator(arr) {
-    yield* arr
+  yield* arr
 }
 ```
 
 `yield*` 可以依次迭代一个可迭代对象，每次迭代其中的一个值
 
-自定义可迭代类的代码优化
+2. 自定义可迭代类的代码优化
 
 ```js
 class ClassRoom {
-    constructor(roomId, roomAddress, students) {
-        this.roomId = roomId
-        this.roomAddress = roomAddress
-        this.students = students || []
-    }
-    
-    enterClassRoom(studentName) {
-        this.students.push(studentName)
-    }
-    
-    *[Symbol.iterator]() {
-        yield* this.students
-        // yield* Object.entries(this)
-    }
+  constructor(roomId, roomAddress, students) {
+    this.roomId = roomId
+    this.roomAddress = roomAddress
+    this.students = students || []
+  }
+
+  enterClassRoom(studentName) {
+    this.students.push(studentName)
+  }
+
+  *[Symbol.iterator]() {
+    yield* this.students
+    // yield* Object.entries(this)
+  }
 }
 ```
 
-生成器是一种特殊的迭代器，也是可迭代对象，所以生成器也可以在可迭代对象的应用场景中使用
+3. 生成器是一种特殊的迭代器，也是可迭代对象，所以生成器也可以在可迭代对象的应用场景中使用
 
 ```js
 function* createArrayIterator(arr) {
-    yield* arr
+  yield* arr
 }
 const friends = ["a", "b", "c"];
 const iter = createArrayIterator(friends);
 
 for (const item of iter) {
-    console.log(item);
+  console.log(item);
 }
 ```
 
@@ -1053,26 +1057,28 @@ for (const item of iter) {
 
 ```js
 function request(url) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(url);
-        }, 1000);
-    });
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(url);
+    }, 1000);
+  });
 }
 
 function getData(url) {
-    request(url).then(res1 => {
-        console.log(res1);
-        return request(res1 + "aaa")
-    }).then(res2 => {
-        console.log(res2);
-        return request(res2 + "bbb")
-    }).then(res3 => {
-        console.log(res3);
-        return request(res3 + "ccc")
-    }).then(res4 => {
-        console.log(res4);
-    })
+  request(url).then(res1 => {
+    console.log(res1);
+    return request(res1 + "aaa")
+  }).then(res2 => {
+    console.log(res2);
+    return request(res2 + "bbb")
+  }).then(res3 => {
+    console.log(res3);
+    return request(res3 + "ccc")
+  }).then(res4 => {
+    console.log(res4);
+  }).catch(err => {
+
+  })
 }
 
 getData("hello")
@@ -1082,39 +1088,39 @@ getData("hello")
 
 ```js
 function* getData(url) {
-    const res1 = yield request(url);
-    console.log(res1);
-    const res2 = yield request(res1 + "aaa");
-    console.log(res2);
-    const res3 = yield request(res2 + "bbb");
-    console.log(res3);
-    const res4 = yield request(res3 + "ccc");
-    console.log(res4);
+  const res1 = yield request(url);
+  console.log(res1);
+  const res2 = yield request(res1 + "aaa");
+  console.log(res2);
+  const res3 = yield request(res2 + "bbb");
+  console.log(res3);
+  const res4 = yield request(res3 + "ccc");
+  console.log(res4);
 }
 
 const gen = getData("hello");
 
 // 手动执行 generator
 gen.next().value.then(res1 => {
-    gen.next(res1).value.then(res2 => {
-        gen.next(res2).value.then(res3 => {
-            gen.next(res3).value.then(res4 => {
-                gen.next(res4)
-            });
-        });
+  gen.next(res1).value.then(res2 => {
+    gen.next(res2).value.then(res3 => {
+      gen.next(res3).value.then(res4 => {
+        gen.next(res4)
+      });
     });
+  });
 });
 
 // 自动执行 generator 函数，通过递归实现，可扩展
 function autoExecGenerator(generator) {
-    function exec(res) {
-        const result = generator.next(res);
-        if (result.done) return result.value;
-        result.value.then(res => {
-            exec(res);
-        });
-    }
-    exec();
+  function exec(res) {
+    const result = generator.next(res);
+    if (result.done) return result.value;
+    result.value.then(res => {
+      exec(res);
+    });
+  }
+  exec();
 }
 // autoExecGenerator(gen)
 ```
@@ -1123,14 +1129,14 @@ async/await 方案
 
 ```js
 async function getData(url) {
-    const res1 = await request(url);
-    console.log(res1);
-    const res2 = await request(res1 + "aaa");
-    console.log(res2);
-    const res3 = await request(res2 + "bbb");
-    console.log(res3);
-    const res4 = await request(res3 + "ccc");
-    console.log(res4);
+  const res1 = await request(url);
+  console.log(res1);
+  const res2 = await request(res1 + "aaa");
+  console.log(res2);
+  const res3 = await request(res2 + "bbb");
+  console.log(res3);
+  const res4 = await request(res3 + "ccc");
+  console.log(res4);
 }
 
 getData("hello")
@@ -1150,21 +1156,21 @@ async 函数的写法
 
 ```js
 async function foo() {
-    
+
 }
 
 const foo = async function() {
-    
+
 }
 
 const foo = async () => {
-    
+
 }
 
 class Person {
-    async foo() {
-        
-    }
+  async foo() {
+
+  }
 }
 ```
 
@@ -1210,8 +1216,11 @@ JS 是单线程的（可以开启 workers）
 JS 的代码执行是在一个单独的线程中执行的
 
 - 这就意味着 JS 在同一个时刻，只能做一件事
+
 - 如果这件事十分耗时，当前线程就会被阻塞
+
 - 所以一些耗时的操作，比如网络请求或定时器，会交给浏览器的其他线程执行
+  
   只需要在特定的时候执行对应的回调即可
 
 ## 浏览器的事件循环
