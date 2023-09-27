@@ -181,7 +181,7 @@ use: [
 ]
 ```
 
-也可以单独使用 postcss.config.js
+也可以单独使用 postcss.config.js 配置
 
 ```js
 module.exports = {
@@ -193,7 +193,7 @@ module.exports = {
 
 autoprefixer 是 postcss 的一个插件
 
-也可以直接使用 postcss-preset-env 相当于一个预设环境
+也可以直接使用 postcss-preset-env，相当于一个预设环境
 
 它也会自动添加浏览器前缀，还包含一些其他功能
 
@@ -365,7 +365,7 @@ resolve 用于设置模块如何被解析
 
 resolve 可以帮助 webpack 从每个 require/import 语句中，找到需要引入的模块代码
 
-### extensions
+### modules
 
 webpack 可以解析的路径
 
@@ -521,7 +521,6 @@ webpack-dev-server 在编译之后不会写入到任何输出文件，而是将 
    }
    ```
    
-
 3. 添加脚本
 
    ```js

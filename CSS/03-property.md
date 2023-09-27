@@ -206,13 +206,14 @@ HTML 中的每一个元素都可以看作一个盒子，盒子可以分为以下
 ### border
 
 - `border-width`：边框宽度
-- `border-top-width`
-  
-- `border-right-width`
-  
-- `border-bottom-width`
-  
-- `border-left-width`
+  - `border-top-width`
+
+  - `border-right-width`
+
+  - `border-bottom-width`
+
+  - `border-left-width`
+
 
 
 - `border-color`：边框颜色
@@ -685,6 +686,23 @@ strong、b、h1-h6 等标签的 font-weight 默认就是 bold
 - `scroll`：表示背景**相对于元素本身固定**，而不是随着它的内容滚动
 - `local`：表示背景**相对于元素的内容固定**，如果一个元素拥有滚动机制，背景将会随着元素的内容滚动
 - `fixed`：表示背景**相对于视口固定**，即使一个元素拥有滚动机制，背景也不会随着元素的内容滚动
+
+### background-origin
+
+`background-origin`：规定背景图片的定位区域
+
+- `padding-box`：背景图像相对内边距定位（默认值）
+- `border-box`：背景图像相对边框定位
+- `content-box`：背景图像相对内容区域定位
+
+### background-clip
+
+`background-clip` 设置元素的背景（背景图片或颜色）是否延伸到边框、内边距盒子、内容盒子下面
+
+- `border-box`：背景延伸至边框外沿（但是在边框下层）
+- `padding-box`：背景延伸至内边距（padding）外沿，不会绘制到边框处
+- `content-box`：背景被裁剪至内容区（content box）外沿
+- `text`：背景被裁剪成文字的前景色
 
 ### background
 

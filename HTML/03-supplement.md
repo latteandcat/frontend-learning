@@ -28,16 +28,6 @@
   - URI 在某一个规则下能把一个资源独一无二的识别出来
   - URL 是 URI 的子集
 
-## 元素的语义化
-
-- 元素的语义化即用正确的元素做正确的事情
-- 理论上所有的 HTML 元素都能实现相同的事情
-- 语义化的好处
-  - 提升代码的阅读性和可维护性
-  - 减少开发的沟通成本
-  - 帮助语音合成工具正确识别网页元素的用途，以便做出正确的反应
-  - 有利于 SEO（search engine optimization）
-
 ## SEO
 
 - [SEO](https://developer.mozilla.org/zh-CN/docs/Glossary/SEO)（search engine optimization）即搜索引擎优化

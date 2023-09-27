@@ -4,7 +4,7 @@
 
 ### SSR
 
-服务器端渲染 SSR server side render
+服务器端渲染 SSR：server side render
 
 1. 客户端发出请求
 2. 服务端接收请求并返回相应 HTML 文档
@@ -99,7 +99,7 @@ HTTP 的应用
 
 AJAX 可以使用 JSON、XML、HTML 和 text 文本等格式发送和接收数据
 
-使用 XHR 发送网络请求的步骤
+==使用 XHR 发送网络请求的步骤==
 
 1. 创建 xhr 实例对象用于网络请求：使用 XMLHttpRequest 类
 
@@ -115,11 +115,11 @@ AJAX 可以使用 JSON、XML、HTML 和 text 文本等格式发送和接收数�
 const xhr = new XMLHttpRequest()
 // 2.监听 xhr 对象状态的变化
 xhr.onreadystatechange = function() {
-    if (xhr.readyState !== XMLHttpRequest.DONE) return
-    console.log(xhr.response)
-    
-    const resJSON = JSON.parse(xhr.response)
-    console.log(resJSON)
+  if (xhr.readyState !== XMLHttpRequest.DONE) return
+  console.log(xhr.response)
+
+  const resJSON = JSON.parse(xhr.response)
+  console.log(resJSON)
 }
 // 3.配置网络请求
 xhr.open("get", "http://dataurl")
@@ -138,9 +138,11 @@ xhr.send()
 
 ### xhr 的状态
 
+`xhr.readyState`：xhr 对象的状态
+
 一次请求中状态会发生多次改变
 
-不同状态对应的 readyState 属性不同
+不同状态对应的 readyState 不同
 
 - 0：UNSENT
 
@@ -199,11 +201,11 @@ readyState 是 xhr 对象的状态而不是 HTTP 的响应状态
 
 ```js
 xhr.onload = function() {
-    if (xhr.status >= 200 && xhr.status < 300) {
-        console.log(xhr.response)
-    } else {
-        console.log(xhr.status, xhr.statusText)
-    }
+  if (xhr.status >= 200 && xhr.status < 300) {
+    console.log(xhr.response)
+  } else {
+    console.log(xhr.status, xhr.statusText)
+  }
 }
 ```
 
@@ -260,11 +262,11 @@ xhr.onload = function() {
 const xhr = new XMLHttpRequest()
 
 xhr.onload = function() {
-    console.log(xhr.response)
+  console.log(xhr.response)
 }
 
 xhr.ontimeout = function() {
-    console.log("xhr timeout")
+  console.log("xhr timeout")
 }
 
 xhr.responseType = "json"
@@ -277,7 +279,7 @@ xhr.send()
 
 ```js
 xhr.onabort = function() {
-    console.log("abort xhr")
+  console.log("abort xhr")
 }
 
 xhr.abort()
@@ -333,40 +335,40 @@ response 的属性中可以看到 HTTP 状态
 
 **阶段二：获取 response body**
 
-获取数据需要调用再调用一个方法读取 response
+获取数据需要再调用一个方法读取 response
 
 - response.text()：读取 response，并以文本形式返回 response
 - response.json()：将 response 解析为 JSON
 
 ```js
 fetch(url).then(response => {
-    response.json().then(res => {
-        console.log(res)
-    })
+  response.json().then(res => {
+    console.log(res)
+  })
 }).catch(error => {
-    
+
 })
 
 // 优化一
 fetch(url).then(response => {
-    return response.json()
+  return response.json()
 }).then(res => {
-    console.log(res)
-})catch(error => {
-    
+  console.log(res)
+}).catch(error => {
+
 })
 
 // 优化二
 async function getData(url) {
-    const response = await fetch(url)
-    const res = await response.json()
-    return res
+  const response = await fetch(url)
+  const res = await response.json()
+  return res
 }
 
 getData(url).then(res => {
-    
+
 }).catch(err => {
-    
+
 })
 ```
 
