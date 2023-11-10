@@ -33,11 +33,13 @@ window 对象中除了 JS 的一些内置类和对象以外
 
 **document 对象**
 
-Document 节点表示整个载入的网页，它的实例是全局的 document 对象
+Document 节点表示整个载入的网页
+
+它的实例是全局的 document 对象
 
 - 整个 HTML 文档都会被抽象到 document 对象中
 - 对 DOM 的所有操作都是从 document 对象开始的
-- ==document 对象是 DOM 的入口点==，可以从 document 开始去访问任何节点元素 
+- document 对象是 DOM 的入口点，可以从 document 开始去访问任何节点元素 
 
 对于最顶层的 html、head、body 元素，我们可以直接在 document 对象中获取到
 
@@ -86,7 +88,7 @@ Document 节点表示整个载入的网页，它的实例是全局的 document �
 - 后兄弟元素：nextElementSibling
 - 子元素：children
 - 第一个子元素：firstElementChild
-- 第二个子元素：lastElementChild
+- 最后一个子元素：lastElementChild
 
 ![](../images/element-navigator.png)
 
@@ -95,15 +97,17 @@ Document 节点表示整个载入的网页，它的实例是全局的 document �
 `<table>` 元素支持以下属性获取其他元素
 
 - `table.rows`：`<tr>` 元素的集合
-- `table.caption/tHead/tFoot`：引用元素 `<caption>/<thead>/<tfoot>`
+- `table.caption`：表格中的 `<caption>` 元素
+- `table.tHead`：表格中的 `<thead>` 元素
+- `table.tFoot`：表格中的 `<tfoot>` 元素
 - `table.tBodies`：`<tbody>` 元素的集合
 
-`<thead>/<tfoot>/<tdody>` 元素提供了 rows 属性获取其内部 `<tr>` 元素的集合
+`<thead>` `<tfoot>` `<tdody>` 元素都提供了 `rows` 属性获取其内部 `<tr>` 元素的集合
 
 `<tr>` 的属性
 
 - `tr.cells`：`<tr>` 中 `<td>` 元素和 `<th>` 元素的集合
-- `tr.sectionRowIndex`：`<tr>` 在 `<thead>/<tfoot>/<tdody>` 中的索引
+- `tr.sectionRowIndex`：`<tr>` 在`<thead>` `<tfoot>` `<tdody>` 中的索引
 - `tr.rowIndex`：`<tr>` 在整个表格中的索引
 
 `<td>` 和 `<th>` 的属性
@@ -149,7 +153,7 @@ DOM 提供了获取元素和元素集合的一系列方法
   - nodeType 属性可用于区分不同类型的节点，比如 元素, 文本 和 注释。
   - nodeType 是一个代表节点类型的整数
 
-  <img src="../images/node-type.png" style="zoom: 80%;" />
+  <img src="../images/node-type.png" style="zoom: 67%;" />
 
 - `nodeName`：获取节点的名字
 
@@ -244,7 +248,7 @@ attribute 的特征
 
 ### dataset
 
-dataset 属性中可以获取到用 `data-*` 自定义的属性
+元素的 dataset 属性中可以获取到用 `data-*` 自定义的属性
 
 ```js
 <div class="box" title="abc" data-name="why" data-age="18">
@@ -257,20 +261,22 @@ dataset 属性中可以获取到用 `data-*` 自定义的属性
 </script>
 ```
 
-### 类和样式
+## 类和样式
 
 动态修改样式的两种方法
 
 1. 动态的添加和移除 class
 2. 动态的修改元素的 style 属性
 
-**className 和 classList**
+### className
 
 元素的 class attribute 对应的 DOM 中的 property 叫做 className
 
 className 可以用于获取和修改元素的 class 属性
 
 className 对应的所有 class 保存在 classList 里
+
+### classList
 
 classList 是可迭代对象，可以通过 `for of` 遍历
 
@@ -281,7 +287,7 @@ classList 对象提供了一些方法对类进行操作
 - `elem.classList.toggle(class)`：如果类不存在就添加类，存在就移除类
 - `elem.classList.contains(class)`：检查给定类是否存在
 
-**style**
+### style
 
 - style 可以用于单独修改某一个 CSS 属性
 
@@ -370,53 +376,48 @@ classList 对象提供了一些方法对类进行操作
 - `parentElem.replaceChild(node, oldChild)`：在 parentElem 中，用新元素替换之前的 oldChild 元素
 - ` parentElem.removeChild(node)`：在 parentElem 中，移除某一个元素
 
-### 大小和滚动
+## 元素尺寸
 
-**元素的大小和滚动**
+<img src="../images/element-size.png" style="zoom: 67%;" />
 
-client
+### 偏移尺寸
 
-- clientWidth：contentWidth + padding（不含滚动条）
-- clientHeight：contentHeight + padding
-- clientLeft：border-left 的宽度
-- clientTop：border-top 的宽度
+- `offsetWidth`：元素完整的宽度
+- `offsetHeight`：元素完整的高度
+- `offsetLeft`：距离父元素的 x
+- `offsetTop`：距离父元素的 y
+
+<img src="../images/offset-dim.png" style="zoom: 80%;" />
+
+### 客户端尺寸
+
+- `clientWidth`：contentWidth + 左右padding（不含滚动条）
+- `clientHeight`：contentHeight + 上下padding（不含滚动条）
+- `clientLeft`：border-left 的宽度
+- `clientTop`：border-top 的宽度
+
+<img src="../images/client-dim.png" style="zoom: 80%;" />
 
 contentWith 的计算
 
 - `box-sizing: content-box;`时 contentWith = width - scrollbar
 - `box-sizing: border-box;`时 contentWith = width - padding - border - scrollbar
 
-offset
+客户端尺寸指的是元素内部的空间，因此不包含滚动条占用的空间
 
-- offsetWidth：元素完整的宽度
-- offsetHeight：元素完整的高度
-- offsetLeft：距离父元素的 x
-- offsetTop：距离父元素的 y
+常用于确定浏览器视口尺寸
 
-scroll
+- `document.documentElement.clientWidth`
+- `document.documentElement.clientHeight`
 
-- scrollHeight：整个可滚动的区域高度
-- scrollTop：滚动部分的高度
+### 滚动尺寸
 
-![](../images/element-size.png)
+- `scrollWidth`：整个可滚动的区域宽度
+- `scrollHeight`：整个可滚动的区域高度
+- `scrollTop`：滚动部分的高度
+- `scrollLeft`：滚动部分的宽度
 
-**window 的大小和滚动**
-
-获取宽高
-
-- `innerWidth / innerHeight`：获取 window 窗口的宽度和高度（包含滚动条）
-- `outerWidth / outerHeight`：获取 window 窗口的整个宽度和高度（包括调试工具、工具栏）
-- `documentElement.clientHeight / documentElement.clientWidth`：获取 html 的宽度和高度（不包含滚动条）
-
-滚动位置
-
-- `scrollX`：X 轴滚动的位置（别名 pageXOffset）
-- `scrollY`：Y 轴滚动的位置（别名 pageYOffset）
-
-滚动方法
-
-- `scrollBy(x, y)`：将页面滚动至相对于当前位置的 `(x, y)` 位置
-- `scrollTo(pageX, pageY)`：将页面滚动至绝对坐标  `(pageX, pageY)`
+<img src="../images/scroll-dim.png" style="zoom: 80%;" />
 
 ## 定时器
 
@@ -447,9 +448,9 @@ scroll
 
 `clearTimeout` 的使用
 
-setTimeout 在调用时会返回一个“定时器标识符（timer identifier）”，我们可以使用它来取消执行
+setTimeout 在调用时会返回一个定时器标识符（timer identifier）
 
-`clearTimeout(timerID)`
+我们可以使用它来取消执行 `clearTimeout(timerID)`
 
 ### 循环执行
 
@@ -461,9 +462,9 @@ setTimeout 在调用时会返回一个“定时器标识符（timer identifier�
 
 `clearInterval` 的使用
 
-setInterval 也会返回一个“定时器标识符（timer identifier）”，我们可以通过clearInterval 来取消这个定时器
+setInterval 也会返回一个定时器标识符（timer identifier）
 
-`clearInterval(timerID)`
+我们可以通过clearInterval 来取消这个定时器 `clearInterval(timerID)`
 
 # BOM
 
@@ -505,21 +506,22 @@ window 对象在浏览器中的两个视角
 
 - 包含了从 EventTarget 继承过来的方法（Window 类也是继承自 EventTarget 的）
 
-  `addEventListener / removeEventListener / dispatchEvent`
+  - `addEventListener`
+  - `removeEventListener`
+  - `dispatchEvent`
 
 ### 常见属性
 
-- `innerWidth / innerHeight`：获取 window 窗口的宽度和高度（包含滚动条）
-- `outerWidth / outerHeight`：获取 window 窗口的整个宽度和高度（包括调试工具、工具栏）
-
-- `scrollX`：X 轴滚动的位置（别名 pageXOffset）
-- `scrollY`：Y 轴滚动的位置（别名 pageYOffset）
+- `window.innerWidth / window.innerHeight`：浏览器窗口中页面视口的大小（不包含浏览器边框和工具栏）。
+- `window.outerWidth / window.outerHeight`：浏览器窗口自身的大小
+- `window.scrollX / window.pageXOffset`：文档相对于视口在 X 轴上的滚动距离
+- `window.scrollY / window.pageYOffset`：文档相对于视口在 Y 轴上的滚动距离
 
 ### 常见方法
 
 - `scrollBy(x, y)`：将页面滚动至相对于当前位置的 `(x, y)` 位置
 
-- `scrollTo(pageX, pageY)`：将页面滚动至绝对坐标  (pageX, pageY)
+- `scrollTo(pageX, pageY)`：将页面滚动至绝对坐标  `(pageX, pageY)`
 
 - `open()`：打开一个新窗口
 
@@ -618,22 +620,30 @@ hash 发生改变的时候不会刷新整个页面，所以监听 hash 的改变
 
   - state：JS 对象（可为空）
 
-    导航到新的 state 会触发 `popstate` 事件，且该事件的 `state` 属性包含 `history.state` 的副本
+    导航到新的 state 会触发 `popstate` 事件
 
-    > 备注： 调用 history.pushState() 或者 history.replaceState() 不会触发 popstate 事件。
-    >
-    > popstate 事件只会在浏览器某些行为下触发，比如点击后退按钮或者在 JavaScript 中调用 history.back() 方法。
-    >
-    > 即，在同一文档的两个历史记录条目之间导航会触发该事件。
+    且该事件的 `state` 属性包含 `history.state` 的副本
 
-  - unused：页面标题，由于历史原因，该参数存在且不能忽略；传递一个空字符串是安全的，以防将来对该方法进行更改
+    调用 `history.pushState()` 或者 `history.replaceState()` 不会触发 `popstate` 事件
 
-  - url：新历史条目的 URL，可以是当前 URL 的相对路径，必须同源不能跨域，没有指定则设置为当前文档的URL
+    `popstate` 事件只会在浏览器某些行为下触发
+
+    比如点击后退按钮或者在 JavaScript 中调用 `history.back()` 方法
+
+    即在同一文档的两个历史记录条目之间导航会触发该事件
+
+  - unused：页面标题，由于历史原因，该参数存在且不能忽略
+
+    传递一个空字符串是安全的，以防将来对该方法进行更改
+
+  - url：新历史条目的 URL，可以是当前 URL 的相对路径，必须同源不能跨域
+
+    没有指定则设置为当前文档的URL
 
     如果当前 url 为 `http://127.0.0.1:5500/JavaScript/pratice/bom-history.html`
 
     - `/userlist` 是绝对路径，会跳转到 `http://127.0.0.1:5500/userlist`
-
+    
     - `userlist` 是相对路径，会跳转到 `http://127.0.0.1:5500/JavaScript/pratice/userlist`
 
 - `replaceState()`：替换当前的历史记录条目
@@ -652,7 +662,7 @@ navigator 对象表示用户代理的状态和标识等信息
 
 ### screen 对象
 
-screen主要记录的是浏览器窗口外面的客户端显示器的信息
+screen 主要记录的是浏览器窗口外面的客户端显示器的信息
 
 比如屏幕的逻辑像素 screen.width、screen.height
 

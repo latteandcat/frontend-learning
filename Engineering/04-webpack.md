@@ -5,7 +5,7 @@
 [webpack](https://webpack.js.org/) is a static module bundler for modern JavaScript applications
 
 - bundler：webpack 是一个打包工具
-- static：最终将代码打包成静态资源（用于部署到静态服务器）
+- static：最终会将代码打包成静态资源（用于部署到静态服务器）
 - module：webpack 默认支持各种模块化开发，ES Module、CommonJS、AMD 等
 - modern：现代前端开发面临各种各样的问题，催生了 webpack 的出现和发展
   - 需要模块化开发
@@ -15,25 +15,36 @@
 
 ![](../images/webpack.png)
 
+## 安装 webpack
+
+webpack 的运行依赖 Node 所以需要提前安装 Node 和 npm
+
+安装 webpack 的命令
+
+```cmd
+npm install webpack webpack-cli -g
+npm install webpack webpack-cli -D
+```
+
 ## 使用 webpack
 
 ### 打包
 
-在目录下直接执行 webpack 命令会将当前目录的项目默认打包到 dist 文件夹内
+在目录下直接执行 `webpack` 命令会将当前目录的项目默认打包到 dist 文件夹内
 
-默认打包的入口为当前目录下的 `src/index.js`
+- 默认打包的入口为当前目录下的 `src/index.js`
 
-默认打包的出口为 `dist/main.js`
+  如果 `src/index.js` 不存在就会报错
 
-如果 `src/index.js` 不存在就会报错
+- 默认打包的出口为 `dist/main.js`
 
-也可以手动指定入口和出口
+- 也可以手动指定入口和出口
 
-`webpack --entry ./src/main.js --output-path ./build`
+  `webpack --entry ./src/main.js --output-path ./build`
 
-手动指定文件名
+- 手动指定文件名
 
-`webpack --output-filename bundle.js`
+  `webpack --output-filename bundle.js`
 
 ### 配置文件
 
@@ -55,11 +66,13 @@ module.exports = {
 }
 ```
 
-mode 可以通过 process.env.NODE_ENV 获取
+配置文件中的 mode 可以告知 webpack 使用相应模式的内置优化
 
 - 默认值为 production
 
 - 可选值 none | development | production
+
+- 可以通过 `process.env.NODE_ENV` 获取到当前 mode
 
 ![](../images/webpack-mode.png)
 
@@ -85,41 +98,41 @@ webpack 是如何对项目进行打包的
 
 3. 然后遍历图结构，打包一个个模块
 
-   根据文件的不同使用不同的 loader 来解析
+   此时会根据文件的不同使用不同的 loader 来解析
 
 ## loaders
 
-### loader 配置
+### loader 配置方式
 
 webpack 默认只能解析 js 文件
 
 其他类型的文件需要使用对应的 loader 来解析
 
-loader 可以在配置文件 webpack.config.js 中的 module.rules 中配置
+loader 可以统一在配置文件 webpack.config.js 中的 module.rules 中配置
 
-- module.rules 对应一个 loader 规则数组
+module.rules 对应一个数组 [Rule]
 
-- rule 是一个规则对象，包含以下属性
+Rule 是一个对象，包含以下属性
 
-  - test：用于对 resource（资源）进行匹配，通常会设置成正则表达式
+- test：用于对 resource（资源）进行匹配，通常会设置成正则表达式
 
-  - use：对应一个 UseEntry 的数组
+- use：对应一个数组 [UseEntry]
 
-    每个 UseEntry 包含以下属性
+  每个 UseEntry 包含以下属性
 
-    - loader：字符串
-    - options：可选属性，值是一个字符串或者对象，会被传入到 loader 中
-    - query：目前已经使用options来替代
+  - loader：字符串
+  - options：可选属性，值是一个字符串或者对象，会被传入到 loader 中
+  - query：目前已经使用options来替代
 
-    不需要 options 时可以用字符串代替 UseEntry
+  不需要 options 时可以用字符串代替 UseEntry
 
-    `use: ['style-loader']` 是 `use: [{ loader: 'style-loader'}]` 的简写
+  `use: ['style-loader']` 是 `use: [{ loader: 'style-loader'}]` 的简写
 
-  - loader
+- loader
 
-    只有一个 loader 可以不写 use
+  只有一个 loader 可以不写 use
 
-    `loader: 'sytle-loader'` 是 `use: ['style-loader']` 的简写
+  `loader: 'sytle-loader'` 是 `use: ['style-loader']` 的简写
 
 配置案例
 
@@ -162,22 +175,22 @@ PostCSS 是一个通过 JavaScript 来转换样式的工具
 
 比如自动添加浏览器前缀、CSS 样式的重置
 
-postcss 可以通过 webpack 的 postcss-loader 使用
+PostCSS 可以通过 webpack 的 postcss-loader 使用
 
 postcss-loader 在 webpack.config.js 中的配置
 
 ```js
 use: [
-    {
-        loader: "postcss-loader",
-        options: {
-            postcssOptions: {
-                plugins: [
-                    "autoprefixer"
-                ]
-            }
-        }
+  {
+    loader: "postcss-loader",
+    options: {
+      postcssOptions: {
+        plugins: [
+          "autoprefixer"
+        ]
+      }
     }
+  }
 ]
 ```
 
@@ -193,7 +206,7 @@ module.exports = {
 
 autoprefixer 是 postcss 的一个插件
 
-也可以直接使用 postcss-preset-env，相当于一个预设环境
+也可以直接使用 postcss-preset-env 插件，相当于一个预设环境
 
 它也会自动添加浏览器前缀，还包含一些其他功能
 
@@ -205,7 +218,7 @@ webpack5 之前加载资源需要使用一些 loader
 
 在 webpack5 之后，可以直接使用资源模块类型，替代对应的 loader
 
-资源模块类型的 4 种模块类型
+资源模块类型（asset module type）的 4 种模块类型
 
 - `asset/resource`：发送一个单独的文件并导出 URL
 
@@ -250,6 +263,8 @@ webpack5 之前加载资源需要使用一些 loader
 
 也可以在 output.assetsModuleFilename 中设置
 
+文件路径名中可以添加 placeholder，常见的有
+
 - [ext]：处理文件的扩展名
 - [name]：处理文件的名称
 - [hash]：文件的内容，使用 MD4 的散列函数处理，生成的一个 128 位的 hash 值（32个十六进制）
@@ -284,7 +299,7 @@ npm install @babel/cli @babel/core -D
 npx babel src --out-dir dist
 ```
 
-安装插件
+安装及使用插件
 
 ```shell
 npm install @babel/plugin-transform-arrow-functions -D
@@ -294,7 +309,7 @@ npm install @babel/plugin-transform-block-scoping -D
 npx babel src --out-dir dist --plugins=@babel/plugin-transform-block-scoping,@babel/plugin-transform-arrow-functions
 ```
 
-需要安装的插件过多可以直接使用 preset-env
+需要安装的插件过多可以直接使用预设 preset-env
 
 ```shell
 npm install @babel/preset-env -D
@@ -334,6 +349,8 @@ module: {
 
 ### vue-loader
 
+vue 文件的解析需要添加对应的 loader 和插件
+
 安装
 
 ```js
@@ -365,9 +382,7 @@ resolve 用于设置模块如何被解析
 
 resolve 可以帮助 webpack 从每个 require/import 语句中，找到需要引入的模块代码
 
-### modules
-
-webpack 可以解析的路径
+**webpack 可以解析的路径**
 
 - 绝对路径
 
@@ -387,25 +402,23 @@ webpack 可以解析的路径
 
   可以通过设置别名的方式来替换初始模块路径
 
-### mainFiles 
-
-文件和文件夹的确定
+**文件和文件夹的确定**
 
 - 文件
   - 如果有扩展名，则直接打包文件
-  - 没有扩展名，将使用 resolve.extensions 选项作为文件扩展名解析
+  - 没有扩展名，将使用 `resolve.extensions` 选项作为文件扩展名解析
 
 - 文件夹
 
-  会在文件夹中根据 resolve.mainFiles 配置选项中指定的文件顺序查找文件
+  会在文件夹中根据 `resolve.mainFiles` 配置选项中指定的文件顺序查找文件
 
-  resolve.mainFiles 的默认值是 `['index']`
+  `resolve.mainFiles` 的默认值是 `['index']`
 
-  拼接 index 以后再根据 resolve.extensions 来解析扩展名
+  拼接 index 以后再根据 `resolve.extensions` 来解析扩展名
 
-### alias
+**路径别名**
 
-resolve.alias 可以给某些常见的路径起一个别名
+`resolve.alias` 可以给某些常见的路径起一个别名
 
 ```js
 resolve: {
@@ -420,10 +433,15 @@ resolve: {
 
 ## plugin
 
->Loader 和 Plugin 的差异
->
->- Loader 是用于特定的模块类型进行转换
->- Plugin 可以用于执行更加广泛的任务，比如打包优化、资源管理、环境变量注入等
+### 认识插件
+
+> While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks like bundle optimization, asset management and injection of environment variables.
+
+Loader 和 Plugin 的差异
+
+- Loader 是用于转换特定类型的模块
+
+- Plugin 可以用于执行更加广泛的任务，比如打包优化、资源管理和环境变量注入等
 
 ### CleanWebpackPlugin
 
@@ -457,6 +475,9 @@ npm install html-webpack-plugin -D
 
 webpack 配置
 
+- template：指定我们要使用的模块所在的路径
+- title：`<%= htmlWebpackPlugin.options.title %>`
+
 ```js
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 
@@ -472,15 +493,17 @@ module.exports = {
 
 打包的 HTML 文件默认情况下是根据 ejs 的一个模板来生成的
 
-template 可以自定义模板
+我们可以自定义 HTML 模板并进行一些修改
 
-模板中可以使用 `<%= 变量 %>` 填充数据
+自定义模板中可以使用语法 `<%= 变量 %>` 填充数据，这是 EJS 模块填充数据的方式
 
 比如 `<%= htmlWebpackPlugin.options.title %>`  `<%= BASE_URL %>` 
 
 ### DefinePlugin
 
 允许在编译时创建配置的全局常量，是一个webpack内置的插件
+
+DefinePlugin 的配置
 
 ```js
 const { DefinePlugin } = require("webpack")
@@ -534,7 +557,7 @@ webpack-dev-server 在编译之后不会写入到任何输出文件，而是将 
 
 HMR 的全称是Hot Module Replacement，模块热替换
 
-指在应用程序运行过程中，替换、添加、删除模块，而无需重新刷新整个页面
+HMR 是指在应用程序运行过程中，替换、添加、删除模块，而无需重新刷新整个页面
 
 HMR 通过如下方式提高开发速度
 
@@ -542,7 +565,7 @@ HMR 通过如下方式提高开发速度
 - 只更新需要变化的内容，节省开发的时间
 - 修改了 css、js 源代码，会立即在浏览器更新
 
-默认情况下，webpack-dev-server 已经支持并开启HMR
+默认情况下，webpack-dev-server 已经支持并开启 HMR
 
 但是需要手动指定进行 HMR 的模块
 
@@ -553,6 +576,16 @@ if (module.hot) {
     })
 }
 ```
+
+### proxy
+
+proxy 是我们开发中非常常用的一个配置选项
+
+主要用于设置代理来解决跨域访问的问题
+
+- 比如我们的一个api请求是 http://localhost:8888，但是本地启动服务器的域名是 http://localhost:8000，这个时候发送网
+  络请求就会出现跨域的问题
+- 那么我们可以将请求先发送到一个代理服务器，代理服务器和API服务器没有跨域的问题，就可以解决我们的跨域问题了
 
 ## webpack-merge
 

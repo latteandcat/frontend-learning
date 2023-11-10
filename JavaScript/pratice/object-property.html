@@ -20,7 +20,7 @@
     /*
       Object.keys 不包含 symbol 属性 和 enumerable 为 false 的属性
       Reflect.ownKeys 包含 symbol 属性 和 enumerable 为 false 的属性
-      Object.getOwnPropertyNames 获取到所有非 symbol 属性，包含 enumerable 为 false 的属性
+      Object.getOwnPropertyNames 获取到的是所有非 symbol 属性（包含 enumerable 为 false 的属性）
       Object.getOwnPropertySymbols 获取到的只有 symbol 属性
     */
     console.log(Object.keys(info));
@@ -32,6 +32,7 @@
     console.log(s in info); // true
     console.log("age" in info); // true
     console.log("school" in info); // true
+    
     // for in 遍历不包含 symbol 属性 和 enumerable 为 false 的属性
     for (const key in info) {
       console.log(key);
@@ -51,7 +52,7 @@
 
     let nullInfo = Object.create(null)
     nullInfo.name = "me"
-    // console.log(nullInfo.hasOwnProperty("name")) // 报错
+    console.log(nullInfo.hasOwnProperty("name")) // 报错
     console.log(Object.hasOwn(nullInfo, "name")) // true
   </script>
 </body>

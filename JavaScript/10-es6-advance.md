@@ -2,7 +2,7 @@
 
 ## 监听对象的操作
 
-监听一个对象中属性被设置或获取的过程
+通过存取属性描述符监听一个对象中属性被设置或获取的过程
 
 ```js
 Object.keys(obj).forEach(key => {
@@ -51,11 +51,11 @@ const objProxy = new Proxy(obj, {
 // 后续所有对 obj 的操作都转化为对 objProxy 的操作
 ```
 
-## Proxy 捕获器
+## Proxy 捕捉器
 
 如果我们想要侦听某些具体的操作，那么就可以在 handler 中添加对应的捕捉器（Trap）
 
-set 和 get 捕获器对应的是函数类型
+set 和 get 捕捉器对应的是函数类型
 
 set 函数有四个参数
 
@@ -91,19 +91,66 @@ const objProxy = new Proxy(obj, {
 
 ## 所有捕获器
 
-- `handler.getPrototypeOf()`：Object.getPrototypeOf 方法的捕捉器
-- `handler.setPrototypeOf()`：Object.setPrototypeOf 方法的捕捉器
-- `handler.isExtensible()`：Object.isExtensible 方法的捕捉器（判断是否可以新增属性）
-- `handler.preventExtensions()`：Object.preventExtensions 方法的捕捉器
-- `handler.getOwnPropertyDescriptor()`：Object.getOwnPropertyDescriptor 方法的捕捉器
-- `handler.defineProperty()`：Object.defineProperty 方法的捕捉器
-- `handler.ownKeys()`：Object.getOwnPropertyNames 方法和 Object.getOwnPropertySymbols 方法的捕捉器
-- `handler.has()`：in 操作符的捕捉器
-- `handler.get()`：属性读取操作的捕捉器
-- `handler.set()`：属性设置操作的捕捉器
-- `handler.deleteProperty()`：delete 操作符的捕捉器
-- `handler.apply()`：函数调用操作的捕捉器
-- `handler.construct()`：new 操作符的捕捉器
+- `handler.getPrototypeOf(target)`：用于捕捉
+  - Object.getPrototypeOf(proxy)
+  - Reflect.getPrototypeOf(proxy)
+  - proxy.__ proto __
+  - Object.prototype.isPrototypeOf(proxy)
+  - proxy instanceof Array
+
+- `handler.setPrototypeOf(target, prototype)`：用于捕捉
+  - Object.setPrototypeOf()
+  - Reflect.setPrototypeOf()
+
+- `handler.isExtensible(target)`：用于捕捉
+  - Object.isExtensible()
+  - Reflect.isExtensible()
+
+- `handler.preventExtensions(target)`：用于捕捉
+  - Object.preventExtensions()
+  - Reflect.preventExtensions()
+
+- `handler.getOwnPropertyDescriptor(target, prop)`：用于捕捉
+  - Object.getOwnPropertyDescriptor()
+  - Reflect.getOwnPropertyDescriptor()
+
+- `handler.defineProperty(target, property, descriptor)`：用于捕捉
+  - Object.defineProperty()
+  - Reflect.defineProperty()
+
+- `handler.ownKeys(target)`：用于捕捉
+  - Object.getOwnPropertyNames()
+  - Object.getOwnPropertySymbols()
+  - Object.keys()
+  - Reflect.ownKeys()
+- `handler.has(target, prop)`：用于捕捉
+  - 属性查询 foo in proxy
+  - 继承属性查询 foo in Object.create(proxy)
+  - Reflect.has()
+
+- `handler.get(target, property, receiver)`：用于捕捉
+  - 访问属性 proxy[foo]、proxy.bar
+  - 访问原型链上的属性 Object.create(proxy)[foo]
+  - Reflect.get()
+
+- `handler.set(target, property, value, receiver)`：用于捕捉
+  - 指定属性  proxy[foo] = bar、proxy.foo = bar
+  - 指定继承者的属性值 Object.create(proxy)[foo] = bar
+  - Reflect.set()
+
+- `handler.deleteProperty(target, property)`：用于捕捉
+  - delete 操作符
+  - Reflect.deleteProperty
+
+- `handler.apply(target, thisArg, argumentsList)`：用于捕捉
+  - proxy(...args)
+  - apply()、call()
+  - Reflect.apply()
+
+- `handler.construct(target, argumentsList, newTarget)`：用于捕捉
+  - new proxy(...args)
+  - Reflect.construct()
+
 
 ## 函数对象捕获器
 
@@ -130,11 +177,11 @@ const fooProxy = new Proxy(foo, {
 
 Reflect 也是 ES6 新增的一个 API，它是一个对象，字面的意思是反射
 
-Reflect 提供了很多操作 JavaScript 对象的方法，有点像 Object 中操作对象的方法
+Reflect 提供了很多操作 JavaScript 对象的方法
 
 >**Reflect 出现的历史原因**
 >
->早期的 ECMA 规范中没有考虑到这种对 **对象本身** 的操作如何设计会更加规范，所以将这些 API 放到了 Object 上面
+>早期的 ECMA 规范中没有考虑到对对象本身的操作如何设计会更加规范，所以将这些 API 放到了 Object 上面
 >
 >但是 Object 作为一个构造函数，这些操作实际上放到它身上并不合适
 >
@@ -165,7 +212,7 @@ Reflect 提供了很多操作 JavaScript 对象的方法，有点像 Object 中�
 
 - `Reflect.preventExtensions(target)`
 
-  类似于 Object.preventExtensions()，返回一个Boolean
+  类似于 Object.preventExtensions()，返回一个 Boolean
 
 - `Reflect.getOwnPropertyDescriptor(target, propertyKey)`
 
@@ -236,16 +283,16 @@ const objProxy = new Proxy(obj, {
 
 ## Receiver的作用
 
-如果源对象有 set 和 get 的访问器方法，那么可以通过 receiver 来改变里面的 this
+如果源对象有 set 和 get 的访问器方法，那么可以通过 receiver 来指定访问器方法中的 this
 
 传入 receiver 就可以监听到访问器方法内部的对象操作
 
 ```js
 const obj = {
-  _name = "me",
+  _name: "me",
   set name(value) {
     this._name = value
-  }
+  },
   get name() {
     return this._name
   }
@@ -262,7 +309,11 @@ const objProxy = new Proxy(obj, {
   }
 })
 
-obj.name = "you"
+objProxy.name = "you"
+
+// 打印两次 set property
+// 第1次是执行 set name()
+// 第2次是执行 this._name = value
 ```
 
 ## Reflect 的 construct
@@ -297,6 +348,7 @@ console.log(stu.__proto__ === Student.prototype) // true
 
 ```js
 function requestData(url, successCallback, failureCallback) {
+  // 模拟网络请求
   setTimeout(() => {
     if (url === "http://hello.com") {
       successCallback("一组成功数据")
@@ -307,17 +359,19 @@ function requestData(url, successCallback, failureCallback) {
 }
 ```
 
-ES5 之前处理异步任务都是这样通过回调函数封装异步处理代码，这种方案存在一些弊端
+ES5 之前处理异步任务都是通过回调函数封装异步处理代码
+
+这种方案存在一些弊端
 
 1. 需要自己来设计回调函数、回调函数的名称、回调函数的使用
-2. 对于不同的人、不同的框架设计出来的方案是不同的，那么我们必须耐心去看别人的源码或者文档，以便可以理解它
-   这个函数到底怎么用
+2. 对于不同的人、不同的框架设计出来的方案是不同的，存在一定的沟通成本
 
 ## Promise 代码结构
 
 Promise 是一个处理异步任务的类
 
-- 在通过 new 创建 Promise 对象时，我们需要传入一个回调函数，我们称之为 executor
+在通过 new 创建 Promise 对象时，我们需要传入一个回调函数，我们称之为 executor
+
 - executor 函数会被立即执行，并且传入另外两个回调函数 resolve 和 reject
 - 当调用 resolve 回调函数时，会执行 Promise 对象的 then 方法传入的回调函数，Promise 状态变为 fullfilled
 - 当调用 reject 回调函数时，会执行 Promise 对象的 catch 方法传入的回调函数，Promise 状态变为 rejected
@@ -335,30 +389,44 @@ promise.then(res => {
 })
 ```
 
-Promise 在使用过程中分为三个状态
+**Promise 在使用过程中分为三个状态**
 
-- 待定 pending： 初始状态，既没有被兑现，也没有被拒绝
+- ==待定 pending==： 初始状态，既没有被兑现，也没有被拒绝
 
   当执行 executor 中的代码时，处于该状态
 
-- 已兑现 fulfilled：操作成功完成
+- ==已兑现 fulfilled==：操作成功完成
 
   执行了 resolve 时，处于该状态，Promise 已经被兑现
 
-- 已拒绝 rejected：操作失败
+- ==已拒绝 rejected==：操作失败
 
   执行了 reject 时，处于该状态，Promise 已经被拒绝
 
-一旦状态被确定下来，Promise 的状态会被锁死，该 Promise 的状态是不可更改的
+一旦状态被确定下来，Promise 的状态会被锁死，该 Promise 的状态是**不可更改**的
 
 - 在调用 resolve 的时候，如果 resolve 传入的值本身不是一个 Promise，那么会将该 Promise 的状态变成 fulfilled
 - 之后再次调用 resolve 或者 reject 已经不会有任何响应了，因为无法改变 Promise 状态
+
+**resolve 传入不同值的区别**
+
+1. 传入一个普通的值或者对象，这个值会作为 then 回调的参数
+
+   该 Promise 的状态变成 fulfilled
+
+2. 传入另外一个 Promise，那么这个新的 Promise 会决定原 Promise 的状态
+
+3. 传入一个有实现 then 方法的对象（thenable object），会执行该对象的 then 方法
+
+   并且根据执行结果决定 Promise 的状态
+
+   实现的 then 方法也将 resolve 和 reject 作为参数
 
 使用 Promise 重构异步处理代码
 
 ```js
 function requestData(url) {
-  retrun new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (url === "http://hello.com") {
         resolve("一组成功数据")
@@ -375,20 +443,6 @@ requestData("http://hello.com").then(res => {
   console.log(err)
 })
 ```
-
-## resolve 的传入值
-
-1. 传入一个普通的值或者对象，这个值会作为 then 回调的参数
-
-   该 Promise 的状态变成 fulfilled
-
-2. 传入另外一个 Promise，那么这个新的 Promise 会决定原 Promise 的状态
-
-3. 传入一个有实现 then 方法的对象（thenable object），会执行该对象的 then 方法
-
-   并且根据执行结果决定 Promise 的状态
-
-   实现的 then 方法也将 resolve 和 reject 作为参数
 
 ## then 方法
 
@@ -436,11 +490,11 @@ promise.then(res => {
 
 **then 方法的返回值**
 
-then 方法本身是有返回值的，它的返回值是一个 Promise，所以我们可以在 then 后面进行链式调用
+then 方法本身是有返回值的，它的返回值是一个 Promise，所以可以在 then 后面进行链式调用
 
-then 返回的 Promise 处于什么状态
+then 返回的 Promise 状态
 
-- 当 then 方法中的回调函数处于执行状态的时候，返回的 Promise 处于 pending 状态
+- 当 then 方法中的回调函数在执行的时候，返回的 Promise 处于 pending 状态
 - 当 then 方法中的回调函数返回一个结果时
   - 返回一个普通的值，默认返回 undefined，那么它处于 fulfilled 状态，并且会将结果作为 resolve 的参数
   - 返回一个 Promise，新的 Promise 会决定原 Promise 的状态
@@ -452,9 +506,11 @@ then 返回的 Promise 处于什么状态
 
 ## catch 方法
 
-**catch 方法可以被多次调用**
-
 catch 方法也是 Promise 对象上的一个方法（实例方法）
+
+它也是放在 Promise 的原型上的 Promise.prototype.then
+
+**catch 方法可以被多次调用**
 
 - 每次调用我们都可以传入对应的 reject 回调
 - 当 Promise 的状态变成 rejected 的时候，这些回调函数都会被执行
@@ -485,8 +541,9 @@ promise.then(res => {
 
 ## finally 方法
 
-finally 是在ES9（ES2018）中新增的一个特性：表示无论 Promise 对象无论变成 fulfilled 还是 rejected 状态，最终都会被执行
-的代码
+finally 是在 ES9 中新增的一个特性：
+
+表示无论 Promise 对象无论变成 fulfilled 还是 rejected 状态，最终都会被执行的代码
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -522,7 +579,9 @@ resolve 参数的形态
 
 ## reject 方法
 
-reject 类似于 resolve 方法，只是会将 Promise 对象的状态设置为 reject 状态
+reject 类似于 resolve 方法
+
+只是会将 Promise 对象的状态设置为 reject 状态
 
 Promise.reject 的用法相当于 new Promise，并且执行 reject 操作
 
@@ -532,16 +591,29 @@ Promise.reject("why")
 new Promise((resolve, reject) => reject ("why"))
 ```
 
-reject 传入的参数无论是什么形态，都会直接作为 rejected 状态的参数传递到 catch 的回调函数中
+reject 传入的参数无论是什么形态
+
+都会直接作为 rejected 状态的参数传递到 catch 的回调函数中
 
 ## all 方法
 
-Promise.all 也是类方法的一个，作用是将多个 Promise 包裹在一起形成一个新的 Promise
+Promise.all 也是 Promise 的一个类方法
+
+作用是将多个 Promise 包裹在一起形成一个新的 Promise
 
 新的 Promise 状态由包裹的所有 Promise 共同决定
 
-- 当所有的 Promise 状态变成 fulfilled 状态时，新的 Promise 状态为 fulfilled，并且会将所有 Promise 的返回值组成一个数组
-- 当有一个 Promise 状态为 reject 时，新的 Promise 状态为 reject，并且会将第一个 reject 的返回值作为参数
+- 当所有的 Promise 状态变成 fulfilled 状态时
+
+  新的 Promise 状态为 fulfilled
+
+  并且会将所有 Promise 的返回值组成一个数组
+
+- 当有一个 Promise 状态为 reject 时
+
+  新的 Promise 状态为 reject
+
+  并且会将第一个 reject 的返回值作为参数
 
 ```js
 const p1 = new Promise((resolve, reject) => {
@@ -567,18 +639,24 @@ Promise.all([p1, p2, p3]).then(res => {
 
 ## allSettled 方法
 
-all 方法有一个缺陷：当有其中一个 Promise 变成 reject 状态时，新 Promise 就会立即变成对应的 reject 状态
+all 方法有一个缺陷：
+
+当有其中一个 Promise 变成 reject 状态时，新 Promise 就会立即变成对应的 reject 状态
 
 对于 fulfilled 状态和 pending 状态的 Promise 获取不到对应的结果
 
 ES11 中新增了新的 API：Promise.allSettled
 
-- 该方法会在所有的 Promise 都有结果（settled），无论是 fulfilled，还是 rejected 时，才会有最终的状态
+- 该方法会在所有的 Promise 都有结果（settled）
 
-- 并且这个 Promise 的结果一定是 fulfilled
+  无论是 fulfilled，还是 rejected 时，才会有最终的状态
 
-- allSettled 的结果是一个对象数组，数组中存放着每一个 Promise 的结果，每个结果对应一个对象
+  并且这个 Promise 的结果一定是 fulfilled
 
+- allSettled 的结果是一个对象数组
+
+  数组中存放着每一个 Promise 的结果，每个结果对应一个对象
+  
   这个对象中包含 status 状态以及对应的 value 值
 
 ```js
@@ -591,7 +669,9 @@ Promise.allSettled([p1, p2, p3]).then(res => {
 
 ## race 方法
 
-如果有一个 Promise 有了结果，我们就希望决定最终 Promise 的状态，那么可以使用 race 方法
+如果有一个 Promise 有了结果
+
+我们就希望决定最终 Promise 的状态，那么可以使用 race 方法
 
 ```js
 Promise.race([p1, p2, p3]).then(res => {
@@ -601,7 +681,9 @@ Promise.race([p1, p2, p3]).then(res => {
 })
 ```
 
-race 会等到第一个结果决定最终状态，但是这个结果可能是 fulfilled 也可能是 rejected
+race 会等到第一个结果决定最终状态
+
+但是这个结果可能是 fulfilled 也可能是 rejected
 
 ## any 方法
 
@@ -609,9 +691,9 @@ any 方法是 ES12 新增的方法，和 race 方法类似
 
 any 方法会等到一个 fulfilled 状态，才会决定新 Promise 的状态
 
-如果所有的 Promise 都是 reject 的，那么也会等到所有的 Promise 都变成 rejected 状态
+如果所有的 Promise 都是 rejected 的，那么也会等到所有的 Promise 都变成 rejected 状态
 
-所有的 Promise 都是 reject 的情况下，会报一个 AggregateError 的错误
+所有的 Promise 都是 rejected 的情况下，会报一个 AggregateError 的错误
 
 ```js
 Promise.any([p1, p2, p3]).then(res => {
@@ -633,7 +715,7 @@ Promise.any([p1, p2, p3]).then(res => {
 
 **JS 中的迭代器定义**
 
-JS 中的迭代器是一个符合**迭代器协议**的具体对象
+JS 中的迭代器是一个符合迭代器协议（包含特定的 next 方法）的具体对象
 
 迭代器协议的作用是定义产生一系列值的标准方式
 
@@ -694,7 +776,7 @@ const friendsIterator = createArrayIterator(friends)
 
 - 可迭代对象的要求是必须实现 `@@iterator` 方法，这个方法可以使用 `Symbol.iterator` 访问
 
-- `@@iterator` 方法必须返回一个符合 iterable protocol 迭代器协议的迭代器
+- `@@iterator` 方法必须返回一个符合迭代器协议（iterable protocol）的迭代器
 
 - 可迭代对象可以进行某些迭代操作，比如 `for of` 就会调用它的 `@@iterator` 方法
 
@@ -720,7 +802,7 @@ const info = {
 
 **原生迭代器对象**
 
-事实上我们平时创建的很多原生对象已经实现了可迭代协议，会生成一个迭代器对象
+事实上我们平时创建的很多原生对象就是可迭代对象
 
 - String
 - Map
@@ -731,6 +813,7 @@ const info = {
 
 ```js
 const names = ["a", "b", "c"]
+// 调用可迭代函数获取到迭代器
 const iterator = names[Symbol.iterator]()
 
 console.log(iterator.next())
@@ -850,7 +933,9 @@ for (const s of classRoom) {
    生成器事实上是一种特殊的迭代器，也是可迭代对象
 
 
-## 生成器函数的执行
+## next 方法
+
+**next() 的返回值**
 
 通过 next() 可以执行生成器函数中的代码，但遇到 yield 会中断执行
 
@@ -876,6 +961,8 @@ function* foo() {
 
 const fooGenerator = foo()
 
+fooGenerator[Symbol.iterator]() === fooGenerator // true
+
 // 执行到第一个 yield 并且暂停
 console.log(fooGenerator.next())
 
@@ -890,7 +977,7 @@ console.log(fooGenerator.next())
 
 ```
 
-## 生成器传递参数
+**next() 的参数**
 
 在调用 next 方法的时候，可以给它传递参数
 
@@ -923,7 +1010,7 @@ const res4 = generator.next()
 console.log(res4); // {value: undefined, done: true}
 ```
 
-## 生成器的提前结束
+## return 方法
 
 还有一个可以给生成器函数传递参数的方法是通过 return 方法
 
@@ -931,10 +1018,10 @@ console.log(res4); // {value: undefined, done: true}
 
 ```js
 function* bar() {
-  const value1 = yield "why"
-  console.log("value1:", value1)
-  const value2 = yield value1 
-  const value3 = yield value2
+  const value1 = yield "111"
+  console.log("value1:", value1) // 不会执行
+  const value2 = yield "222" 
+  const value3 = yield "333"
 }
 
 const barGenerator = bar()
@@ -943,27 +1030,27 @@ console.log(barGenerator.return(123)) // { value: 123, done: true }
 console.log(barGenerator.next(123)) // { value: undefined, done: true }
 ```
 
-## 生成器抛出异常
+## throw 方法
 
 `throw()` 方法可以用于向生成器抛出异常，并恢复生成器的执行
 
 并会返回带有 `done` 及 `value` 两个属性的对象
 
-抛出异常后我们可以在生成器函数中通过 `try...catch` 块捕获异常
+抛出异常后我们可以在生成器函数中通过 `try...catch` 捕获异常
 
 捕获异常以后在 catch 语句中不能继续 yield 新的值了
 
 但是可以在 catch 语句外使用 yield 继续中断函数的执行
 
 ```js
-function* foo3() {
+function* foo() {
   console.log("函数开始执行");
 
   try {
     yield 111;
-    console.log("无异常发生"); // 不会打印
+    console.log("无异常发生");
   } catch (error) {
-    console.log("内部捕获异常：", error);
+    console.log("捕获异常：", error);
   }
 
   console.log("函数执行中");
@@ -973,10 +1060,17 @@ function* foo3() {
   console.log("函数结束执行");
 }
 
-const generator3 = foo3();
-console.log(generator3.next()); // {value: 111, done: false}
-console.log(generator3.throw(new Error("something went wrong"))) // {value: 222, done: false}
-console.log(generator3.next()); // {value: undefined, done: true}
+const generator1 = foo();
+generator1.next() // {value: 111, done: false}
+generator1.next() // {value: 222, done: false}
+generator1.next() // {value: undefined, done: true}
+// 函数开始执行 -> 无异常发生, 函数执行中 -> 函数结束执行
+
+const generator2 = foo();
+generator2.next() // {value: 111, done: false}
+generator2.throw(new Error("something went wrong")) // {value: 222, done: false}
+generator2.next() // {value: undefined, done: true}
+// 函数开始执行 -> 捕获异常，函数执行中 -> 函数结束执行
 ```
 
 ## 生成器的应用
@@ -986,6 +1080,7 @@ console.log(generator3.next()); // {value: undefined, done: true}
 ```js
 const friends = ["a", "b", "c"]
 
+// 迭代器
 function createArrayIterator(arr) {
   let index = 0
   return {
@@ -1001,20 +1096,20 @@ function createArrayIterator(arr) {
 
 const friendsIterator = createArrayIterator(friends)
 
-// 生成器的写法
+// 生成器替代迭代器
 function* createArrayIterator(arr) {
   for (let i = 0; i < arr.length; i++) {
     yield arr[i]
   }
 }
 
-// 语法糖的写法
+// yield 的语法糖写法
 function* createArrayIterator(arr) {
   yield* arr
 }
 ```
 
-`yield*` 可以依次迭代一个可迭代对象，每次迭代其中的一个值
+`yield` 的语法糖 `yield*` 可以依次迭代一个可迭代对象，每次迭代其中的一个值
 
 2. 自定义可迭代类的代码优化
 
@@ -1077,7 +1172,7 @@ function getData(url) {
   }).then(res4 => {
     console.log(res4);
   }).catch(err => {
-
+		console.log(err);
   })
 }
 
@@ -1178,70 +1273,30 @@ class Person {
 
 异步函数的内部代码执行过程和普通的函数是一致的，默认情况下也是会被同步执行
 
-但异步函数有返回值时，和普通函数会有区别
+异步函数有返回值时，和普通函数会有区别
 
 1. 返回普通值，返回值会包裹到 Promise.resolve() 中返回
 2. 返回 Promise，状态由返回的 Promise 决定
 3. 返回 thenable 对象，由对象的 then 方法决定
 
-没有返回值时相当于返回 Promise.resolve(undefined)
+没有返回值时默认返回 undefined 相当于 Promise.resolve(undefined)
 
 异步函数中抛出异常时，这个异常不会立即被浏览器处理
 
-而是作为 Promise 的 reject 传递给 catch 回调函数处理 `Promise.reject(error)`
+而是作为 Promise 的 reject 传递给 catch 回调函数处理 相当于 Promise.reject(error)
 
 ## await 关键字
 
 异步函数中可以使用 await 关键字
 
-await 关键字通常会跟上一个返回 Promise 的表达式
+await 关键字后面通常会跟上一个返回 Promise 的表达式
 
-await 会等到 Promise 的状态变成 fulfilled 状态再继续执行异步函数
+await 会等到后面 Promise 的状态变成 fulfilled 状态再继续执行异步函数
 
 - await 后面的 Promise 接受了一个普通值，那么会直接返回这个值
+
 - await 后面是一个 thenable 对象，那么会根据对象的 then 方法的调用结果决定后续的值
+
 - await 后面的 Promise 是 rejected 状态，那么会将这个 reject 结果直接作为异步函数返回的 Promise 的 reject 结果
 
 由于异步函数本身就返回 Promise 所以 await 后面也可以跟上异步函数结合使用
-
-# 事件循环
-
-## JS 单线程
-
-JS 是单线程的（可以开启 workers）
-
-- 多数浏览器都是多进程的，每打开一个页面就会开启一个新的进程
-- 每个页面的进程有很多线程，其中有一个线程是用于执行 JS 代码的线程
-
-JS 的代码执行是在一个单独的线程中执行的
-
-- 这就意味着 JS 在同一个时刻，只能做一件事
-
-- 如果这件事十分耗时，当前线程就会被阻塞
-
-- 所以一些耗时的操作，比如网络请求或定时器，会交给浏览器的其他线程执行
-  
-  只需要在特定的时候执行对应的回调即可
-
-## 浏览器的事件循环
-
-浏览器的事件循环：浏览器的其他线程、事件队列和JS 线程之间的循环
-
-- 浏览器来处理定时器的计时，计时结束后定时器的回调函数会加入事件队列，出队时交给浏览器的 JS 线程执行代码
-- 浏览器来处理 DOM 点击事件的监听，触发点击事件时对应的处理程序会加入事件队列，出队时交给浏览器的 JS 线程执行代码
-
-## 宏任务和微任务
-
-事件循环中并非只维护着一个队列，事实上是有两个队列
-
-- 宏任务队列（macrotask queue）：ajax、setTimeout、setInterval、DOM 监听、UI Rendering 等
-- 微任务队列（microtask queue）：Promise 的 then 回调、 Mutation Observer API、queueMicrotask() 等
-
-两个队列的优先级
-
-1. main script 中的代码优先执行（编写的顶层script代码）
-2. 在执行任何一个宏任务之前（不是队列，是一个宏任务），都会先查看微任务队列中是否有任务需要执行
-   - 也就是宏任务执行之前，必须保证微任务队列是空的
-   - 如果不为空，那么就优先执行微任务队列中的任务（回调）
-
-await 后面的代码也可以看作加入了微任务队列

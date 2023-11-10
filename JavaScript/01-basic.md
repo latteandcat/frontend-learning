@@ -158,7 +158,7 @@ JavaScript 的运行依赖于浏览器的 **JavaScript 引擎**
 
 2. 给变量赋值
 
-   使用 = 号给变量进行赋值
+   使用 `=` 号给变量进行赋值
 
 注意：声明和赋值可以写在一起，也可以分开写
 
@@ -219,7 +219,7 @@ JS 中有**八种基本的数据类型**（7种原始类型和1种复杂类型�
 - Bigint
 - Symbol
 
-**typeof 操作符**
+### typeof
 
 typeof 操作符可以用于确定变量的数据类型
 
@@ -269,11 +269,11 @@ typeof 操作符可以用于确定变量的数据类型
 
 - 一些特殊字符可以通过转义字符的形式放入字符串中
 
-  ![](../images/trans-string.png)
+  <img src="../images/trans-string.png" style="zoom: 67%;" />
 
 - 字符串还有很多操作、方法和属性
-  - +运算符可以拼接字符串
-  - length属性可以获取字符串长度
+  - `+` 运算符可以拼接字符串
+  - length 属性可以获取字符串长度
 
 ### Boolean
 
@@ -290,9 +290,9 @@ typeof 操作符可以用于确定变量的数据类型
 
   1. 最好在声明变量的时候赋值
 
-  2. 不要显示地将一个变量赋值为 undefined
+  2. 不要显式地将一个变量赋值为 undefined
 
-     如果变量刚开始什么都没有，我们可以初始化为 0、空字符串、null等值
+     如果变量刚开始什么都没有，我们可以初始化为 0、空字符串、null 等值
 
 ### Object
 
@@ -324,9 +324,9 @@ typeof 操作符可以用于确定变量的数据类型
 
 ### String
 
-- 隐式转换：一个字符串和其他类型进行+操作
+- 隐式转换：一个字符串和其他类型进行 `+` 操作
 
-  如果+号两边其中一个是字符串，那么另一边会自动转换成字符串类型进行拼接
+  如果 `+` 号两边其中一个是字符串，那么另一边会自动转换成字符串类型进行拼接
 
   `var str = num + ""`
 
@@ -338,7 +338,7 @@ typeof 操作符可以用于确定变量的数据类型
 
 - 隐式转换：在算数运算中，通常会将其他类型转换成数字类型来进行运算
 
-  但+运算z，如果其中一边有字符串，还是会转换成字符串进行拼接
+  但在 `+` 运算中，如果其中一边有字符串，还是会转换成字符串进行拼接
 
 - 显式转换
 
@@ -346,7 +346,7 @@ typeof 操作符可以用于确定变量的数据类型
 
     其他类型使用 `Number()` 函数的规则
 
-    ![](../images/Number().png)
+    <img src="../images/Number().png" style="zoom: 67%;" />
   
   - 调用 `parseInt()` 函数
   - 调用 `parseFloat()` 函数
@@ -357,7 +357,7 @@ typeof 操作符可以用于确定变量的数据类型
 
   - 直观上为空的值转换为 Boolean 类型为 false
 
-    `0, null, undefined, NaN, ""`
+    包含：`0, null, undefined, NaN, ""`
 
   - 其他值都是 true
 
@@ -385,7 +385,7 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 - 算术运算符用在数学表达式中，它的使用方式和数学中也是一样的
 - 算术运算符是对数据进行计算的符号
 
-![](../images/operators.png)
+<img src="../images/operators.png" style="zoom: 67%;" />
 
 ### 赋值运算符
 
@@ -401,7 +401,7 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
   所有算术运算符和位运算符都有简短的“修改并赋值”运算符
 
-  ![](../images/modify-value.png)
+  <img src="../images/modify-value.png" style="zoom:67%;" />
 
 ### 自增和自减
 
@@ -417,7 +417,7 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
 - 自增和自减的位置
 
-  `++/--` 可以放在变量的前面也可以放在变量的后面
+  `++` 和 `--` 可以放在变量的前面也可以放在变量的后面
 
   - 当运算符置于变量后，即为后置形式
 
@@ -446,15 +446,17 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
 比较运算符的返回值是 Boolean 类型的
 
-**`===` 和 `==` 的区别**
+**=== 和 == 的区别**
 
 - `==` 是普通的相等性检查
 
   但它不能区分出 0 和 false，或者空字符串和 false 这类比较
 
-  这是因为在比较不同类型的值时，`==` 两侧的值大部分情况下会先被转换为数字，所以 false 和空字符串在普通相等比较中都等于 0
+  这是因为在比较不同类型的值时，`==` 两侧的值大部分情况下会先被转换为数字
 
-  但 null 不会转换为数字 `null == undefined 为 true`
+  所以 false 和空字符串在普通相等比较中都等于 0
+
+  但 null 不会转换为数字，特殊的是 `null == undefined` 为 true
 
 - `===` 是严格相等运算符
 
@@ -496,7 +498,7 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
     逻辑非的本质：非运算符会将操作数转化为布尔类型，然后返回相反的值
 
-    `!!` 可以用来将某个值转化为布尔类型
+    `!!` 可以用于将某个值转化为布尔类型
 
 - 逻辑运算符可以将多个表达式或者值放到一起获取到一个最终的结果
 
@@ -514,9 +516,8 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
 - 代码块是多行执行代码的集合，通过一个花括号 `{}` 放到一起
 
-- JS 中可以通过流程控制语句执行指定的代码块
+- JS 中可以通过流程控制语句（比如分支语句、循环语句）执行指定的代码块
 
-  比如分支语句、循环语句
 
 分支结构
 
@@ -569,7 +570,7 @@ JS 按照使用场景的不同将运算符分成了很多种类型
 
 ### switch 语句
 
-switch 语句通过判断表达式结果或变量是否等于 case 语句的常量，执行相应的分支体的
+switch 语句通过判断表达式结果或变量是否等于 case 语句的常量，执行相应的分支代码
 
 switch 语句只能做值的相等判断（===），而 if 语句可以做值的范围判断
 
@@ -632,7 +633,7 @@ for 循环是最常用的循环形式
 
 ```js
 for (begin; condition; step) {
-  // 循环代码块
+  codes
 }
 for (let i = 0; i < 3; i++) {
   alert(i)
@@ -643,7 +644,7 @@ for 循环的执行顺序
 
 1. begin：进入循环时执行一次
 2. condition：每次循环迭代之前检查，如果为 false 则停止循环
-3. 循环体：循环条件为真时，重复运行
+3. code：循环条件为真时，重复运行循环体的代码
 4. step：在每次循环体迭代后执行
 
 ### 循环控制
@@ -880,7 +881,9 @@ foo(bar)
 
 **匿名函数**
 
-如果在传入一个函数时，我们没有指定这个函数的名字或者没有通过函数表达式指定函数对应的变量，那么这个函数称之为匿名函数
+如果在传入一个函数时，我们没有指定这个函数的名字或者没有通过函数表达式指定函数对应的变量
+
+那么这个函数称之为匿名函数
 
 ```js
 // 匿名函数的写法
@@ -938,7 +941,7 @@ foo(function() {
 
 箭头函数（arrow function）是 ES6 之后增加的一种编写函数的方法，并且它比函数表达式要更加简洁
 
-- 箭头函数不会绑定this、arguments 和 super 参数
+- 箭头函数不会绑定 this、arguments 和 super 参数
 
 - 箭头函数中没有显式原型，所以不能作为构造函数来使用
 
@@ -972,12 +975,12 @@ foo(function() {
 
 - 案例：箭头函数实现 nums 的所有偶数平方的和
 
-```js
-var nums = [20, 30, 11, 45, 24, 13]
-var result = nums.filter(item => item % 2 === 0)
-                 .map(item => item * item)
-                 .reduce((prev, cur) => prev + cur)
-```
+  ```js
+  var nums = [20, 30, 11, 45, 24, 13]
+  var result = nums.filter(item => item % 2 === 0)
+                   .map(item => item * item)
+                   .reduce((prev, cur) => prev + cur)
+  ```
 
 ## 对象
 
@@ -1045,6 +1048,8 @@ var result = nums.filter(item => item % 2 === 0)
 
 2. for in 遍历
 
+   for in 和 Object.keys() 都不包含 symbol 属性和不可
+
    ```js
    for (var key in info) {
      var value = info[key]
@@ -1067,68 +1072,70 @@ var result = nums.filter(item => item % 2 === 0)
 
 1. 比较两个对象
 
-```js
-var a = 123
-var b = 123
-console.log(a === b) // true
-
-var m = {}
-var n = {}
-console.log(m === n) // false
-```
+   ```js
+   var a = 123
+   var b = 123
+   console.log(a === b) // true
+   
+   var m = {}
+   var n = {}
+   console.log(m === n) // false
+   ```
 
 2. 引用的赋值
 
-```js
-var info = {
-  name: "me",
-  friend: {
-    name: "kobe"
-  }
-}
-
-var friend = info.friend // 这里取出的是 friend 的地址
-friend.name = "james" // 所以修改 friend 以后 info 里的 friend 也会改变
-console.log(info.friend.name) // james
-```
+   ```js
+   var info = {
+     name: "me",
+     friend: {
+       name: "kobe"
+     }
+   }
+   
+   var friend = info.friend // 这里取出的是 friend 的地址
+   friend.name = "james" // 修改 friend 的属性
+   console.log(info.friend.name) // info.friend.name 也会随着改变
+   ```
 
 3. 引用传递和值传递的内存区别
 
    - 将值类型传递给函数参数，函数内部对参数的改变不会影响函数外部的变量
 
+   ```js
+   // 值传递
+   function foo(a) {
+     a = 200
+   }
+   var num = 100
+   foo(num)
+   console.log(num) // 100
+   ```
+   
    - 将引用类型传递给函数参数，函数参数保存的是对象的"引用"，在函数内部修改对象的属性会影响函数外部的变量
-
-```js
-// 值传递
-function foo(a) {
-  a = 200
-}
-var num = 100
-foo(num)
-console.log(num) // 100
-
-// 引用传递1（创建新对象）
-function foo(a) {
-  a = {
-    name: "me"
-  }
-}
-var obj = {
-  name: "you"
-}
-foo(obj)
-console.log(obj.name) // you
-
-// 引用传递2（修改传递对象）
-function foo(a) {
-  a.name = "me"
-}
-var obj = {
-  name: "you"
-}
-foo(obj)
-console.log(obj.name) // me
-```
+   
+   ```js
+   // 引用传递1（创建新对象）
+   function foo(a) {
+     a = {
+       name: "me"
+     }
+   }
+   var obj = {
+     name: "you"
+   }
+   foo(obj)
+   console.log(obj.name) // you
+   
+   // 引用传递2（修改传递对象）
+   function foo(a) {
+     a.name = "me"
+   }
+   var obj = {
+     name: "you"
+   }
+   foo(obj)
+   console.log(obj.name) // me
+   ```
 
 ### this 对象
 
@@ -1163,121 +1170,12 @@ fn() // this 指向 window
 - this 的绑定和调用方式以及调用的位置有关系
 - this 是在运行时被绑定的
 
-**this 的绑定规则**
-
-1. 默认绑定
-
-即独立函数调用，可以理解成函数没有被绑定到某个对象上进行调用
-
-```js
-function foo() {
-  console.log(this) // window
-}
-foo()
-```
-
-严格模式下，独立函数调用时的 this 指向 undefined
-
-2. 隐式绑定
-
-通过某个对象进行调用
-
-```js
-var obj = {
-  name: "me",
-  running: function() {
-    console.log(this)
-    console.log(obj)
-    console.log(this === obj)
-  }
-}
-
-obj.running() // this 指向 obj
-
-var fn = obj.running
-fn() // this 指向 window
-```
-
-隐式绑定的前提条件：调用的对象内部有一个对函数的引用，否则就找不到这个函数
-
-3. 显式绑定
-
-显式绑定就是在调用函数时明确的绑定了 this 指向的对象
-
-- call 和 apply
-
-  call 和 apply 都可以用于显式绑定，只是传入参数的形式不同
-
-  `func.apply(thisArg, [argsArray])`
-
-  `func.call(thisArg, arg1, arg2, ...)`
-
-  ```js
-  function foo(name, age, height) {
-    console.log(this)
-  }
-  
-  foo.apply("apply", ["kobe", 30, 1.98])
-  
-  foo.call("call", "kobe", 30, 1.98)
-  ```
-
-- bind
-
-  bind 方法可以创建一个新的绑定函数，将一个函数总是显式的绑定到一个对象上
-
-  在 bind 被调用时，这个新函数的 this 被指定为 bind 的第一个参数，而其余参数将作为新函数的参数，供调用时使用
-
-  `func.bind(thisArg, arg1, arg2, ...)`
-
-  ```js
-  function foo(name, age, height, address) {
-    console.log(this) // { name: "obj" }
-    console.log(name, age, height, address) // "kobe", 18, 1.98, "洛杉矶"
-  }
-  
-  var obj = { name: "obj" }
-  var bar = foo.bind(obj, "kobe", 18, 1.98)
-  bar("洛杉矶")
-  ```
-
-4. new 绑定
-
-JavaScript 中的函数可以当做一个类的构造函数来使用，也就是使用 new 关键字
-
-构造函数中的 this 会指向构造函数创建的新对象
-
-```js
-function foo() {
-  this.name = "myname"
-  console.log(this)
-}
-new foo()
-```
-
-5. 回调函数中的 this 的绑定
-
-   - 事件处理程序中，this 对象指向当前事件发生的元素 event.target
-
-   - setTimeout 中的 this 指向 window
-
-   - forEach 中的 this 可以通过第二个参数指定 `forEach(callbackfn, thisArg)`
+5. - 
 
 **this 的绑定规则优先级**
 
-1. 默认绑定的优先级最低
+1. 
 
-2. 显式绑定的优先级高于隐式绑定
-
-3. new 绑定的优先级高于显式绑定
-
-4. new 绑定的优先级高于 bind
-
-   - new 绑定和 call、apply 是不允许同时使用的，所以不存在谁的优先级更高
-
-   - new 绑定可以和 bind 一起使用，new 绑定优先级更高
-
-5. bind 的优先级高于 call、apply
 
 **绑定规则之外的特殊情况**
 
@@ -1367,13 +1265,13 @@ new foo()
 
 - 构造函数也是一个普通的函数，但是如果使用 new 关键字调用这个函数的时候，这个函数就是一个构造函数
 
-  > 如果一个函数被 new 关键字调用了，那么它会执行**如下操作**
-  >
-  > 1. 在内存中创建一个新的对象（空对象）
-  > 2. 这个对象内部的 `[[prototype]]` 属性会被赋值为该构造函数的 prototype 属性
-  > 3. 构造函数内部的 this，会指向创建出来的新对象
-  > 4. 执行函数的内部代码（函数体代码）
-  > 5. 如果构造函数没有返回非空对象，则返回创建出来的新对象
+
+- ==如果一个函数作为构造函数被 new 关键字调用了，那么它会执行如下操作==
+  1. 在内存中创建一个新的对象（空对象）
+  2. 这个对象内部的 `[[prototype]]` 属性会被赋值为该构造函数的 prototype 属性
+  3. 构造函数内部的 this，会指向创建出来的新对象
+  4. 执行函数的内部代码（函数体代码）
+  5. 如果构造函数没有返回非空对象，则返回创建出来的新对象
 
 - 通过构造函数创建的对象是有具体的类型的
 
@@ -1401,3 +1299,208 @@ new foo()
 - 作用二：window 对象中包含一些浏览器提供的全局可用的变量、函数或对象
 - 作用三：使用 var 定义的变量会被默认添加到 window 对象上面
 
+## this
+
+函数中默认有一个 this 变量，this 变量大多数情况下会指向一个对象
+
+如果函数被默认调用，this 指向的就是 window 对象
+
+如果函数被某一个对象引用并且调用，this 指向的就是这个对象
+
+this 可以增加对象中方法的复用性，可以比较方便地拿到当前对象的一些属性
+
+```js
+var obj = {
+  name: "me",
+  running: function() {
+    console.log(this)
+    console.log(obj)
+    console.log(this === obj)
+  }
+}
+
+obj.running() // this 指向 obj
+
+var fn = obj.running
+fn() // this 指向 window
+```
+
+### this 的绑定
+
+- 函数在调用时，JavaScript 会默认给 this 绑定一个值
+- this 的绑定和函数定义的位置（编写的位置）没有关系
+- this 的绑定和调用方式以及调用的位置有关系
+- this 是在运行时被绑定的
+
+### 绑定规则
+
+1. 默认绑定：独立函数调用
+
+   可以理解成函数没有被绑定到某个对象上进行调用
+   
+   严格模式下，独立函数调用时的 this 指向 undefined
+   
+   ```js
+   function foo() {
+     console.log(this) // window
+   }
+   foo()
+   ```
+
+2. 隐式绑定：通过某个对象进行调用
+
+   隐式绑定的前提条件：调用的对象内部有一个对函数的引用，否则就找不到这个函数
+
+   ```js
+   var obj = {
+     name: "me",
+     running: function() {
+       console.log(this)
+       console.log(obj)
+       console.log(this === obj)
+     }
+   }
+   
+   obj.running() // this 指向 obj
+   
+   var fn = obj.running
+   fn() // this 指向 window
+   ```
+
+3. 显式绑定：在调用函数时明确的绑定了 this 指向的对象
+
+   - call 和 apply
+
+     call 和 apply 都可以用于显式绑定，只是传入参数的形式不同
+
+     `func.apply(thisArg, [argsArray])`
+
+     `func.call(thisArg, arg1, arg2, ...)`
+
+     ```js
+     function foo(name, age, height) {
+       console.log(this)
+     }
+     
+     foo.apply("apply", ["kobe", 30, 1.98])
+     
+     foo.call("call", "kobe", 30, 1.98)
+     ```
+
+
+   - bind
+
+     bind 方法可以创建一个新的绑定函数，将一个函数总是显式的绑定到一个对象上
+
+     在 bind 被调用时，这个新函数的 this 被指定为 bind 的第一个参数，而其余参数将作为新函数的参数，供调用时使用
+
+     `func.bind(thisArg, arg1, arg2, ...)`
+
+     ```js
+     function foo(name, age, height, address) {
+       console.log(this) // { name: "obj" }
+       console.log(name, age, height, address) // "kobe", 18, 1.98, "洛杉矶"
+     }
+     
+     var obj = { name: "obj" }
+     var bar = foo.bind(obj, "kobe", 18, 1.98)
+     bar("洛杉矶")
+     ```
+
+
+4. new 绑定：构造函数中会自己创建 this 对象
+
+   JavaScript 中的函数可以当做一个类的构造函数来使用，也就是使用 new 关键字
+
+   构造函数中的 this 会指向构造函数创建的新对象
+
+   ```js
+   function foo() {
+     this.name = "myname"
+     console.log(this)
+   }
+   new foo()
+   ```
+
+5. 回调函数中的 this 的绑定
+
+   - 事件处理程序中，this 对象指向当前事件发生的元素 event.target
+
+   - setTimeout 中的 this 指向 window
+
+   - forEach 中的 this 可以通过第二个参数指定 `forEach(callbackfn, thisArg)`
+
+### 规则优先级
+
+1. 默认绑定的优先级最低
+
+2. 显式绑定的优先级高于隐式绑定
+
+3. new 绑定的优先级高于显式绑定
+
+4. new 绑定的优先级高于 bind
+
+   - new 绑定和 call、apply 是不允许同时使用的，所以不存在谁的优先级更高
+
+   - new 绑定可以和 bind 一起使用，new 绑定优先级更高
+
+5. bind 的优先级高于 call、apply
+
+### 特殊情况
+
+1. 如果在显式绑定中传入一个 null 或者 undefined，那么这个显示绑定会被忽略，使用默认绑定规则
+
+2. 创建一个函数的间接引用时，会使用默认绑定规则
+
+   ```js
+   function foo() {
+     console.log(this)
+   }
+   
+   var obj1 = {
+     name: "obj1",
+     foo: foo
+   }
+   var obj2 = {
+     name: "obj2"
+   }
+   obj1.foo(); // this 指向 obj1
+   (obj2.foo = obj1.foo)(); // 相当于 foo() this 指向 window
+   ```
+
+3. 箭头函数中并不绑定 this 对象
+
+   在箭头函数里使用 this 会像局部变量一样向外层作用域查找
+
+   不绑定 this 的应用
+
+   ```js
+   function request(url, callbackFn) {
+     var results = ["kobe", "james", "curry"]
+     callbackFn(results)
+   }
+   
+   var obj = {
+     names: []
+     network: function() {
+       var _this = this
+       request("/names", function(res) {
+         // obj.names = [].concat(res) 第一种做法：不方便修改
+         // this.names = [].concat(res)  第二种做法：不可行 this 指向 window
+         _this.names = [].concat(res) // 第三种做法：使用变量保存外层的 this
+       })
+     }
+   }
+   
+   // 第四种做法：使用箭头函数直接使用外层的 this
+   var obj = {
+     names: []
+     network: function() {
+       request("/names", (res) => {
+         this.names = [].concat(res)
+       })
+     }
+   }
+   
+   obj.network()
+   ```

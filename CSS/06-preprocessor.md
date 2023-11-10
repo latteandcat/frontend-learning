@@ -238,6 +238,19 @@
    }
    ```
 
+   编译后
+
+   ```css
+   .box_border, .box {
+   	border: 5px solid #f00;
+   }
+   
+   .box {
+       width: 100px;
+       background-color: orange;
+   }
+   ```
+
 8. 内置函数
 
    Less 内置了多种函数用于转换颜色、处理字符串、算术运算等

@@ -22,14 +22,17 @@
 3. 通过 EventTarget 中的 `addEventListener` 来监听
 
 ```js
+// 方法 1
 <div id="box1" onclick="alert("box1点击")">box1</div>
 <div id="box2">box2</div>
 <div id="box3">box3</div>
 <script>
+  // 方法 2
   box2 = document.querySelector("#box2")
   box2.onclick = function() {
     alert("box2点击")
   }
+  // 方法 3
   box3 = document.querySelector("#box3")
   box3.addEventListener("click", function() {
     alert("box3点击")
@@ -42,6 +45,7 @@
 - 鼠标事件
   - `click`：当鼠标点击一个元素时（触摸屏设备会在点击时生成）
   - `mouseover / mouseout`：当鼠标指针移入/离开一个元素时
+  - `mouseenter / mouseleave`：当鼠标移动到元素上/移出元素
   - `mousedown / mouseup`：当在元素上按下/释放鼠标按钮时
   - `mousemove`：当鼠标移动时
 - 键盘事件
@@ -122,15 +126,17 @@
 
 在触发 DOM 的某个事件时，会产生一个事件对象 event（由浏览器创建）
 
-这个对象中包含着所有与事件有关的信息，包括导致事件的元素、事件的类型以及其他与特定事件相关的信息
+这个对象中包含着所有与事件有关的信息
+
+包括导致事件的元素、事件的类型以及其他与特定事件相关的信息
 
 event 对象会作为参数传入事件对应的事件处理程序（event handler）
 
 ### 常见属性
 
 - `type`：事件的类
-- `target`：当前事件发生的元素
-- `currentTarget`：当前处理事件的元素
+- `target`：触发事件的元素
+- `currentTarget`：绑定事件的元素
 - `eventPhase`：事件所处的阶段
 - `offsetX / offsetY`：事件发生在元素内的位置
 - `clientX / clientY`：事件发生在客户端内的位置
@@ -234,10 +240,12 @@ listEl.addEventListener("click", function() {
 
   - 不支持冒泡
 
-  - 进入子元素时依然属于在该元素内
+  - 进入元素的子元素时
+
+    依然属于在该元素内
 
     不会触发父元素的 mouseleave
-
+    
     会触发子元素的 mouseenter
 
 - `mouseover / mouseout`
@@ -246,13 +254,13 @@ listEl.addEventListener("click", function() {
 
   - 进入元素的子元素时
 
-    先调用父元素的 mouseout
+    先触发父元素的 mouseout
 
-    再调用子元素的 mouseover
+    再触发子元素的 mouseover
 
     因为支持冒泡所以 mouseover 会传递到父元素中
 
-    会再次调用父元素的 mouseover
+    会再次触发父元素的 mouseover
 
   - 在事件委托中主要使用 `mouseover / mouseout`
 
@@ -313,6 +321,52 @@ listEl.addEventListener("click", function() {
 - `resize` 事件：监听文档视图（窗口大小）的变化
 
 - `ontransitionend`：监听 transition 动画的结束
+
+# JavaScript 事件循环
+
+## 单线程
+
+JS 是单线程的（可以开启 workers）
+
+- 多数浏览器都是多进程的，每打开一个页面就会开启一个新的进程
+- 每个页面的进程有很多线程，其中有一个线程是用于执行 JS 代码的线程
+
+JS 的代码执行是在一个单独的线程中执行的
+
+- 这就意味着 JS 在同一个时刻，只能做一件事
+
+- 如果这件事十分耗时，当前线程就会被阻塞
+
+- 所以一些耗时的操作（比如网络请求或定时器等操作）会交给浏览器的其他线程执行
+
+  只需要在特定的时候执行对应的回调即可
+
+## 事件循环
+
+浏览器的事件循环：浏览器的其他线程、事件队列和 JS 线程之间的循环
+
+- 浏览器来处理定时器的计时，计时结束后定时器的回调函数会加入事件队列
+
+  出队时交给浏览器的 JS 线程执行代码
+
+- 浏览器来处理 DOM 点击事件的监听，触发点击事件时对应的处理程序会加入事件队列
+
+  出队时交给浏览器的 JS 线程执行代码
+
+## 事件队列
+
+事件循环中维护了两个事件队列
+
+- 宏任务队列（macrotask queue）：ajax、setTimeout、setInterval、DOM 监听、UI Rendering 等
+- 微任务队列（microtask queue）：Promise 的 then 回调、 Mutation Observer API、queueMicrotask() 等
+
+事件循环对于两个队列的优先级
+
+1. main script 中的代码优先执行（编写的顶层 script 代码）
+2. 在执行任何一个宏任务之前（不是队列，是一个宏任务），都会先查看微任务队列中是否有任务需要执行
+   - 宏任务执行之前，必须保证微任务队列是空的
+   - 如果不为空，那么就优先执行微任务队列中的任务（回调）
+   - await 后面的代码也可以看作加入了微任务队列
 
 # 防抖和节流
 

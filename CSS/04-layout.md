@@ -25,28 +25,44 @@
 
 - static：静态定位（默认值）
 
-以下四个值可以让元素变为定位元素（positioned element）
+以下四个值可以让元素变为==定位元素（positioned element）==
 
 - relative：相对定位
 - absolute：绝对定位
 - fixed：固定定位
 - sticky：粘性定位
 
-position 的不同值之间的比较
+==position 的不同值之间的比较==
 
-![](../images/position.png)
+<img src="../images/position.png" style="zoom:80%;" />
 
 ### 相对定位
 
 `position: relative;`
 
-- 元素按照 **normal flow** 布局
+- 元素按照 normal flow 布局
 
 - 并可以通过 left、right、top、bottom 进行定位
 
 - 定位的**参照对象**是**元素自身原来在标准流中的位置**
 
 - 应用场景：在不影响其他元素的前提下，对当前元素位置进行微调
+
+### 绝对定位
+
+`position: absolute;`
+
+- 元素脱离 normal flow 布局
+
+- 并可以通过 left、right、top、bottom 进行定位
+
+- 定位的**参照对象**是**最邻近的定位祖先元素**
+
+- 如果找不到这样的祖先元素，参照对象就是 viewport
+
+> 子绝父相：
+>
+> 在大多数情况下，子元素的绝对定位都是相对于父元素进行定位，如果希望子元素相对于父元素进行定位，又不希望父元素脱离标准流，常常通过将父元素设置为相对定位子元素设置为绝对定位来实现
 
 ### 固定定位
 
@@ -60,27 +76,11 @@ position 的不同值之间的比较
 
 - 应用场景：当画布滚动时，当前元素固定不动
 
-### 绝对定位
-
-`position: absolute;`
-
-- 元素脱离 normal flow 布局
-
-- 并可以通过 left、right、top、bottom 进行定位
-
-- 定位的参照对象是**最邻近的定位祖先元素**
-
-- 如果找不到这样的祖先元素，参照对象就是 viewport
-
-> 子绝父相：
->
-> 在大多数情况下，子元素的绝对定位都是相对于父元素进行定位，如果希望子元素相对于父元素进行定位，又不希望父元素脱离标准流，常常通过将父元素设置为相对定位子元素设置为绝对定位来实现
-
 ### 绝对定位元素
 
 **绝对定位元素**：position 值为 absolute 或 fixed 的元素
 
-**绝对定位元素的特点**
+==绝对定位元素的特点==
 
 - 可以随意设置宽高
 - 宽高默认由内容决定
@@ -126,7 +126,7 @@ position 的不同值之间的比较
   - `z-index` 越大，层叠在越上面
   - `z-index` 相等，写在后面的那个元素层叠在上面
 - 如果不是兄弟关系
-  - 各自从元素自己以及祖先元素中找出最邻近的两个定位元素进行比较
+  - 各自从元素及其祖先元素中找出最邻近的两个定位元素进行比较
   - 而且这两个定位元素必须有设置 `z-index` 的具体数值
 
 ## 浮动布局
@@ -141,7 +141,7 @@ position 的不同值之间的比较
 
   因此在一段时间里面它成为网页多列布局的最常用工具
 
-- 绝对定位和浮动都会让元素脱离标准流，已达到灵活布局的效果
+- 绝对定位和浮动都会让元素脱离标准流，以达到灵活布局的效果
 
 `float` 可以让元素产生浮动效果
 
@@ -158,6 +158,7 @@ position 的不同值之间的比较
    - 定位元素会层叠在浮动元素上面
 
 2. 如果元素是向左（右）浮动，浮动元素的左（右）边界不能超出包含块的左（右）边界
+
 3. 浮动元素之间不能层叠
    - 如果一个元素浮动，另一个浮动元素已经在那个位置了，后浮动的元素将紧贴着前一个浮动元素
    - 如果水平方向剩余的空间不够显示浮动元素，浮动元素将向下移动，直到有充足的空间为止
@@ -165,6 +166,8 @@ position 的不同值之间的比较
 4. 浮动元素不能与行内级内容层叠，行内级内容将会被浮动元素推出
 
    比如：行内级元素、inline-block 元素、块级元素的文字内容
+
+   场景：box1 浮动 box2 不浮动 box2 中的行内级内容会被 box1 推出
 
 5. 行内级元素、inline-block 元素浮动后，其顶部将与所在行的顶部对齐
 
@@ -179,9 +182,11 @@ position 的不同值之间的比较
 
 ### 浮动案例
 
-多行布局
+多行布局中的一些问题及解决方法
 
 假如有多个盒子需要按照多行放置，可以用 float 布局
+
+可能会出现的问题：
 
 1. 当盒子之间需要存在水平间距时，设置 margin 会将一行盒子的最后一个挤下去
 
@@ -232,13 +237,15 @@ position 的不同值之间的比较
 
 ### 高度塌陷
 
-由于浮动元素会脱离标准流，父元素计算总高度的时候，不会计算浮动子元素的高度，这会导致父元素的**高度塌陷**问题
+由于浮动元素会脱离标准流，父元素计算总高度的时候，不会计算浮动子元素的高度
+
+这会导致父元素的**高度塌陷**问题
 
 解决父元素高度塌陷问题的过程，一般叫做**清除浮动**
 
 清除浮动的**目的**是让父元素计算总高度的时候，把浮动子元素的高度算进去
 
-清除浮动的**方法**：
+==清除浮动的方法==
 
 1. 给父元素设置固定高度
 
@@ -259,16 +266,16 @@ position 的不同值之间的比较
   height: 0; /* 浏览器兼容性 */
 }
 .clear-fix {
-  *zoom: 1; /* IE6/7兼容性 */
+  zoom: 1; /* IE6/7兼容性 */
 }
 ```
 
-> clear 属性可以指定一个元素是否必须移动（清除浮动后）到在它之前的浮动元素下面
->
-> - left：要求元素的顶部低于之前生成的所有左浮动元素的底部
-> - right：要求元素的顶部低于之前生成的所有右浮动元素的底部
-> - both：要求元素的顶部低于之前生成的所有浮动元素的底部
-> - none：默认值，无特殊要求
+清除浮动的**原理**是 clear 属性可以指定一个元素是否必须移动（清除浮动后）到在它之前的浮动元素下面
+
+- left：要求元素的顶部低于之前生成的所有左浮动元素的底部
+- right：要求元素的顶部低于之前生成的所有右浮动元素的底部
+- both：要求元素的顶部低于之前生成的所有浮动元素的底部
+- none：默认值，无特殊要求
 
 ## flex 布局
 
@@ -289,11 +296,13 @@ position 的不同值之间的比较
 
 **flex 布局模型**
 
-![](../images/flex.png)
+<img src="../images/flex.png" style="zoom: 50%;" />
+
+<img src="../images/flex-summary.png" style="zoom: 67%;" />
 
 ### flex container
 
-- 开启了 flex 布局的元素
+- `flex container` 即开启了 flex 布局的元素
 
 - 设置 `display` 属性为 flex 或者 inline-flex 可以成为 `flex container`
 
@@ -344,7 +353,7 @@ position 的不同值之间的比较
 
       与 main start、main end 之间的距离等于 flex items 之间的距离
 
-    ![](../images/justify-content.png)
+    <img src="../images/justify-content.png" style="zoom: 67%;" />
 
   - `align-items`：决定 `flex items` 在 `cross axis` 上的对齐方式
 
@@ -355,7 +364,7 @@ position 的不同值之间的比较
     - center：居中对齐
     - baseline：与基准线对齐
 
-    ![](../images/align-items.png)
+    <img src="../images/align-items.png" style="zoom:67%;" />
 
   - `align-content`：决定多行 `flex items` 在 `cross axis` 上的对齐方式
 
@@ -385,7 +394,7 @@ position 的不同值之间的比较
 
       与 cross start、cross end 之间的距离等于 flex items 之间的距离
 
-    ![](../images/align-content.png)
+    <img src="../images/align-content.png" style="zoom:67%;" />
 
 ### flex item
 
@@ -499,16 +508,15 @@ CSS 为了进一步增强自己的布局能力，提供了 grid 布局
 
 - grid 布局是一种基于二维的布局系统
 - 它更加强大，也更加复杂
-
-目前项目中基本都是使用 flex 布局为主，因为 grid 布局的兼容性比 flex 布局差一些，所以 grid 布局的应用较少
+- grid 布局的兼容性较差于 flex 布局差一些
 
 [A Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
 ### 重要概念
 
-- grid container：
+- grid container
   - 元素设置 display 为 grid 的盒子
-- grid item：单元格称之为 grid cell
+- grid item：单元格，也称之为 grid cell
   - grid container 的直接子项（必须是直接子代）
 - grid line
   - 构成网格结构的分割线

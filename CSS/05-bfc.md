@@ -34,11 +34,14 @@ FC 的全称是 Formatting Context
 
 - 行内块元素（元素的 display 为 inline-block）
 
-- 表格单元格（元素的 display 为 table-cell，HTML表格单元格默认为该值）
+- 表格元素
 
-  表格标题（元素的 display 为table-caption，HTML表格标题默认为该值）
+  - 表格单元格（元素的 display 为 table-cell，HTML表格单元格默认为该值）
 
-  匿名表格单元格（元素的 display 为table、table-row、table-row-group、table-header-group、table-footer-group，分别是HTML中table、row、tbody、thead、tfoot的默认属性）
+
+  - 表格标题（元素的 display 为table-caption，HTML表格标题默认为该值）
+
+  - 匿名表格单元格（元素的 display 为table、table-row、table-row-group、table-header-group、table-footer-group，分别是HTML中table、row、tbody、thead、tfoot的默认属性）
 
 - overflow 计算值不为 visible 的元素
 

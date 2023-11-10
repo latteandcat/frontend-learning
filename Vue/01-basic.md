@@ -22,44 +22,6 @@
 - 命令式编程关注 “how to do”
 - 声明式编程关注 “what & when to do”，由框架完成 “how” 的过程
 
-## data
-
-```js
-Vue.createApp({
-  data() {
-    counter: 0
-  }
-}).mount('#app')
-```
-
-data 属性需要传入一个函数，且该函数会返回一个对象
-
-这个返回的对象会被 Vue 的响应式系统劫持，之后对该对象的修改或者访问都会在劫持中被处理
-
-## methods
-
-```js
-Vue.createApp({
-  data() {
-    counter: 0
-  },
-  methods: {
-    increment() {
-      this.counter++
-    },
-    decrement() {
-      this.counter--
-    }
-  }
-}).mount('#app')
-```
-
-methods 是一个用于定义方法的对象
-
-这些方法中可以使用 this 访问 data 返回的对象中的属性
-
-但 methods 中的方法不能使用箭头函数，否则 this 的指向就会改变
-
 # Vue 模板语法
 
 ## 插值
@@ -336,3 +298,105 @@ v-for 和 v-if 共存在一个节点上时 v-if 的优先级更高
   传入一个固定长度的依赖值数组，如果数组里的每个值都与最后一次的渲染相同，那么整个子树的更新将被跳过
 
   仅用于性能至上场景中的微小优化
+
+# Vue Options API
+
+## data
+
+```js
+Vue.createApp({
+  data() {
+    counter: 0
+  }
+}).mount('#app')
+```
+
+data 属性需要传入一个函数，且该函数会返回一个对象
+
+这个返回的对象会被 Vue 的响应式系统劫持，之后对该对象的修改或者访问都会在劫持中被处理
+
+## methods
+
+```js
+Vue.createApp({
+  data() {
+    counter: 0
+  },
+  methods: {
+    increment() {
+      this.counter++
+    },
+    decrement() {
+      this.counter--
+    }
+  }
+}).mount('#app')
+```
+
+methods 是一个用于定义方法的对象
+
+这些方法中可以使用 this 访问 data 返回的对象中的属性
+
+但 methods 中的方法不能使用箭头函数，否则 this 的指向就会改变
+
+>插值语法可以直接显示数据，但是有时候需要对数据进行一些处理后显示
+>
+>1. 直接在模板中实现处理逻辑
+>   - 缺点 1：模板中存在太多复杂逻辑，不便于维护
+>   - 缺点 2：可能会在多个地方写相同的处理逻辑，不利于降低代码重复性
+>   - 缺点 3：多次使用的时候，运算会多次执行，没有缓存
+>
+>2. 通过 methods 中的方法返回处理后的内容
+>   - 缺点 1：数据的处理变成了方法的调用
+>   - 缺点 2：多次使用的时候，方法也会多次执行，没有缓存
+>3. 使用计算属性 computed
+>   - 优点 1：虽然是一个函数但是可以当成属性使用
+>   - 优点 2：计算属性是有缓存的，不会重复执行多次
+
+## computed
+
+计算属性用于编写任何包含响应式数据的复杂逻辑
+
+计算属性将被混入到组件实例中，所有 getter 和 setter 的 this 上下文自动地绑定为组件实例
+
+```js
+computed: {
+  fullname() {
+    return this.firstName + this.lastName
+  },
+  scoreLevel() {
+    this.score >= 60 ? "及格" : "不及格"
+  },
+  reverseMessage() {
+    return this.message.split(" ").reverse().join(" ")
+  }
+}
+```
+
+计算属性的缓存
+
+- 计算属性会基于它们的依赖关系进行缓存
+- 在数据不发生变化时，计算属性是不需要重复计算的
+- 但是如果依赖的数据发生变化，在使用时，计算属性依然会进行重复计算
+
+计算属性的 setter 和 getter
+
+- 计算属性在大多数情况下，只需要一个 getter 方法即可，所以我们会将计算属性直接写成一个函数
+- 计算属性的完整写法是设置 set 和 get 方法
+
+```js
+computed: {
+  fullname() {
+    get() {
+      return this.firstName + this.lastName
+    },
+    set(value) {
+      const names = value.split(" ")
+      this.firstName = names[0]
+      this.lastName = names[1]
+    }
+  }
+}
+```
+
+## watch

@@ -1,6 +1,6 @@
 # 额外知识补充
 
-## CSS 表示颜色的方法
+## CSS 颜色
 
 [css - color](https://developer.mozilla.org/zh-CN/docs/Web/CSS/color_value)
 
@@ -38,7 +38,7 @@ HTML -> DOM tree + CSS -> Render Tree -> Display
 
 ![](../images/browser-rendering-flow.JPG)
 
-## CSS 样式不生效的原因
+## CSS 样式不生效
 
 有时候编写的 CSS 样式不生效，有可能是因为
 
@@ -58,7 +58,7 @@ border 主要是用来给盒子增加边框的
 
 [The shape of CSS](https://css-tricks.com/the-shapes-of-css/#top-of-site)
 
-## Web 字体
+## Web Fonts
 
 - 使用 Web Fonts 的原因
 
@@ -181,7 +181,7 @@ Sprite 图片制作
 
   [spritecow](http://www.spritecow.com/)
 
-## 元素的水平垂直居中
+## 水平垂直居中
 
 ### 水平居中
 
@@ -219,9 +219,13 @@ Sprite 图片制作
 
 3. 相对定位设置 top 配合 translate
 
-   设置 `position: relative; top: 50%; translateY(-50%);`
+   设置 `position: relative; top: 50%; transform: translateY(-50%);`
 
    不能用 `margin-top: 50%;` 因为 `margin-top` 的百分比是相对于父元素的宽度的
+   
+   top 的 50% 是相对于父元素高度的，translateY 的 50% 是相对于自身高度的
+   
+   [CSS 之 百分比样式属性](https://blog.csdn.net/weixin_45092437/article/details/123167480)
 
 ## 属性编写顺序
 
@@ -253,7 +257,7 @@ Sprite 图片制作
    - white-space
    - cursor
 
-## CSS 中的函数
+## CSS 函数
 
 CSS 中有很多函数可以帮助我们更加灵活的编写样式的值
 
@@ -284,7 +288,7 @@ CSS 中有很多函数可以帮助我们更加灵活的编写样式的值
 `calc()` 函数允许在声明 CSS 属性时执行一些计算
 
 - 计算支持加减乘除的运算
-- +和- 运算符的两边必须要有空白字符
+- `+` 和 `-` 运算符的两边必须要有空白字符
 
 - 通常用来设置一些元素的尺寸或者位置
 
@@ -369,12 +373,14 @@ background-image: radial-gradient(at 0% 50%, blue, red);
 
 ## 媒体查询
 
-**什么是媒体查询**
+什么是[媒体查询](https://www.runoob.com/cssref/css3-pr-mediaquery.html)
 
 - 媒体查询是一种提供给开发者针对不同设备需求进行定制化开发的接口
 - 可以根据设备的类型（比如屏幕设备、打印机设备）或者特定的特性（比如屏幕的宽度）来修改你的页面
 
-**媒体查询的使用方式**
+### 使用方式
+
+媒体查询的使用方式
 
 1. 和 `@import` 结合使用
 
@@ -392,17 +398,15 @@ background-image: radial-gradient(at 0% 50%, blue, red);
 
 3. 通过 `@media` 使用（常用方式）
 
-   ```css
-   @media (max-width: 600px) {
-       body {
-           background-color: blue;
-       }
+   ```
+   @media not|only mediatype and (mediafeature and|or|not mediafeature) {
+     CSS-Code;
    }
    ```
-
+   
 4. 使用 `Window.matchMedia()` 和 `MediaQueryList.addListener()` 方法来测试和监控媒体状态
 
-**媒体类型**
+###  媒体类型
 
 在使用媒体查询时，必须指定要使用的媒体类型
 
@@ -413,29 +417,31 @@ background-image: radial-gradient(at 0% 50%, blue, red);
 - screen：主要用于屏幕
 - speech：主要用于语音合成器
 
-**媒体特性**
+### 媒体特性
 
 媒体特性描述了浏览器、输出设备或者预览环境的具体特征
 
 - 通常会将媒体特性描述为一个表达式
 - 媒体特性表达式必须用括号括起来
 
-![](../images/media-feature.png)
+<img src="../images/media-feature.png" style="zoom: 67%;" />
 
-**媒体查询的逻辑操作符**
+### 逻辑操作符
 
 媒体查询的表达式最终会获得一个 Boolean 值
 
 如果为真就会生效，如果为假就不会生效
 
-如果有多个条件，我们就可以通过逻辑操作符联合复杂的媒体查询
+如果有多个条件，我们就可以通过逻辑操作符联合构造复杂的媒体查询
 
 - and：and 操作符用于将多个媒体查询规则组合成单条媒体查询
 - not：not 运算符用于否定媒体查询，如果不满足这个条件则返回 true，否则返回 false
 - only：only 运算符仅在整个查询匹配时才用于应用样式
 - ,（逗号）：逗号用于将多个媒体查询合并为一个规则，等价于 or
 
-**媒体查询用于移动端适配的案例**
+### 案例
+
+媒体查询用于移动端适配的案例
 
 ```css
 @media screen and (min-width: 320px) {
@@ -452,13 +458,11 @@ background-image: radial-gradient(at 0% 50%, blue, red);
 }
 ```
 
-## CSS 常见单位
+## CSS 单位
 
 在 CSS 中我们经常使用 px 来表示一个长度或者大小
 
-CSS中还有很多长度单位
-
-整体可以分为
+CSS 中的长度单位整体可以分为
 
 - 绝对长度单位（Absolute length units）
 - 相对长度单位（Relative length units）
@@ -469,9 +473,9 @@ CSS中还有很多长度单位
 - 大多数绝对长度单位在用于打印更有用
 - 经常使用的只有 px（像素）
 
-![](../images/abs-units.png)
+<img src="../images/abs-units.png" style="zoom: 67%;" />
 
-![](../images/abs-units-use.png)
+<img src="../images/abs-units-use.png" style="zoom:67%;" />
 
 ### 相对长度单位
 
@@ -481,9 +485,9 @@ CSS中还有很多长度单位
 
 - 使用相对单位的好处时，可以通过仔细的规划，使文本或者其他元素的大小与页面上的其他内容相对应
 
-![](../images/rea-units.png)
+<img src="../images/rea-units.png" style="zoom:67%;" />
 
-![](../images/rea-units-case.png)
+<img src="../images/rea-units-case.png" style="zoom: 80%;" />
 
 ## 像素
 
@@ -576,7 +580,12 @@ PPI（Pixels Per Inch）
 
   以满足在一个移动端窗口的正常布局
 
-  设置方式是 meta 中的 viewport
+  设置方式是 meta 中的 viewport，让布局视口的宽度等于设备宽度
+  
+  ```html
+  <!-- 设置理想视口 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  ```
   
   ![](../images/meta-viewport.png)
 

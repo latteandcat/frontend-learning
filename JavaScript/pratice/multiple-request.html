@@ -17,20 +17,16 @@
 
       // Promise
       function getData1(url) {
-        request(url)
-          .then(res1 => {
+        request(url).then(res1 => {
             console.log(res1);
             return request(res1 + "aaa");
-          })
-          .then(res2 => {
+          }).then(res2 => {
             console.log(res2);
             return request(res2 + "bbb");
-          })
-          .then(res3 => {
+          }).then(res3 => {
             console.log(res3);
             return request(res3 + "ccc");
-          })
-          .then(res4 => {
+          }).then(res4 => {
             console.log(res4);
           });
       }
@@ -46,8 +42,6 @@
         console.log(res3);
         const res4 = yield request(res3 + "ccc");
         console.log(res4);
-        // const res5 = yield request(res4 + "ddd");
-        // console.log(res5);
       }
 
       const gen = getData2("hello");

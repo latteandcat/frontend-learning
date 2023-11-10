@@ -3,20 +3,33 @@
 [HTML5](https://www.runoob.com/html/html5-intro.html)
 
 - [新元素](https://www.runoob.com/html/html5-new-element.html)
-- 语义元素
+
+- 语义化元素
+
 - 媒体元素
+
 - 表单扩展
-- Canvas 和 SVG
-- MathML
+
+- Canvas
+
+  [Canvas 教程](https://www.runoob.com/html/html5-canvas.html) [Canvas 参考手册](https://www.runoob.com/tags/ref-canvas.html) [Canvas 笔记](https://blog.latteandcat.cn/blogs/frontend/2019/canvas.html)
+
 - 新增 API
+
+  - WebStorage
   - 拖放
   - 地理定位
-  - Web Workers
-  - SSE
-  - WebSocket
-  - WebStorage
+  - [Web Workers](http://www.ruanyifeng.com/blog/2018/07/web-worker.html)
+  - [SSE](https://www.runoob.com/html/html5-serversentevents.html)
+  - [WebSocket](https://www.runoob.com/html/html5-websocket.html)
   - Web SQL
-  - 应用程序缓存
+  - 应用程序缓存（Cache Manifest）
+  - SVG
+  - MathML
+
+- [浏览器支持](https://www.runoob.com/html/html5-browsers.html)
+
+  [GitHub - aFarkas/html5shiv](https://github.com/aFarkas/html5shiv)
 
 ## 语义化元素
 
@@ -38,9 +51,9 @@ HTML5 中新增了一些语义化的元素
 - `<figure>`：规定独立的流内容（图像、图表、照片、代码等等）
 - `<figcaption>`：定义 `<figure>` 元素的标题
 
-元素的语义化即用正确的元素做正确的事情
+==元素的语义化即用正确的元素做正确的事情==
 
-语义化的好处
+==语义化的好处==
 
 1. 提高代码的阅读性和可维护性，减少开发的沟通成本
 2. 有利于 SEO，搜索引擎会根据标签确定上下文和各个关键字的搜索权重
@@ -88,13 +101,14 @@ Video 和 Audio 的使用方式
 **Audio**
 
 - `<audio>` 元素用于在文档中嵌入音频内容，和 `<video>` 元素的用法非常类似
+
 - `<audio>` 的常见属性
 
     ![](../images/audio-attr.png)
 
 - 支持的音频格式
 
-​	[Web audio codec guide](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs)
+    [Web audio codec guide](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Audio_codecs)
 
 - 兼容性写法
 
@@ -122,30 +136,56 @@ Video 和 Audio 的使用方式
     <option value="Opera"></option>
     <option value="Safari"></option>
   </datalist>
-  
   ```
-
+  
 - output 元素：用于不同类型的输出
 - keygen 元素：规定用于表单的密钥对生成器字段
 
 ### 新的表单属性
 
-form 的新增属性
+**form 的新增属性**
 
-- autocomplete
-- novalidate
+- autocomplete：是否开启自动完成
+- novalidate：是否执行默认的表单验证
 
-input 的新增属性
+**input 的新增属性**
 
-- autofocus
-- required
+- autocomplete：是否开启自动完成
+- autofocus：是否在页面加载时自动聚焦
+- form：规定所属表单
+- list：规定输入域的 datalist
+- required：是否必须填写
+
+用于 type="submit" 和 type="image"
+
+- formaction：描述了表单提交的 URL 地址
+- formenctype：描述了表单提交到服务器的数据编码
+- formmethod：定义了表单提交的方式
+- formtarget：覆盖 form 的 target 属性
+
+仅用于 type="submit"
+
+- formnovalidate：是否执行默认的表单验证
+
+仅用于 type="image"
+
+- height：图像高度
+- width：图像宽度
+
+用于日期、时间和数字等包含范围的选择器
+
+- min
+- max
+- step
+
+用于 type="file" 和 type="email"
+
+- multiple：是否可选择多个值
+
+用于 text, search, url, tel, email 以及 password
+
+- pattern：设置一个用于验证输入值的正则表达式
 - placeholder
-- placeholder
-- autocomplete
-- list
-- pattern
-- min、max、step
-- ...
 
 ### 新的输入类型
 
@@ -172,11 +212,11 @@ HTML5 中新增了一种全局属性的格式 `data-*`，用于自定义数据�
 
 ```html
 <div class="box" title="abc" data-name="why" data-age="18">
-    box
+  box
 </div>
 <script>
-    const box = document.querySelector(".box")
-    console.log(box.dataset)
+  const box = document.querySelector(".box")
+  console.log(box.dataset)
 </script>
 ```
 

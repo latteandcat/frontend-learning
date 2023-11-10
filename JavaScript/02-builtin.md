@@ -12,7 +12,7 @@
 
   JS 不支持负数索引
 
-  从 0 到 length-1 
+  索引范围为 0 到 length-1 
 
 - JS 中数组的特点
 
@@ -130,7 +130,7 @@
 
 - `arr.concat(value1, ... , valueN)`：创建一个新数组，其中包含来自于其他数组或其他项的值
 
-- `arr.join(separator)`：将一个数组的所有元素连接成一个字符串并返回这个字符串
+- `arr.join(separator)`：将一个数组的所有元素拼接成一个字符串并返回这个字符串
 
 **查找元素**
 
@@ -159,39 +159,36 @@
 
 - `arr.sort()`
 
-  - 默认按升序排列数组项
+  默认按升序排列数组项
 
-  - 也可以接受一个比较函数 `compare(value1, value2)`
+  也可以接受一个比较函数 `compare(value1, value2)`
 
-    - 如果比较函数返回值小于0，value1 排在 value2 前面
-    - 如果比较函数返回值等于0，value1 和 value2 的相对位置不变
-    - 如果比较函数返回值大于0，value2 排在 value1 前面
+  - 如果比较函数返回值小于0，value1 排在 value2 前面
+  - 如果比较函数返回值等于0，value1 和 value2 的相对位置不变
+  - 如果比较函数返回值大于0，value2 排在 value1 前面
 
-    ```js
-    // 升序
-    arr.sort(function(value1, value2) {
-      return value1 - value2
-    })
-    
-    // 降序
-    arr.sort(function(value1, value2) {
-      return value2 - value1
-    })
-    ```
+  ```js
+  // 升序
+  arr.sort(function(value1, value2) {
+    return value1 - value2
+  })
+  
+  // 降序
+  arr.sort(function(value1, value2) {
+    return value2 - value1
+  })
+  ```
 
-- `arr.reverse()`
+- `arr.reverse()`：反转数组项的顺序
 
-  - 反转数组项的顺序
 
 **迭代方法**
 
 以下迭代方法都会在数组的每一项上运行给定函数
 
-该函数会接受三个参数：
+该函数会接受三个参数：`value, index, arr`
 
-value, index, arr
-
-即数组项的值、数组项对应索引和数组对象本身
+分别对应数组项的值、数组项对应索引和数组对象本身
 
 - `forEach()`：运行给定函数（没有返回值）
 
@@ -236,7 +233,7 @@ value, index, arr
 
 Date 类型使用自 UTC 1970 年 1 月 1 日零时开始经过的毫秒数来表示日期
 
-自 UTC 1970 年 1 月 1 日零时开始经过的毫秒数即为 Unix 时间戳
+自 UTC 1970 年 1 月 1 日零时开始经过的毫秒数即为 ==Unix 时间戳==
 
 获取 Unix 时间戳的方法
 
@@ -263,9 +260,11 @@ Date 类型使用自 UTC 1970 年 1 月 1 日零时开始经过的毫秒数来�
 
    - 默认打印的时间格式是 RFC 2822 标准的
 
+     `new Date(): Wed Oct 25 2023 21:13:09 GMT+0800 (中国标准时间)`
+
    - 也可以通过 `toISOString()` 将其转化为 ISO 8601 标准的扩展格式
 
-     `YYYY-MM-DDTHH:mm:ss.sssZ`
+     `new Date().toISOString(): YYYY-MM-DDTHH:mm:ss.sssZ`
 
    ```js
    var date1 = new Date("2022-09-09")
@@ -302,7 +301,7 @@ Date 类型使用自 UTC 1970 年 1 月 1 日零时开始经过的毫秒数来�
 - `getFullYear()`：获取年份（4 位数）
 - `getMonth()`：获取月份，从 0 到 11
 - `getDate()`：获取当月的具体日期，从 1 到 31
-- `getHours()`：获取小时
+- `getHours()`：获取小时，从 0 到 23
 - `getMinutes()`：获取分钟
 - `getSeconds()`：获取秒钟
 - `getMilliseconds()`：获取毫秒
@@ -335,7 +334,9 @@ JS 中的正则表达式使用 RegExp 类来创建，也可以使用正则表达
 正则表达式主要由模式（pattern）和修饰符（flags）组成
 
 ```js
+// 构造函数
 const re1 = new RegExp("hello", "i")
+// 字面量
 const re2 = /hello/i
 ```
 
@@ -361,17 +362,18 @@ const re2 = /hello/i
 
    比如 `match` 、`matchAll`、`search`、`replace`、`replaceAll`、`split`
 
-   `matchAll` 必须传入一个全局正则表达式
+   `matchAll` 和 `replaceAll` 必须传入全局正则表达式
 
-![](../images/regexp-method.png)
+<img src="../images/regexp-method.png" style="zoom:67%;" />
 
 ### 常用的匹配规则
 
 1. 字符类
-   - `\d`：匹配一个数字，等价于 `[0-9]`
-   - `\s`：匹配一个空白字符，包括空格、制表符 \t、换页符 \f 和换行符 \n 等
-   - `\w`：匹配一个单字字符（字母、数字或者下划线），等价于`[A-Za-z0-9_]`
+   - `\d`：匹配一个数字（digit），等价于 `[0-9]`
+   - `\s`：匹配一个空白字符（space），包括空格、制表符 \t、换页符 \f 和换行符 \n 等
+   - `\w`：匹配一个单字字符（word），包括字母、数字或者下划线，等价于`[A-Za-z0-9_]`
    - `.`：默认匹配除换行符之外的任何单个字符
+   
 2.  反向类
    - `\D`：匹配一个非数字字符，等价于`[^0-9]`
    - `\S`：匹配一个非空白字符
@@ -389,9 +391,11 @@ const re2 = /hello/i
 
 4. 转义字符串
 
-   如果要把特殊字符作为常规字符来使用，需要对其进行转义，即在前面加上一个反斜杠
+   如果要把特殊字符作为常规字符来使用，需要对其进行转义，即在前面加上一个反斜杠 `\`
 
-   常见的需要转义的字符：`[] \ ^ $ . | ? * + ( )`
+   常见的需要转义的字符：`[ ] \ ^ $ . | ? * + ( )`
+
+   / 不是特殊字符，但是在字面量创建的正则表达式中也需要转义
 
    ```js
    const fileNames = ["abc.html", "home.jsx", "index.js", "index.html", "utils.js"]
@@ -402,9 +406,9 @@ const re2 = /hello/i
 
 5. 集合和范围
 
-   - 集合：在方括号 […] 中的几个字符或者字符类意味着 “搜索给定的字符中的任意一个”
+   - 集合（Sets）：在方括号 […] 中的几个字符或者字符类意味着 “搜索给定的字符中的任意一个”
 
-   - 范围：集合内也可以包含字符范围，比如 [a-z] 会匹配 a-z 范围内的字母
+   - 范围（Ranges）：方括号也可以包含字符范围比如 [a-z] 会匹配 a-z 范围内的字母
    - 排除范围：`[^...]` 会匹配不在范围内的字符，比如 `[^a-z]`
 
 6. 量词
@@ -416,6 +420,12 @@ const re2 = /hello/i
    - `+`：等价于 `{1,}`，代表一个或多个，意味着必须出现
    - `?`：等价于 `{0,1}`，代表零个或一个，意味着可有可无
    - `*`：等价于 `{0,}`，代表零个或多个，意味着可以多次出现或不出现
+   
+   ```js
+   const htmlElement = "<div><p>哈哈哈</p><span></span></div>"
+   const tagReg = /<\/?[a-Z][a-z0-9]/ig
+   console.log(htmlElement.match(tagReg))
+   ```
 
 ### 贪婪模式和惰性模式
 
@@ -428,7 +438,7 @@ const message = "我最喜欢的两本书：《黄金时代》和《沉默的大
 const results = message.match(/《.+》/g)
 ```
 
-惰性模式中的量词与贪婪模式中的是相反的
+**惰性模式**中的量词与贪婪模式中的是相反的
 
 - 只要获取到对应的内容后，就不再继续向后匹配
 - 我们可以在量词后面再加一个问号来启用它
@@ -441,7 +451,7 @@ const results = message.match(/《.+?》/g)
 
 ### 捕获组
 
-模式的一部分可以用括号括起来 `(...)`，这称为捕获组（capturing group）
+模式的一部分可以用括号括起来 `(...)`，这称为**捕获组**（capturing group）
 
 - 捕获组允许将匹配的一部分作为结果数组中的单独项
 - 捕获组将括号视为一个整体，可以对一个整体应用量词
@@ -456,15 +466,15 @@ const results = message.match(/《.+?》/g)
 ```js
 const str = "<h1>title</h1>"
 const result = str.match(/<(.+?)>/)
-console.log(result[0]) // <h1>
-console.log(result[1]) // h1
+console.log(result[0]) // 完全匹配 <h1>
+console.log(result[1]) // 第一个括号的内容 h1
 
 const results = str.matchAll(/<(.+?)>/g)
 ```
 
-命名组：在开始括号之后立即放置 `?<name>` 来对一个组进行命名，捕获的命名组也会放在结果的 groups 对象中
+**命名组**：在开始括号之后立即放置 `?<name>` 来对一个组进行命名，捕获的命名组也会放在结果的 groups 对象中
 
-非捕获组：当需要使用括号对一个整体应用量词时，我们可能不希望捕获它们的内容，在开始括号之后添加 `?:` 可以排除组
+**非捕获组**：当需要使用括号对一个整体应用量词时，我们可能不希望捕获它们的内容，在开始括号之后添加 `?:` 可以排除组
 
 组内使用或：`|` 在正则表达式中表示或，通常会和捕获组一起使用，在其中表示多个值
 
@@ -486,9 +496,9 @@ JS 中的**原始类型**并非对象类型，所以它们是没有办法获取�
 
 - 调用对应的属性或者方法，返回一个新的值
 
-- 创建的包装类对象被销毁
+- 销毁创建的包装类对象
 
-- 通常 JavaScript 引擎会进行很多的优化
+  通常 JavaScript 引擎会进行很多的优化
 
   它可以跳过创建包装类型对象的过程在内部直接完成属性的获取或者方法的调用
 
@@ -544,7 +554,7 @@ JS 中的**原始类型**并非对象类型，所以它们是没有办法获取�
 
   而 `charAt(index)` 没有找到会返回空字符串
 
-  因为 `charAt(index)` 在 `0~str.length-1` 范围外的时候会返回空字符串
+  因为 `charAt(index)` 的索引在 `0~str.length-1` 范围外的时候会返回空字符串
 
   字符串的遍历
 
@@ -577,6 +587,10 @@ JS 中的**原始类型**并非对象类型，所以它们是没有办法获取�
 - `replace(regexp|substr, newSubStr|function)`
   - 查找到对应的字符串，并且使用新的字符串代替
   - 可以传入一个正则表达式来查找，也可以传入一个函数来替换
+- `replaceAll(regexp|substr, newSubStr|function)`
+  - 替换字符串中所有匹配部分
+  - 如果传入正则表达式，必须传入全局正则表达式
+
 
 **截取拼接**
 
@@ -627,5 +641,4 @@ Math是一个内置对象（不是一个构造函数），它拥有一些数学�
 
 - `Math.pow(x, y)`：返回 x 的 y 次幂
 
-  Math.pow(3, 3) 等同于 `3 ** 3` （ES7 新增指数运算符）
-
+  `Math.pow(3, 3)` 等同于 `3 ** 3` （ES7 新增指数运算符）

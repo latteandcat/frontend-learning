@@ -16,7 +16,7 @@
 
 ## arguments 对象
 
-arguments 是一个对应于 "传递给函数的参数"的类数组（array-like）对象
+arguments 是一个对应于 "传递给函数的参数" 的类数组（array-like）对象
 
 - 它拥有一些数组的特性
 
@@ -68,23 +68,48 @@ bar("a", "b", "c")
 剩余参数和 arguments 的区别
 
 - 剩余参数只包含那些没有对应形参的实参，而 arguments 包含了传给函数的所有实参
+
 - arguments 是类数组对象，而 rest 参数是一个数组，可以进行数组的所有操作
-- arguments 是早期 ECMAScript 为了方便获取所有的参数提取的一个数据结构，而 rest 参数是 ES6 中提供并且希望替代 arguments 的
+
+- arguments 是早期 ECMAScript 为了方便获取所有的参数提取的一个数据结构
+
+  而 rest 参数是 ES6 中提供并且希望替代 arguments 的
+
 - 剩余参数必须放到其他参数的最后
 
 > 参数编写顺序
 >
-> 1. 无默认参数形参
-> 2. 有默认参数形参
+> 1. 无默认值形参
+> 2. 有默认值形参
 > 3. 剩余参数
 >
 > length 区分
 >
-> - fn.length：无默认参数形参个数
+> - fn.length：无默认值形参个数
 >
-> - arguments.length：调用实参个数
+> - arguments.length：调用实参（所有实参）个数
 >
-> - rest.length：剩余参数个数
+> - rest.length：剩余参数（没有形参的实参）个数
+
+## getter 和 setter
+
+**`get`** 语法将对象属性绑定到查询该属性时将被调用的函数
+
+当尝试设置属性时，**`set`** 语法将对象属性绑定到要调用的函数
+
+```js
+const obj = {
+  _name: "me",
+  set name(value) {
+    this._name = value
+  },
+  get name() {
+    return this._name
+  }
+}
+```
+
+get 和 set 也可以在类中应用
 
 ## 纯函数
 
@@ -345,25 +370,25 @@ var result = newFn(100)
    - `[[get]]`：获取属性时会执行的函数，默认为 undefined
    - `[[set]]`：设置属性时会执行的函数，默认为 undefined
 
-   ```js
-   var obj = {
-     name: "you",
-     age: 18
+ ```js
+ var obj = {
+   name: "you",
+   age: 18
+ }
+
+ var _name = "me"
+ Object.defineProperty(obj, "name", {
+   configurable: true,
+   enumerable: false,
+   set: function(value) {
+     _name = value
+   },
+   get: function() {
+     return _name
    }
-   
-   var _name = "me"
-   Object.defineProperty(obj, "name", {
-     configurable: true,
-     enumerable: false,
-     set: function(value) {
-       _name = value
-     },
-     get: function() {
-       return _name
-     }
-   })
-   
-   ```
+ })
+
+ ```
 
 `Object.defineProperties()` 方法会直接在一个对象上定义多个新的属性或修改现有属性，并且返回该对象
 
@@ -393,7 +418,7 @@ Object.defineProperties(obj, {
 
 - `for (var key in obj) {}`：遍历对象或者其原型上的所有可枚举属性
 
-  for in 遍历的属性不包含 symbol 属性和不可枚举shu'xing
+  for in 遍历的属性不包含 symbol 属性和不可枚举属性
 
 
 >typeof 操作符可以用于确定变量的数据类型
@@ -437,8 +462,11 @@ Object.defineProperties(obj, {
 ## 常见类方法
 
 - `Object.hasOwn(obj, propKey)`：判断一个对象中是否有某个属性
+
 - `Object.keys(obj)`：获取对象属性名，不包含 symbol 属性 和 enumerable 为 false 的属性
+
 - `Object.getOwnPropertyNames`：获取对象属性名，包含所有非 symbol 属性
+
 - `Object.getOwnPropertySymbols(obj)`：获取对象属性名，只有 symbol 属性
 
 - `Object.getPrototypeOf(obj)`：返回指定对象的原型
@@ -462,7 +490,7 @@ Object.defineProperties(obj, {
   
 - `Object.freeze(obj)`：冻结对象，不允许修改现有属性
   
-  - 实际上是调用 seal
+  - 实际上是调用 `seal`
   - 并且将现有属性的 writable 设置为 false
 
 - `Object.values(obj)`：获取所有的 value 值
@@ -473,7 +501,11 @@ Object.defineProperties(obj, {
 
   可以用于对象、数组、字符串
 
-- `Object.fromEntries()`：可以将 entries 转换成对象
+- `Object.fromEntries()`：将键值对列表转换为一个对象
+
+  iterable 是一个包含对象列表的可迭代对象
+
+  通常被实现为包含 [key, value] 的二元数组
 
 ## 增强对象字面量
 
@@ -530,7 +562,7 @@ ES6 中新增了一个从数组或对象中方便获取数据的方法，称之�
 
 解构常用于函数的参数和返回值
 
-### 数组的解构
+**数组的解构**
 
 ```js
 var names = ["name1", "name2", "name3", "name4", undefined]
@@ -545,7 +577,7 @@ var [name1, name2, ...otherNames] = names
 var [name1, name2, name3, name4, name5 = "default"] = names
 ```
 
-### 对象的解构
+**对象的解构**
 
 ```js
 var obj = {
@@ -569,7 +601,7 @@ var { name, age, ...rest } = obj
 
 ## 深拷贝
 
-深拷贝、浅拷贝和引用赋值的对比
+对象的深拷贝、浅拷贝和引用赋值的对比
 
 ```js
 const info = {
@@ -587,7 +619,7 @@ const obj2 = {
     ...info,
     age: 20
 }
-obj2.friend.name = "kobe" // info 中的也会发生改变
+obj2.friend.name = "kobe" // info.name 也会发生改变
 // Object.assign(target, ...sources) 会将一个或多个源对象中的属性浅拷贝到目标对象
 
 // 深拷贝：使用 JSON 或者 使用深拷贝函数
@@ -676,7 +708,7 @@ ECMAScript5 中 JS 提出了严格模式（Strict Mode）的概念
 
 ## 错误处理
 
-### throw
+**throw**
 
 在函数中想告知外界自己内部出现了错误可以通过 throw 关键字抛出一个异常
 
@@ -690,7 +722,7 @@ throw 语句
   - 也可以是对象类型：对象类型可以包含更多的信息
   - 可以使用内置的 Error 类创建的对象
 
-### Error
+**Error**
 
 JS 中提供了一个 Error 类
 
@@ -706,13 +738,19 @@ Error 类的子类
 - SyntaxError：解析语法错误时使用的错误类型
 - TypeError：出现类型错误时，使用的错误类型
 
-### try catch
+**try catch**
 
 函数抛出异常时，如果没有被捕获处理，程序会被终止
 
-- 如果我们在调用一个函数时，这个函数抛出了异常，但是我们并没有对这个异常进行处理，那么这个异常会继续传
-  递到上一个函数调用中
-- 而如果到了最顶层（全局）的代码中依然没有对这个异常的处理代码，这个时候就会报错并且终止程序的运行
+- 如果我们在调用一个函数时，这个函数抛出了异常
+  
+  但是并没有对这个异常进行处理
+  
+  那么这个异常会继续传递到上一个函数调用中
+  
+- 而如果到了最顶层（全局）的代码中依然没有对这个异常的处理代码
+
+  这个时候就会报错并且终止程序的运行
 
 但是很多情况下当出现异常时，我们并不希望程序直接退出，而是希望可以正确的处理异常
 
@@ -723,7 +761,7 @@ try {
     try_statements
 }
 [catch(exception_var_1) {
-    catch_statements_1  
+    catch_statements_1
 }]
 [finally {
     finally_statements

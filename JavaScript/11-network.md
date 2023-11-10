@@ -1,6 +1,6 @@
 # JS 网络编程
 
-## 前后端分离
+## 数据请求方式
 
 ### SSR
 
@@ -21,7 +21,7 @@ SSR 的缺点
 
 AJAX：Asynchronous JavaScript And XML
 
-- AJAX 是一种无页面刷新的服务器数据获取技术
+- AJAX 是一种实现无页面刷新的情况下获取服务器数据的技术
 - AJAX 的异步特性可以让它在不重新刷新页面的情况下与服务器通信，交换数据或更新页面
 - AJAX 是前后端分离的核心
 
@@ -31,15 +31,22 @@ AJAX：Asynchronous JavaScript And XML
 
 ###  概念
 
-HTTP 即超文本传输协议（HyperText Transfer Protocol）是一种用于分布式、协作式和超媒体信息系统的应用层协议
+HTTP 即超文本传输协议（HyperText Transfer Protocol）
+
+- HTTP 是一种用于分布式、协作式和超媒体信息系统的应用层协议
 
 - HTTP 是万维网的数据通信的基础，设计 HTTP 最初的目的是为了提供一种发布和接收 HTML 页面的方法
 - 通过 HTTP 或者 HTTPS 协议请求的资源由统一资源标识符（Uniform Resource Identifiers，URI）来标识
 
 HTTP 本质上是一个客户端（用户）和服务端（网站）之间请求和响应的标准
 
-- 客户端（用户代理程序）通过使用网页浏览器、网络爬虫或者其它的工具发起一个HTTP请求到服务器上指定端口（默认端口为80）
-- 服务端（响应服务器，源服务器）上存储着一些资源，比如HTML文件和图像，接收到请求后将相应的资源返回给客户端
+- 客户端（用户代理程序，user agent）通过使用网页浏览器、网络爬虫或者其它的工具
+
+  发起一个 HTTP 请求到服务器上指定端口（默认端口为80）
+
+- 服务端（响应服务器，origin server）上存储着一些资源，比如HTML文件和图像
+
+  接收到请求后将相应的资源返回给客户端
 
 HTTP 的应用
 
@@ -54,7 +61,7 @@ HTTP 的应用
 
 [HTTP 请求方法](https://developer.mozilla.org/zh-CN/docs/web/http/methods)
 
-<img src="../images/http-methods.png" style="zoom: 80%;" />
+<img src="../images/http-methods.png" style="zoom: 70%;" />
 
 [HTTP 响应状态码](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)
 
@@ -63,12 +70,13 @@ HTTP 的应用
 ### 常见标头
 
 - **content-type**：请求携带的数据类型
+  
   - application/x-www-form-urlencoded：表示数据被编码成以 '&' 分隔的键值对，同时以 '=' 分隔键和值
   - application/json：表示是一个 json 类型
   - text/plain：表示是文本类型
   - application/xml：表示是 xml 类型
   - multipart/form-data：表示是上传文件
-
+  
 - content-length：文件的大小长度（自动计算）
 
 - keep-alive
@@ -88,12 +96,12 @@ HTTP 的应用
 
 - accept-encoding：告知服务器，客户端支持的文件压缩格式
 
-  比如 js 文件可以使用gzip编码，对应 .gz文件
+  比如 js 文件可以使用 gzip 编码，对应 .gz文件
 
 - accept：告知服务器，客户端可接受文件的格式类型
 - user-agent：客户端相关的信息
 
-## XHR
+## XMLHttpRequest
 
 ### 发送请求
 
@@ -101,14 +109,21 @@ AJAX 可以使用 JSON、XML、HTML 和 text 文本等格式发送和接收数�
 
 ==使用 XHR 发送网络请求的步骤==
 
-1. 创建 xhr 实例对象用于网络请求：使用 XMLHttpRequest 类
+1. 创建 xhr 实例对象用于网络请求：
+
+   使用 XMLHttpRequest 类
 
 2. 监听 xhr 对象状态的变化：
 
    监听 onreadystatechange（状态改变时触发） 或者 onload 事件（请求完成时触发）
 
-3. 配置网络请求：通过 `open(method, url)` 方法
-4. 发送网络请求：通过 `send()` 方法
+3. 配置网络请求：
+
+   通过 `open(method, url)` 方法
+
+4. 发送网络请求：
+
+   通过 `send()` 方法
 
 ```js
 // 1.创建 xhr 实例对象
@@ -140,60 +155,50 @@ xhr.send()
 
 `xhr.readyState`：xhr 对象的状态
 
-一次请求中状态会发生多次改变
+一次网络请求中状态会发生多次改变
 
 不同状态对应的 readyState 不同
 
-- 0：UNSENT
+- `0-UNSENT`：代理被创建，但尚未调用 open() 方法
 
-  代理被创建，但尚未调用 open() 方法
+- `1-OPENED`：open() 方法已经被调用
 
-- 1：OPENED 
+- `2-HEADERS_RECEIVED`：send() 方法已经被调用，并且头部和状态已经可获得
 
-  open() 方法已经被调用
+- `3-LOADING`：下载中，responseText 属性已经包含部分数据
 
-- 2：HEADERS_RECEIVED
-
-  send() 方法已经被调用，并且头部和状态已经可获得
-
-- 3：LOADING 
-
-  下载中，responseText 属性已经包含部分数据
-
-- 4：DONE 
-
-  下载操作已完成
+- `4-DONE`：下载操作已完成
 
 readyState 是 xhr 对象的状态而不是 HTTP 的响应状态
 
 ### xhr 的事件
 
-- onreadystatechange：xhr 状态改变
-- loadstart：请求开始
-- progress：一个响应数据包到达，此时整个 response body 都在 response 中
+- `onreadystatechange`：xhr 状态改变
+- `loadstart`：请求开始
+- `progress`：一个响应数据包到达，此时整个 response body 都在 response 中
 
-- abort：调用 xhr.abort() 取消了请求
+- `abort`：调用 xhr.abort() 取消了请求
 
-- error：发生连接错误，域错误或资源错误
+- `error`：发生连接错误，域错误或资源错误
 
-- load：请求成功完成
-- timeout：由于请求超时而取消了该请求（仅发生在设置了 timeout 的情况下）
-- loadend：在 load、error、timeout 或 abort 之后触发
+- `load`：请求成功完成
+- `timeout`：由于请求超时而取消了该请求（仅发生在设置了 timeout 的情况下）
+- `loadend`：在 load、error、timeout 或 abort 之后触发
 
-### xhr 的响应数据和类型
-
-`xhr.response` 可以获取响应的正文内容，返回的类型取决于 xhr.responseType
+### xhr 的响应
 
 `xhr.responseType` 可以设置或获取响应数据的类型
 
 - 设置为空字符串时，会使用 text 作为默认值
 - 可以设置为 json，获取到的 response 不需要解析可以直接使用
 
-当返回的数据是普通文本时，也可以通过 responseText 获取响应结果
+`xhr.response` 可以获取响应的正文内容，返回的类型取决于 `xhr.responseType`
 
-当返回的数据是 XML 时，也可以通过 responseXML 来获取响应结果
+当返回的数据是普通文本时，也可以通过 `xhr.responseText` 获取响应结果
 
-### HTTP 响应状态
+当返回的数据是 XML 时，也可以通过 `xhr.responseXML` 来获取响应结果
+
+### xhr 的响应状态
 
 `xhr.status` 用于获取 HTTP 的响应状态码
 
@@ -255,8 +260,8 @@ xhr.onload = function() {
 
 `xhr.timeout` 属性可以设置请求的超时时间
 
-- 当超时事件后依然没有获取到数据，那么这个请求会自动被取消掉
-- 默认值为 0，表示没有设置超时时间
+- 当达到超时时间后依然没有获取到数据，那么这个请求会自动被取消掉
+- 超时时间的默认值为 0，表示没有设置超时时间
 
 ```js
 const xhr = new XMLHttpRequest()
@@ -287,7 +292,7 @@ xhr.abort()
 
 ## Fetch
 
-Fetch 是早期的 XHR 的替代方案，提供了一种更加现代的处理方案
+Fetch 是早期的 XMLHttpRequest 的替代方案，提供了一种更加现代的处理方案
 
 Fetch 的返回值是一个 Promise
 
@@ -302,7 +307,7 @@ Fetch 的返回值是一个 Promise
   - URL 字符串
   - Request 对象
 - init：一个配置项对象，包含所有对请求的设置
-  - method：请求的方法
+  - method：请求的方法，如 GET、POST
   - headers：请求的头信息
   - body：请求的 body 信息
 
@@ -349,7 +354,7 @@ fetch(url).then(response => {
 
 })
 
-// 优化一
+// 优化一：修改为链式调用，更加简洁
 fetch(url).then(response => {
   return response.json()
 }).then(res => {
@@ -358,7 +363,7 @@ fetch(url).then(response => {
 
 })
 
-// 优化二
+// 优化二：使用 async/await 封装异步请求函数
 async function getData(url) {
   const response = await fetch(url)
   const res = await response.json()
@@ -378,9 +383,9 @@ getData(url).then(res => {
 
    ```js
    async function getData() {
-       const response = await fetch("http://xxx.xxx.xx.xx/api/getquery?name=me&age=18")
-       const res = await response.json()
-       return res
+     const response = await fetch("http://xxx.xxx.xx.xx/api/getquery?name=me&age=18")
+     const res = await response.json()
+     return res
    }
    ```
 
@@ -388,15 +393,15 @@ getData(url).then(res => {
 
    ```js
    async function getData() {
-       const response = await fetch("http://xxx.xxx.xx.xx/api/posturl", {
-           method: "post",
-           headers: {
-               'Content-type': 'application/x-www-form-urlencoded'
-           },
-           body: "name=me&age=18"
-       })
-       const res = await response.json()
-       return res
+     const response = await fetch("http://xxx.xxx.xx.xx/api/posturl", {
+       method: "post",
+       headers: {
+         'Content-type': 'application/x-www-form-urlencoded'
+       },
+       body: "name=me&age=18"
+     })
+     const res = await response.json()
+     return res
    }
    ```
 
@@ -439,8 +444,14 @@ getData(url).then(res => {
 
 XHR 实现文件上传
 
-![](../images/upload-file.png)
+<img src="../images/upload-file.png" style="zoom: 80%;" />
 
 Fetch 也支持文件上传，但是没办法监听进度
 
-![](../images/fetch-upload-file.png)
+<img src="../images/fetch-upload-file.png" style="zoom: 67%;" />
+
+xhr 的 `progress` 事件可以用于监测文件传输进度
+
+- `event.lengthComputable` 表示当前传输文件的长度是否可知
+- `event.loaded` 表示已经传输的字节数
+- `event.total` 表示总字节数，以此计算当前进度条长度
